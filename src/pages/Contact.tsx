@@ -207,9 +207,18 @@ const Contact = () => {
                     onBlur={() => setFocusedField(null)}
                     rows={5}
                     style={{
-                      ...fieldBorder('description'),
-                      borderBottom: 'none',
+                      width: '100%',
+                      backgroundColor: 'transparent',
                       border: `1px solid ${focusedField === 'description' ? 'rgba(15, 27, 45, 0.7)' : 'rgba(15, 27, 45, 0.2)'}`,
+                      outline: 'none',
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      fontSize: '0.9375rem',
+                      color: '#2F2F2F',
+                      letterSpacing: '0.01em',
+                      lineHeight: 1.6,
+                      borderRadius: 0,
+                      transition: 'border-color 0.2s ease',
                       resize: 'none',
                       padding: '12px',
                     }}
