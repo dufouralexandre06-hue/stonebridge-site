@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Stonebridge — Institutional palette */
+    --navy:        #0F1B2D;
+    --graphite:    #2F2F2F;
+    --off-white:   #F5F5F5;
+    --light-gray:  #EBEBEB;
+    --gold:        #BFA46F;
+
+    /* HSL equivalents for shadcn/radix tokens */
+    --background:           216 50% 12%;   /* #0F1B2D */
+    --foreground:           0 0% 96%;      /* #F5F5F5 */
+
+    --page-light:           0 0% 96%;      /* #F5F5F5 */
+    --page-light-alt:       0 0% 92%;      /* #EBEBEB */
+    --page-light-foreground:0 0% 18%;      /* #2F2F2F */
+    --page-light-muted:     0 0% 40%;
+
+    --card:                 216 45% 14%;
+    --card-foreground:      0 0% 96%;
+
+    --popover:              216 45% 14%;
+    --popover-foreground:   0 0% 96%;
+
+    --primary:              0 0% 96%;
+    --primary-foreground:   216 50% 12%;
+
+    --secondary:            216 40% 18%;
+    --secondary-foreground: 0 0% 80%;
+
+    --muted:                216 35% 20%;
+    --muted-foreground:     216 15% 55%;
+
+    --accent:               38 40% 59%;    /* #BFA46F */
+    --accent-foreground:    216 50% 12%;
+
+    --destructive:          0 62% 30%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border:               216 35% 20%;
+    --input:                216 35% 20%;
+    --ring:                 0 0% 96%;
+
+    --radius: 0px;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans:  'Inter', -apple-system, sans-serif;
+
+    /* Spacing */
+    --space-breath:  8rem;
+    --space-section: 10rem;
+
+    /* Sidebar tokens */
+    --sidebar-background:         216 50% 12%;
+    --sidebar-foreground:         0 0% 96%;
+    --sidebar-primary:            0 0% 96%;
+    --sidebar-primary-foreground: 216 50% 12%;
+    --sidebar-accent:             216 40% 18%;
+    --sidebar-accent-foreground:  0 0% 96%;
+    --sidebar-border:             216 35% 20%;
+    --sidebar-ring:               0 0% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.75;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .institutional-heading {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .institutional-body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: clamp(1rem, 1.1vw, 1.0625rem); /* 16–17px */
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    max-width: 44rem;
+    color: #2F2F2F;
+  }
+
+  .institutional-label {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.6875rem; /* ~11px */
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* Light sections */
+  .section-light {
+    background-color: #F5F5F5;
+    color: #2F2F2F;
+  }
+
+  .section-light-alt {
+    background-color: #EBEBEB;
+    color: #2F2F2F;
+  }
+
+  /* bg-page-light utility — pages secondaires */
+  .bg-page-light {
+    background-color: #F5F5F5;
+    color: #2F2F2F;
+  }
+
+  .bg-page-light .institutional-heading {
+    color: #0F1B2D;
+  }
+
+  .bg-page-light .institutional-body {
+    color: #2F2F2F;
+  }
+
+  .bg-page-light .institutional-label {
+    color: #2F2F2F;
+    opacity: 0.6;
+  }
+}
+
+/* ─── Scroll-reveal animation ──────────────────────────────── */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1.is-visible { transition-delay: 120ms; }
+  .reveal-delay-2.is-visible { transition-delay: 240ms; }
+  .reveal-delay-3.is-visible { transition-delay: 360ms; }
+  .reveal-delay-4.is-visible { transition-delay: 480ms; }
+
+  /* Hero fade-in (immediate — pas de scroll) */
+  .hero-fade-in {
+    animation: heroFadeIn 1s ease-out both;
+  }
+  .hero-fade-delay-1 { animation-delay: 200ms; }
+  .hero-fade-delay-2 { animation-delay: 400ms; }
+  .hero-fade-delay-3 { animation-delay: 600ms; }
+  .hero-fade-delay-4 { animation-delay: 800ms; }
+
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
