@@ -9,49 +9,49 @@ const Mandats = () => {
   const sections = [
     {
       bg: '#EDE9E3',
-      label: t('Scope', 'Diagnostic et évaluation du risque'),
+      label: t('Diagnostic and risk assessment', 'Diagnostic et évaluation du risque'),
       body: t(
-        'Stonebridge accepts mandates of a strictly advisory nature, focused on governance architecture, regulatory positioning, and institutional structuring. Each mandate is defined by its objectives, its constraints, and the level of confidentiality required.',
+        'Structured analysis of situations involving regulatory, institutional or governance challenges. Comprehensive risk assessment, identification of points of vulnerability and construction of a defensible position.',
         "Analyse structurée de situations présentant des enjeux réglementaires, institutionnels ou de gouvernance. Lecture globale du risque, identification des points de fragilité et construction d'une position défendable."
       ),
     },
     {
       bg: '#FAF8F5',
-      label: t('Conditions', 'Situations bancaires et diligences renforcées'),
+      label: t('BANKING SITUATIONS AND ENHANCED DUE DILIGENCE', 'Situations bancaires et diligences renforcées'),
       body: t(
-        'We do not accept transactional, contingency-fee, or multi-party mandates involving conflicting interests. Our engagement is exclusive to the principal, and our counsel is delivered directly — without intermediary or delegated structure.',
+        'Intervention in contexts involving difficulties in establishing or maintaining banking relationships, enhanced due diligence requirements, exposed profiles or complex banking environments that call for rigorous documentary structuring.',
         "Intervention dans des contextes impliquant des difficultés d'entrée en relation, des exigences de diligence renforcée, des profils exposés ou des environnements bancaires complexes nécessitant une structuration documentaire rigoureuse."
       ),
     },
     {
       bg: '#EDE9E3',
-      label: t('Duration', 'Structures internationales et multi-juridictions'),
+      label: t('INTERNATIONAL AND MULTI-JURISDICTIONAL STRUCTURES', 'Structures internationales et multi-juridictions'),
       body: t(
-        'Mandates are structured over defined periods, renewable by mutual agreement. We do not operate on a retainer basis. Each renewal is subject to a full reassessment of objectives and conditions.',
+        'Analysis and structuring of situations involving multiple jurisdictions, complex organisational arrangements or cross-border regulatory exposures.',
         "Lecture et structuration de situations impliquant plusieurs juridictions, des dispositifs organisationnels complexes ou des expositions réglementaires croisées."
       ),
     },
     {
       bg: '#FAF8F5',
-      label: t('Duration', 'Gouvernance et conformité'),
+      label: t('GOVERNANCE AND COMPLIANCE', 'Gouvernance et conformité'),
       body: t(
-        'Mandates are structured over defined periods, renewable by mutual agreement. We do not operate on a retainer basis. Each renewal is subject to a full reassessment of objectives and conditions.',
+        'Advisory support in structuring governance and compliance frameworks adapted to contemporary regulatory requirements — AML/CFT, due diligence obligations, executive liability.',
         "Accompagnement dans la structuration de dispositifs de gouvernance et de conformité adaptés aux exigences réglementaires contemporaines — LCB-FT, obligations de vigilance, responsabilité des dirigeants."
       ),
     },
     {
       bg: '#EDE9E3',
-      label: t('Duration', 'Supervision externe et mandat continu'),
+      label: t('EXTERNAL SUPERVISION AND ONGOING MANDATE', 'Supervision externe et mandat continu'),
       body: t(
-        'Mandates are structured over defined periods, renewable by mutual agreement. We do not operate on a retainer basis. Each renewal is subject to a full reassessment of objectives and conditions.',
+        'Engagement as an outsourced compliance officer for structures without a dedicated internal compliance function. Regular supervision, reporting and management of regulatory obligations.',
         "Intervention en qualité de responsable conformité externalisé pour des structures ne disposant pas d'équipe dédiée en interne. Supervision régulière, reporting et pilotage des obligations réglementaires."
       ),
     },
     {
       bg: '#FAF8F5',
-      label: t('Duration', 'Coordination et soutien aux professionnels'),
+      label: t('COORDINATION AND PROFESSIONAL SUPPORT', 'Coordination et soutien aux professionnels'),
       body: t(
-        'Mandates are structured over defined periods, renewable by mutual agreement. We do not operate on a retainer basis. Each renewal is subject to a full reassessment of objectives and conditions.',
+        'Support to professionals — lawyers, accountants, advisors — facing situations that require independent analysis or specialised expert coordination.',
         "Intervention en soutien de professionnels — avocats, experts-comptables, conseils — confrontés à des situations nécessitant une analyse indépendante ou une coordination d'expertise spécialisée."
       ),
     },
@@ -68,7 +68,7 @@ const Mandats = () => {
             {t('Mandates', 'Mandats')}
           </h1>
           <br/>
-          <p className="text-black">Les interventions de Stonebridge prennent la forme de mandats ponctuels ou d'accompagnements structurés, lorsque les enjeux réglementaires ou institutionnels nécessitent une analyse indépendante et une coordination rigoureuse.</p>
+          <p className="text-black">{t('Stonebridge engagements take the form of discrete mandates or structured advisory assignments, where regulatory or institutional stakes require independent analysis and rigorous coordination.', 'Les interventions de Stonebridge prennent la forme de mandats ponctuels ou d\'accompagnements structurés, lorsque les enjeux réglementaires ou institutionnels nécessitent une analyse indépendante et une coordination rigoureuse.')}</p>
         </div>
       </section>
 

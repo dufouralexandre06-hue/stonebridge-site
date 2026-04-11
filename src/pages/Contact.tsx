@@ -44,6 +44,7 @@ const Contact = () => {
     description: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [rgpdAccepted, setRgpdAccepted] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
@@ -64,9 +65,10 @@ const Contact = () => {
   const infoSections = [
     {
       bg: '#FAF8F5',
-      label: t('Correspondence', 'Correspondance'),
+      label: t('FORM DISCLAIMER', 'Correspondance'),
       body: t(
-        'Any initial contact is subject to a preliminary assessment, taking into account the nature of the situation presented and the level of risk identified.',
+        'Each request is subject to prior review.\n' +
+          'Submission of a request does not constitute a commitment to engage.',
         "Toute prise de contact fait l'objet d'une appréciation préalable, au regard de la nature de la situation exposée et du niveau de risque identifié."
       ),
     },
@@ -93,8 +95,8 @@ const Contact = () => {
             className="reveal reveal-delay-1 institutional-body mt-10"
           >
             {t(
-              'Stonebridge intervenes exclusively on a mandate basis.',
-              'Stonebridge intervient exclusivement sur la base de mandats.'
+              'Stonebridge engagements are conducted exclusively under formal mandate, following an initial qualification of the situation.',
+              'Les interventions de Stonebridge sont réalisées exclusivement sous mandat, après une première qualification de la situation.'
             )}
           </p>
         </div>
@@ -124,7 +126,7 @@ const Contact = () => {
                 className="institutional-label mb-14"
                 style={{ color: '#0F1B2D', opacity: 0.55 }}
               >
-                {t('Preliminary enquiry', 'Prise de contact préliminaire')}
+                {t('Stonebridge reviews each request before any commitment is made. To submit a situation, please provide:', 'Stonebridge examine chaque demande avant tout engagement. Pour soumettre une situation, merci d\'indiquer :')}
               </p>
 
               <div className="space-y-10">
@@ -165,7 +167,7 @@ const Contact = () => {
                 {/* Fonction */}
                 <div>
                   <label style={labelStyle}>
-                    {t('Position or function', 'Fonction')}
+                    {t('Position held', 'Fonction')}
                   </label>
                   <input
                     type="text"
@@ -181,7 +183,7 @@ const Contact = () => {
                 {/* Juridiction */}
                 <div>
                   <label style={labelStyle}>
-                    {t('Primary jurisdiction', 'Juridiction principale concernée')}
+                    {t('Primary jurisdiction concerned', 'Juridiction principale concernée')}
                   </label>
                   <input
                     type="text"
@@ -226,11 +228,46 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* RGPD */}
+              <div className="mt-10 flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="rgpd"
+                  checked={rgpdAccepted}
+                  onChange={(e) => setRgpdAccepted(e.target.checked)}
+                  style={{
+                    marginTop: '2px',
+                    width: '14px',
+                    height: '14px',
+                    accentColor: '#0F1B2D',
+                    flexShrink: 0,
+                    cursor: 'pointer',
+                  }}
+                />
+                <label
+                  htmlFor="rgpd"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '0.8125rem',
+                    color: '#2F2F2F',
+                    lineHeight: 1.6,
+                    cursor: 'pointer',
+                  }}
+                >
+                  {t(
+                    'I acknowledge that the information submitted will be processed by Stonebridge solely for the purpose of responding to this enquiry, in accordance with applicable data protection regulations.',
+                    'J\'accepte que les informations transmises soient traitées par Stonebridge dans le seul but de répondre à cette prise de contact, conformément à la réglementation applicable en matière de protection des données personnelles.'
+                  )}
+                </label>
+              </div>
+
               {/* Submit */}
               <div className="mt-14">
                 <button
                   type="submit"
-                  onMouseEnter={() => setBtnHovered(true)}
+                  disabled={!rgpdAccepted}
+                  onMouseEnter={() => rgpdAccepted && setBtnHovered(true)}
                   onMouseLeave={() => setBtnHovered(false)}
                   style={{
                     fontFamily: "'Inter', sans-serif",
@@ -238,12 +275,12 @@ const Contact = () => {
                     fontSize: '0.6875rem',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    color: btnHovered ? '#0F1B2D' : '#ffffff',
-                    backgroundColor: btnHovered ? '#ffffff' : '#0F1B2D',
+                    color: !rgpdAccepted ? 'rgba(255,255,255,0.4)' : btnHovered ? '#0F1B2D' : '#ffffff',
+                    backgroundColor: !rgpdAccepted ? 'rgba(15,27,45,0.35)' : btnHovered ? '#ffffff' : '#0F1B2D',
                     border: '1px solid #BFA46F',
                     padding: '14px 36px',
                     borderRadius: '2px',
-                    cursor: 'pointer',
+                    cursor: rgpdAccepted ? 'pointer' : 'not-allowed',
                     transition: 'background-color 0.3s ease, color 0.3s ease',
                   }}
                 >
@@ -270,7 +307,7 @@ const Contact = () => {
               >
                 {s.label}
               </h2>
-              <p className="institutional-body">{s.body}</p>
+              <p className="institutional-body whitespace-pre-line">{s.body}</p>
             </div>
           </div>
         </section>

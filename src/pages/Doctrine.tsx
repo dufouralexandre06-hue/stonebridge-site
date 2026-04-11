@@ -9,33 +9,33 @@ const Doctrine = () => {
   const sections = [
     {
       bg: '#EDE9E3',
-      label: t('Primacy of structure', 'Lecture globale'),
+      label: t('COMPREHENSIVE READING', 'Lecture globale'),
       body: t(
-        'We hold that most governance failures are not failures of intent but of architecture. Our counsel begins with the structure — the allocation of authority, the design of decision-making processes, and the coherence between formal rules and actual practice. We do not address symptoms before we have understood the framework that produces them.',
+        'Each situation is analysed in its full legal, institutional and operational context. This approach identifies genuine points of tension — not merely surface-level exposures.',
         'Chaque situation est analysée dans son environnement juridique, institutionnel et opérationnel complet. Cette approche permet d\'identifier les points de tension réels — et non les seules expositions apparentes.'
       ),
     },
     {
       bg: '#FAF8F5',
-      label: t('Independence as method', 'Arbitrage'),
+      label: t('ARBITRATION', 'Arbitrage'),
       body: t(
-        'Our counsel is only valuable to the extent that it is unconstrained. We maintain no ongoing relationships with regulators, no positions in supervised entities, and no financial interests in the outcomes we advise on. This structural independence is not a posture — it is the condition of our usefulness.',
+        'Risk management involves navigating between regulatory constraints, operational realities and institutional responsibilities. The objective is not formal compliance — it is the construction of a coherent and defensible position.',
         'La gestion du risque implique des arbitrages entre contraintes réglementaires, réalités opérationnelles et responsabilités institutionnelles. L\'objectif n\'est pas la conformité formelle — c\'est la construction d\'une position cohérente et défendable.'
       ),
     },
     {
       bg: '#EDE9E3',
-      label: t('Discretion as discipline', 'Soutenabilité'),
+      label: t('SUSTAINABILITY', 'Soutenabilité'),
       body: t(
-        'We do not communicate publicly about our mandates, our clients, or the outcomes of our work. Discretion is not a service feature — it is a constraint we impose on ourselves as rigorously as we expect it from those we advise. The value of our counsel depends entirely on the trust it is conducted within.',
+        'A decision is only relevant if it can be sustained over time in the face of the institutions concerned. This requirement for sustainability is the central principle of the Stonebridge approach.',
         'Une décision n\'est pertinente que si elle peut être soutenue dans le temps face aux institutions concernées. Cette exigence de soutenabilité constitue le principe central de l\'approche Stonebridge.'
       ),
     },
     {
       bg: '#FAF8F5',
-      label: t('Discretion as discipline', 'Ligne de légitimité'),
+      label: t('LEGITIMACY', 'Ligne de légitimité'),
       body: t(
-          'We do not communicate publicly about our mandates, our clients, or the outcomes of our work. Discretion is not a service feature — it is a constraint we impose on ourselves as rigorously as we expect it from those we advise. The value of our counsel depends entirely on the trust it is conducted within.',
+          'Stonebridge engagements draw on direct experience in international fiduciary and regulatory environments, particularly in Luxembourg, France and Switzerland.',
           'Les interventions de Stonebridge s\'appuient sur une expérience directe en environnements fiduciaires et réglementaires internationaux, notamment au Luxembourg et en France.'
       ),
     },
@@ -53,8 +53,8 @@ const Doctrine = () => {
           </h1>
           <br/>
           <div className="whitespace-pre">
-          <p className="text-black">Stonebridge considère que le risque réglementaire ne peut être réduit à une conformité documentaire.</p>
-          <p className="text-black">Il doit être appréhendé dans une perspective globale, intégrant la gouvernance, les responsabilités et la soutenabilité des positions dans le temps.</p>
+          <p className="text-black">{t('Stonebridge considers that regulatory risk cannot be reduced to documentary compliance.', 'Stonebridge considère que le risque réglementaire ne peut être réduit à une conformité documentaire.')}</p>
+          <p className="text-black">{t('It must be approached from a comprehensive perspective, integrating governance, responsibilities and the long-term sustainability of positions.', 'Il doit être appréhendé dans une perspective globale, intégrant la gouvernance, les responsabilités et la soutenabilité des positions dans le temps.')}</p>
           </div>
         </div>
       </section>

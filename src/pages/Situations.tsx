@@ -11,14 +11,14 @@ const Situations = () => {
       bg: '#EDE9E3',
       label: t('Regulatory transition', 'Situations fréquemment rencontrées'),
       body: t(
-        'Entities facing a significant change in their regulatory environment — new supervisory regime, cross-border restructuring, or jurisdictional shift — require counsel that is both structurally informed and operationally grounded. We intervene at the point where legal frameworks and governance decisions converge.',
-        " ‣ Refus ou difficultés répétés d'accès aux relations bancaires \n ‣ Structures internationales présentant une opacité apparente ou une complexité capitalistique \n ‣ Profils exposés — personnes politiquement exposées, mandataires sensibles, clients à risque élevé \n ‣ Environnements réglementaires sensibles impliquant des actifs ou des flux atypiques \n ‣ Situations pré-contentieuses ou pré-crise nécessitant une intervention structurée en amont \n ‣ Pression externe — contrôle régulateur, questionnement institutionnel, demande de justification"
+          " ‣ Repeated refusals or difficulties in establishing or maintaining banking relationships \n ‣ International structures presenting apparent opacity or complex ownership arrangements \n ‣ Exposed profiles — politically exposed persons, sensitive officeholders, high-risk clients \n ‣ Sensitive regulatory environments involving atypical assets or transaction flows \n ‣ Pre-litigation or pre-crisis situations requiring structured early intervention \n ‣ External pressure — regulatory scrutiny, institutional questioning, requests for justification",
+          " ‣ Refus ou difficultés répétés d'accès aux relations bancaires \n ‣ Structures internationales présentant une opacité apparente ou une complexité capitalistique \n ‣ Profils exposés — personnes politiquement exposées, mandataires sensibles, clients à risque élevé \n ‣ Environnements réglementaires sensibles impliquant des actifs ou des flux atypiques \n ‣ Situations pré-contentieuses ou pré-crise nécessitant une intervention structurée en amont \n ‣ Pression externe — contrôle régulateur, questionnement institutionnel, demande de justification"
       ),
     },
     {
       bg: '#FAF8F5',
       body: t(
-        'When control structures become contested, when board composition is under pressure, or when shareholder alignment breaks down, the priority is to restore clarity of authority before any strategic decision is made. We assist principals in reestablishing a coherent governance framework under time constraints.',
+        'Before any decision is made, certain situations must first be correctly understood.',
         'Avant toute décision, certaines situations exigent d\'abord d\'être correctement lues.'
       ),
     },
@@ -35,8 +35,8 @@ const Situations = () => {
             {t('Situations', 'Situations')}
           </h1>
           <br/>
-          <p className="text-black">Certaines situations présentent un niveau de complexité ou de sensibilité qui rend leur qualification difficile et leur gestion interne insuffisante.</p>
-          <p className="text-black">Stonebridge intervient dans ces contextes pour apporter une lecture structurée du risque et des responsabilités engagées.</p>
+          <p className="text-black">{t('Certain situations present a level of complexity or sensitivity that makes internal qualification difficult and internal management insufficient.', 'Certaines situations présentent un niveau de complexité ou de sensibilité qui rend leur qualification difficile et leur gestion interne insuffisante.')}</p>
+          <p className="text-black">{t('Stonebridge intervenes in these contexts to provide a structured reading of the risk and responsibilities involved.', 'Stonebridge intervient dans ces contextes pour apporter une lecture structurée du risque et des responsabilités engagées.')}</p>
         </div>
       </section>
 
