@@ -39,8 +39,6 @@ const Contact = () => {
   const [form, setForm] = useState({
     email: '',
     organisation: '',
-    fonction: '',
-    juridiction: '',
     description: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -52,9 +50,14 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const response = await fetch('https://formspree.io/f/VOTRE_ID_FORMSPREE', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(form),
+    });
+    if (response.ok) setSubmitted(true);
   };
 
   const fieldBorder = (name: string) => ({
@@ -75,7 +78,7 @@ const Contact = () => {
     {
       bg: '#EDE9E3',
       label: t('Location', 'Localisation'),
-      body: t('Geneva, Switzerland', 'Genève, Suisse'),
+      body: t('Paris, France', 'Paris, France'),
     },
   ];
 
@@ -105,6 +108,7 @@ const Contact = () => {
       {/* Form section */}
       <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-2xl reveal reveal-delay-1">
+
           {submitted ? (
             <div style={{ paddingTop: '16px' }}>
               <p
@@ -161,38 +165,6 @@ const Contact = () => {
                     onFocus={() => setFocusedField('organisation')}
                     onBlur={() => setFocusedField(null)}
                     style={fieldBorder('organisation')}
-                  />
-                </div>
-
-                {/* Fonction */}
-                <div>
-                  <label style={labelStyle}>
-                    {t('Position held', 'Fonction')}
-                  </label>
-                  <input
-                    type="text"
-                    name="fonction"
-                    value={form.fonction}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('fonction')}
-                    onBlur={() => setFocusedField(null)}
-                    style={fieldBorder('fonction')}
-                  />
-                </div>
-
-                {/* Juridiction */}
-                <div>
-                  <label style={labelStyle}>
-                    {t('Primary jurisdiction concerned', 'Juridiction principale concernée')}
-                  </label>
-                  <input
-                    type="text"
-                    name="juridiction"
-                    value={form.juridiction}
-                    onChange={handleChange}
-                    onFocus={() => setFocusedField('juridiction')}
-                    onBlur={() => setFocusedField(null)}
-                    style={fieldBorder('juridiction')}
                   />
                 </div>
 
@@ -289,6 +261,40 @@ const Contact = () => {
               </div>
             </form>
           )}
+
+          {/* Discreet direct email mention */}
+          <p style={{
+            marginTop: '48px',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            fontSize: '0.75rem',
+            letterSpacing: '0.02em',
+            color: 'rgba(15, 27, 45, 0.45)',
+            lineHeight: 1.6,
+          }}>
+            {t('For any direct enquiry : ', 'Pour toute prise de contact directe : ')}
+            <a
+              href="mailto:contact@stonebridgeconsult.com"
+              style={{
+                color: 'rgba(15, 27, 45, 0.55)',
+                textDecoration: 'none',
+                borderBottom: '1px solid rgba(15, 27, 45, 0.2)',
+                paddingBottom: '1px',
+                transition: 'color 0.2s ease, border-color 0.2s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = 'rgba(15,27,45,0.85)';
+                e.currentTarget.style.borderBottomColor = 'rgba(15,27,45,0.5)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = 'rgba(15,27,45,0.55)';
+                e.currentTarget.style.borderBottomColor = 'rgba(15,27,45,0.2)';
+              }}
+            >
+              contact@stonebridgeconsult.com
+            </a>
+          </p>
+
         </div>
       </section>
 

@@ -6,7 +6,7 @@ const Footer = () => {
           Stonebridge
         </span>
         <span className="institutional-label opacity-60">
-          Paris &nbsp;·&nbsp; Luxembourg &nbsp;·&nbsp; Genève
+          Paris
         </span>
       </div>
     </footer>

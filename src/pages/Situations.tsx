@@ -9,7 +9,7 @@ const Situations = () => {
   const sections = [
     {
       bg: '#EDE9E3',
-      label: t('Regulatory transition', 'Situations fréquemment rencontrées'),
+      label: t('Frequently encountered situations', 'Situations fréquemment rencontrées'),
       body: t(
           " ‣ Repeated refusals or difficulties in establishing or maintaining banking relationships \n ‣ International structures presenting apparent opacity or complex ownership arrangements \n ‣ Exposed profiles — politically exposed persons, sensitive officeholders, high-risk clients \n ‣ Sensitive regulatory environments involving atypical assets or transaction flows \n ‣ Pre-litigation or pre-crisis situations requiring structured early intervention \n ‣ External pressure — regulatory scrutiny, institutional questioning, requests for justification",
           " ‣ Refus ou difficultés répétés d'accès aux relations bancaires \n ‣ Structures internationales présentant une opacité apparente ou une complexité capitalistique \n ‣ Profils exposés — personnes politiquement exposées, mandataires sensibles, clients à risque élevé \n ‣ Environnements réglementaires sensibles impliquant des actifs ou des flux atypiques \n ‣ Situations pré-contentieuses ou pré-crise nécessitant une intervention structurée en amont \n ‣ Pression externe — contrôle régulateur, questionnement institutionnel, demande de justification"
