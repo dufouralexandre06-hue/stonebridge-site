@@ -83,7 +83,7 @@ const Index = () => {
             marginTop: '14px',
           }}
         >
-          Paris&nbsp;&nbsp;·&nbsp;&nbsp;Luxembourg&nbsp;&nbsp;·&nbsp;&nbsp;Genève
+          Paris
         </p>
 
         {/* CTA */}
