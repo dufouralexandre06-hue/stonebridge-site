@@ -52,7 +52,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch('https://formspree.io/f/VOTRE_ID_FORMSPREE', {
+    const response = await fetch('https://formspree.io/f/xkokqjgz', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(form),
