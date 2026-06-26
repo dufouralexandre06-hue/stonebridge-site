@@ -11,6 +11,7 @@ import Mandats from "./pages/Mandats";
 import Situations from "./pages/Situations";
 import Doctrine from "./pages/Doctrine";
 import Contact from "./pages/Contact";
+import Urgence from "./pages/Urgence";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/situations" element={<Situations />} />
             <Route path="/doctrine" element={<Doctrine />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/urgence" element={<Urgence />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

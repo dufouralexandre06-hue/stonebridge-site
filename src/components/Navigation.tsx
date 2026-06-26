@@ -23,6 +23,7 @@ const Navigation: React.FC<NavigationProps> = ({ transparent = false }) => {
     { path: '/mandats', labelEn: 'Mandates', labelFr: 'Mandats' },
     { path: '/situations', labelEn: 'Situations', labelFr: 'Situations' },
     { path: '/doctrine', labelEn: 'Doctrine', labelFr: 'Doctrine' },
+    { path: '/urgence', labelEn: 'Emergency', labelFr: 'Urgence' },
     { path: '/contact', labelEn: 'Contact', labelFr: 'Contact' },
   ];
 
