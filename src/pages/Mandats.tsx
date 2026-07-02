@@ -72,6 +72,21 @@ const Mandats = () => {
         </div>
       </section>
 
+      {/* Image banner */}
+      <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/images/mandats.jpg)',
+            filter: 'grayscale(100%) brightness(0.55)',
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.45)' }}
+        />
+      </div>
+
       {sections.map((s, i) => (
         <section
           key={i}
