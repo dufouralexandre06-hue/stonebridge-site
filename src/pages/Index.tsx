@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import bridgeHero from '@/assets/bridge-hero.jpg';
 import Navigation from '@/components/Navigation';
 import MobileNavigation from '@/components/MobileNavigation';
 import Footer from '@/components/Footer';
@@ -19,11 +18,17 @@ const Index = () => {
         className="relative flex-1 flex flex-col items-center justify-center text-center px-6"
         style={{ minHeight: '100vh' }}
       >
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${bridgeHero})` }}
-        />
+        {/* Background video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero_poster.jpg"
+        >
+          <source src="/hero_720.mp4" type="video/mp4" />
+        </video>
         {/* Dark overlay */}
         <div
           className="absolute inset-0"

@@ -105,6 +105,21 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Image banner */}
+      <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/images/contact.jpg)',
+            filter: 'grayscale(100%) brightness(0.55)',
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.45)' }}
+        />
+      </div>
+
       {/* Form section */}
       <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-2xl reveal reveal-delay-1">
