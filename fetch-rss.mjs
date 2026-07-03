@@ -1,9 +1,9 @@
 import { writeFileSync } from 'fs';
 
 const FEEDS = [
-  { name: 'AMF', url: 'https://www.amf-france.org/fr/rss/actualites.xml' },
+  { name: 'AMF',  url: 'https://www.amf-france.org/fr/flux-rss/display/21' },
   { name: 'ACPR', url: 'https://acpr.banque-france.fr/rss.xml' },
-  { name: 'EBA', url: 'https://www.eba.europa.eu/feed/press-releases' },
+  { name: 'EBA',  url: 'https://www.eba.europa.eu/rss.xml' },
 ];
 
 const KEYWORDS = [
@@ -12,6 +12,15 @@ const KEYWORDS = [
   'lutte contre','gel des avoirs','vigilance','déclaration de soupçon',
   'tracfin','établissement de crédit','prestataire de services'
 ];
+
+function decodeEntities(str) {
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
+}
 
 async function main() {
   const allItems = [];
@@ -33,8 +42,8 @@ async function main() {
 
       for (const match of rawItems) {
         const block = match[1];
-        const title = (block.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '';
-        const link = (block.match(/<link[^>]*href="([^"]*)"/) || block.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '';
+        const title = decodeEntities((block.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '');
+        const link = decodeEntities((block.match(/<link[^>]*href="([^"]*)"/) || block.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '');
         const pubDate = (block.match(/<pubDate>([\s\S]*?)<\/pubDate>/i) || block.match(/<published>([\s\S]*?)<\/published>/i) || block.match(/<updated>([\s\S]*?)<\/updated>/i) || [])[1]?.trim() || '';
 
         // Skip generic EBA email alerts
