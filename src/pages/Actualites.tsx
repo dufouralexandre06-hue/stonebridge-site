@@ -45,38 +45,48 @@ const getDate = (el: Element): Date | null => {
   return null;
 };
 
+const PROXIES = [
+  (url: string) => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
+  (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  (url: string) => `https://cors-anywhere.herokuapp.com/${url}`,
+];
+
+const parseXml = (source: string, text: string): RssItem[] => {
+  const xml = new DOMParser().parseFromString(text, 'text/xml');
+  const elements = [
+    ...Array.from(xml.getElementsByTagName('item')),
+    ...Array.from(xml.getElementsByTagName('entry')),
+  ];
+  return elements
+    .filter(el => matchesKeywords(
+      getText(el, 'title') + ' ' + getText(el, 'description') + ' ' + getText(el, 'summary')
+    ))
+    .map(el => ({
+      title: getText(el, 'title'),
+      link: getLink(el),
+      pubDate: getDate(el),
+      source,
+    }))
+    .filter(item => item.title && item.link);
+};
+
 const fetchFeed = async (source: string, url: string): Promise<RssItem[]> => {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 9000);
-  try {
-    const res = await fetch(
-      `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-      { signal: controller.signal }
-    );
-    clearTimeout(timer);
-    const text = await res.text();
-    if (!text) return [];
-    const xml = new DOMParser().parseFromString(text, 'text/xml');
-    const elements = [
-      ...Array.from(xml.getElementsByTagName('item')),
-      ...Array.from(xml.getElementsByTagName('entry')),
-    ];
-    return elements
-      .filter(el => {
-        const text = getText(el, 'title') + ' ' + getText(el, 'description') + ' ' + getText(el, 'summary');
-        return matchesKeywords(text);
-      })
-      .map(el => ({
-        title: getText(el, 'title'),
-        link: getLink(el),
-        pubDate: getDate(el),
-        source,
-      }))
-      .filter(item => item.title && item.link);
-  } catch {
-    clearTimeout(timer);
-    return [];
+  for (const proxy of PROXIES) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 8000);
+    try {
+      const res = await fetch(proxy(url), { signal: controller.signal });
+      clearTimeout(timer);
+      if (!res.ok) continue;
+      const text = await res.text();
+      if (!text || text.trim().length < 50) continue;
+      const items = parseXml(source, text);
+      if (items.length > 0 || text.includes('<item>') || text.includes('<entry>')) return items;
+    } catch {
+      clearTimeout(timer);
+    }
   }
+  return [];
 };
 
 const PUBLICATIONS = [
@@ -203,6 +213,10 @@ const Actualites = () => {
           {loading ? (
             <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
               {t('Loading…', 'Chargement…')}
+            </p>
+          ) : items.length === 0 ? (
+            <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
+              {t('No updates available at this time.', 'Aucune actualité disponible pour le moment.')}
             </p>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
