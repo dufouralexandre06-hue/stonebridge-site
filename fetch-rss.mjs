@@ -5,15 +5,20 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const FEEDS = [
-  { name: 'AMF',  url: 'https://www.amf-france.org/fr/rss/actualites.xml' },
-  { name: 'ACPR', url: 'https://acpr.banque-france.fr/rss.xml' },
-  { name: 'EBA',  url: 'https://www.eba.europa.eu/rss.xml' },
+  { name: 'AMF',  urls: ['https://www.amf-france.org/fr/rss/actualites.xml'] },
+  { name: 'ACPR', urls: ['https://acpr.banque-france.fr/rss.xml'] },
+  { name: 'EBA',  urls: ['https://www.eba.europa.eu/feed/press-releases', 'https://www.eba.europa.eu/feed/news'] },
 ];
 
 const KEYWORDS = [
+  // Communs FR/EN
   'lcb-ft', 'aml', 'kyc', 'psan', 'sgp', 'sanction',
   'conformit', 'compliance', 'blanchiment', 'terrorisme',
-  'mica', 'aifmd', 'edd', 'anti-money', 'lutte contre',
+  'mica', 'aifmd', 'edd', 'anti-money',
+  // Vocabulaire ACPR spécifique
+  'lutte contre', 'financement', 'gel des avoirs', 'vigilance',
+  'soupçon', 'tracfin', 'établissement de crédit',
+  'prestataire de services',
 ];
 
 function matches(text) {
@@ -32,21 +37,18 @@ function extractText(block, tag) {
 }
 
 function extractLink(block) {
-  // Atom: <link href="..."/>
   const atom = block.match(/<link[^>]+href="([^"]+)"/i);
   if (atom) return atom[1].trim();
-  // RSS 2.0: <link>URL</link> (may contain CDATA)
   const rss = block.match(/<link>(?:<!\[CDATA\[)?(https?:\/\/[^\]<]+?)(?:\]\]>)?<\/link>/i);
   if (rss) return rss[1].trim();
-  // guid fallback
   const guid = block.match(/<guid[^>]*>([^<]+)<\/guid>/i);
   if (guid) return guid[1].trim();
   return '';
 }
 
 function extractDate(block) {
-  for (const tag of ['pubDate', 'updated', 'published', 'dc:date']) {
-    const val = extractText(block, tag) || block.match(new RegExp(`<${tag}>([^<]+)<\/${tag}>`, 'i'))?.[1];
+  for (const tag of ['pubDate', 'updated', 'published']) {
+    const val = extractText(block, tag) || block.match(new RegExp(`<${tag}>([^<]+)<\\/${tag}>`, 'i'))?.[1];
     if (val) {
       const d = new Date(val.trim());
       if (!isNaN(d.getTime())) return d.toISOString();
@@ -55,62 +57,72 @@ function extractDate(block) {
   return null;
 }
 
-async function fetchFeed(name, url) {
+// Exclut "EBA E-mail alert" générique et variantes
+function isGenericAlert(title) {
+  return /^(eba\s+)?e-?mail\s+alert(\s+\S+)?\.?$/i.test(title.trim());
+}
+
+async function tryFetch(name, url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 12000);
   try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 12000);
     const res = await fetch(url, {
       signal: controller.signal,
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Stonebridge-RSS/1.0)' },
     });
     clearTimeout(timer);
-    if (!res.ok) { console.warn(`[${name}] HTTP ${res.status}`); return []; }
-
-    const xml = await res.text();
-
-    const rawRss  = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
-    const rawAtom = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)];
-    console.log(`[${name}] ${rawRss.length + rawAtom.length} items bruts (${rawRss.length} RSS + ${rawAtom.length} Atom)`);
-
-    const isGenericAlert = (title) =>
-      /^e-?mail\s+alert\.?$/i.test(title.trim());
-
-    const items = [];
-
-    // RSS 2.0 items
-    for (const m of rawRss) {
-      const block = m[1];
-      const title = extractText(block, 'title');
-      const desc  = extractText(block, 'description');
-      if (isGenericAlert(title)) continue;
-      if (!matches(title + ' ' + desc)) continue;
-      const link = extractLink(block);
-      if (!title || !link) continue;
-      items.push({ title, link, pubDate: extractDate(block), source: name });
-    }
-
-    // Atom entries
-    for (const m of rawAtom) {
-      const block = m[1];
-      const title   = extractText(block, 'title');
-      const summary = extractText(block, 'summary') || extractText(block, 'content');
-      if (isGenericAlert(title)) continue;
-      if (!matches(title + ' ' + summary)) continue;
-      const link = extractLink(block);
-      if (!title || !link) continue;
-      items.push({ title, link, pubDate: extractDate(block), source: name });
-    }
-
-    console.log(`[${name}] ${items.length} entrées retenues après filtrage`);
-    return items;
+    console.log(`[${name}] ${url} → HTTP ${res.status}`);
+    if (!res.ok) return null;
+    return await res.text();
   } catch (err) {
-    console.warn(`[${name}] Échec : ${err.message}`);
-    return [];
+    clearTimeout(timer);
+    console.warn(`[${name}] ${url} → Échec : ${err.message}`);
+    return null;
   }
 }
 
+async function fetchFeed(name, urls) {
+  let xml = null;
+  for (const url of urls) {
+    xml = await tryFetch(name, url);
+    if (xml) break;
+  }
+  if (!xml) { console.warn(`[${name}] Tous les endpoints ont échoué`); return []; }
+
+  const rawRss  = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
+  const rawAtom = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)];
+  console.log(`[${name}] ${rawRss.length + rawAtom.length} items bruts (${rawRss.length} RSS + ${rawAtom.length} Atom)`);
+
+  const items = [];
+
+  for (const m of rawRss) {
+    const block = m[1];
+    const title = extractText(block, 'title');
+    const desc  = extractText(block, 'description');
+    if (isGenericAlert(title)) continue;
+    if (!matches(title + ' ' + desc)) continue;
+    const link = extractLink(block);
+    if (!title || !link) continue;
+    items.push({ title, link, pubDate: extractDate(block), source: name });
+  }
+
+  for (const m of rawAtom) {
+    const block = m[1];
+    const title   = extractText(block, 'title');
+    const summary = extractText(block, 'summary') || extractText(block, 'content');
+    if (isGenericAlert(title)) continue;
+    if (!matches(title + ' ' + summary)) continue;
+    const link = extractLink(block);
+    if (!title || !link) continue;
+    items.push({ title, link, pubDate: extractDate(block), source: name });
+  }
+
+  console.log(`[${name}] ${items.length} entrées retenues après filtrage`);
+  return items;
+}
+
 async function main() {
-  const results = await Promise.allSettled(FEEDS.map(f => fetchFeed(f.name, f.url)));
+  const results = await Promise.allSettled(FEEDS.map(f => fetchFeed(f.name, f.urls)));
 
   const all = [];
   for (const r of results) {
@@ -129,7 +141,11 @@ async function main() {
   const outDir = join(__dirname, 'public', 'data');
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, 'veille.json'), JSON.stringify(output, null, 2), 'utf-8');
-  console.log(`veille.json généré — ${output.length} entrée(s)`);
+
+  console.log(`\nveille.json — ${output.length} entrée(s) :`);
+  for (const item of output) {
+    console.log(`  [${item.source}] ${item.pubDate?.slice(0, 10) ?? 'sans date'} — ${item.title.slice(0, 80)}`);
+  }
 }
 
 main().catch(err => {
