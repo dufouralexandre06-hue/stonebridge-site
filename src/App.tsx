@@ -15,6 +15,7 @@ import Urgence from "./pages/Urgence";
 import Actualites from "./pages/Actualites";
 import MentionsLegales from "./pages/MentionsLegales";
 import Cookies from "./pages/Cookies";
+import Confidentialite from "./pages/Confidentialite";
 import CookieBanner from "./components/CookieBanner";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/actualites" element={<Actualites />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/confidentialite" element={<Confidentialite />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

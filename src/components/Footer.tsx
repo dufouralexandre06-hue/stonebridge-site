@@ -77,48 +77,68 @@ const Footer = () => {
               {t('Successfully subscribed.', 'Inscription enregistrée.')}
             </p>
           ) : (
-            <form
-              onSubmit={handleNewsletter}
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder={t('Email address', 'Adresse e-mail')}
-                required
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '10px' }}>
+              <form
+                onSubmit={handleNewsletter}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder={t('Email address', 'Adresse e-mail')}
+                  required
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.03em',
+                    color: 'rgba(255,255,255,0.65)',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(255,255,255,0.18)',
+                    outline: 'none',
+                    padding: '6px 0',
+                    width: '220px',
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '0.875rem',
+                    color: 'rgba(255,255,255,0.4)',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid rgba(255,255,255,0.18)',
+                    padding: '6px 14px',
+                    cursor: 'pointer',
+                    lineHeight: 1,
+                  }}
+                >
+                  →
+                </button>
+              </form>
+              <p
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 300,
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.03em',
-                  color: 'rgba(255,255,255,0.65)',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.18)',
-                  outline: 'none',
-                  padding: '6px 0',
-                  width: '220px',
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 300,
-                  fontSize: '0.875rem',
-                  color: 'rgba(255,255,255,0.4)',
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  borderBottom: '1px solid rgba(255,255,255,0.18)',
-                  padding: '6px 14px',
-                  cursor: 'pointer',
-                  lineHeight: 1,
+                  fontSize: '0.625rem',
+                  letterSpacing: '0.02em',
+                  color: 'rgba(255,255,255,0.2)',
+                  margin: 0,
+                  maxWidth: '300px',
+                  textAlign: 'right',
+                  lineHeight: 1.6,
                 }}
               >
-                →
-              </button>
-            </form>
+                {t(
+                  'By submitting this form, you agree to receive Stonebridge compliance notes. You may unsubscribe at any time by writing to contact@stonebridgeconsult.com.',
+                  'En soumettant ce formulaire, vous acceptez de recevoir les notes de conformité Stonebridge. Vous pouvez vous désinscrire à tout moment en écrivant à contact@stonebridgeconsult.com.'
+                )}
+              </p>
+            </div>
           )}
         </div>
 
@@ -153,6 +173,19 @@ const Footer = () => {
               }}
             >
               {t('Cookie Policy', 'Politique de cookies')}
+            </Link>
+            <Link
+              to="/confidentialite"
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                fontSize: '0.6875rem',
+                letterSpacing: '0.06em',
+                color: 'rgba(255,255,255,0.3)',
+                textDecoration: 'none',
+              }}
+            >
+              {t('Privacy Policy', 'Politique de confidentialité')}
             </Link>
           </div>
           <span
