@@ -91,6 +91,18 @@ const Actualites = () => {
         </div>
       </section>
 
+      {/* Image banner */}
+      <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/images/actualites.jpg)',
+            filter: 'grayscale(100%) brightness(0.50)',
+          }}
+        />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(27, 42, 65, 0.57)' }} />
+      </div>
+
       {/* Publications Stonebridge */}
       <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl">
