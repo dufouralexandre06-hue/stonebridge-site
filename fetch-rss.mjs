@@ -68,13 +68,21 @@ async function fetchFeed(name, url) {
 
     const xml = await res.text();
 
+    const rawRss  = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
+    const rawAtom = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)];
+    console.log(`[${name}] ${rawRss.length + rawAtom.length} items bruts (${rawRss.length} RSS + ${rawAtom.length} Atom)`);
+
+    const isGenericAlert = (title) =>
+      /^e-?mail\s+alert\.?$/i.test(title.trim());
+
     const items = [];
 
     // RSS 2.0 items
-    for (const m of xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)) {
+    for (const m of rawRss) {
       const block = m[1];
       const title = extractText(block, 'title');
       const desc  = extractText(block, 'description');
+      if (isGenericAlert(title)) continue;
       if (!matches(title + ' ' + desc)) continue;
       const link = extractLink(block);
       if (!title || !link) continue;
@@ -82,17 +90,18 @@ async function fetchFeed(name, url) {
     }
 
     // Atom entries
-    for (const m of xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)) {
+    for (const m of rawAtom) {
       const block = m[1];
       const title   = extractText(block, 'title');
       const summary = extractText(block, 'summary') || extractText(block, 'content');
+      if (isGenericAlert(title)) continue;
       if (!matches(title + ' ' + summary)) continue;
       const link = extractLink(block);
       if (!title || !link) continue;
       items.push({ title, link, pubDate: extractDate(block), source: name });
     }
 
-    console.log(`[${name}] ${items.length} entrées retenues`);
+    console.log(`[${name}] ${items.length} entrées retenues après filtrage`);
     return items;
   } catch (err) {
     console.warn(`[${name}] Échec : ${err.message}`);
