@@ -12,6 +12,7 @@ import Situations from "./pages/Situations";
 import Doctrine from "./pages/Doctrine";
 import Contact from "./pages/Contact";
 import Urgence from "./pages/Urgence";
+import Actualites from "./pages/Actualites";
 import MentionsLegales from "./pages/MentionsLegales";
 import Cookies from "./pages/Cookies";
 import CookieBanner from "./components/CookieBanner";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/doctrine" element={<Doctrine />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/urgence" element={<Urgence />} />
+            <Route path="/actualites" element={<Actualites />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFound />} />

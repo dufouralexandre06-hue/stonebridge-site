@@ -7,9 +7,19 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleNewsletter = (e: React.FormEvent) => {
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubscribed(true);
+    if (!email) return;
+    try {
+      const res = await fetch('https://formspree.io/f/xkokqjgz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, _subject: 'Newsletter — note de conformité' }),
+      });
+      if (res.ok) setSubscribed(true);
+    } catch {
+      // silently fail
+    }
   };
 
   return (
@@ -64,7 +74,7 @@ const Footer = () => {
                 margin: 0,
               }}
             >
-              {t('Noted.', 'Noté.')}
+              {t('Successfully subscribed.', 'Inscription enregistrée.')}
             </p>
           ) : (
             <form
