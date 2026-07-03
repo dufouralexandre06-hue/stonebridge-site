@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import veilleData from '../../public/data/veille.json';
 
 interface VeilleItem {
   title: string;
@@ -9,8 +9,6 @@ interface VeilleItem {
   pubDate: string | null;
   source: string;
 }
-
-const items = veilleData as VeilleItem[];
 
 const PUBLICATIONS = [
   {
@@ -32,6 +30,19 @@ const PUBLICATIONS = [
 const Actualites = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
+  const [actualites, setActualites] = useState<VeilleItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/data/veille.json', { cache: 'no-cache' })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(data => setActualites(Array.isArray(data) ? data : []))
+      .catch(() => setActualites([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -117,13 +128,17 @@ const Actualites = () => {
             {t('Regulatory Watch', 'Veille réglementaire')}
           </h2>
 
-          {items.length === 0 ? (
+          {loading ? (
+            <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
+              {t('Loading…', 'Chargement…')}
+            </p>
+          ) : actualites.length === 0 ? (
             <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
               {t('No updates available at this time.', 'Aucune actualité disponible pour le moment.')}
             </p>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {items.map((item, i) => (
+              {actualites.map((item, i) => (
                 <div
                   key={i}
                   style={{
@@ -131,7 +146,7 @@ const Actualites = () => {
                     flexDirection: 'column',
                     gap: '10px',
                     padding: '28px 0',
-                    borderBottom: i < items.length - 1 ? '1px solid rgba(15,27,45,0.08)' : 'none',
+                    borderBottom: i < actualites.length - 1 ? '1px solid rgba(15,27,45,0.08)' : 'none',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
