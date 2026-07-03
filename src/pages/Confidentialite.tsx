@@ -14,7 +14,7 @@ const Confidentialite = () => {
             className="reveal font-serif uppercase"
             style={{ color: '#0F1B2D', fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '0.08em', fontWeight: 400 }}
           >
-            {t("Privacy Policy", "Politique de confidentialite")}
+            {t("Privacy Policy", "Politique de confidentialité")}
           </h1>
         </div>
       </section>
