@@ -3,103 +3,24 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-interface RssItem {
+interface VeilleItem {
   title: string;
   link: string;
-  pubDate: Date | null;
+  pubDate: string | null;
   source: string;
 }
-
-const FEEDS = [
-  { name: 'AMF', url: 'https://www.amf-france.org/fr/rss/actualites.xml' },
-  { name: 'ACPR', url: 'https://acpr.banque-france.fr/rss.xml' },
-  { name: 'EBA', url: 'https://www.eba.europa.eu/rss.xml' },
-];
-
-const KEYWORDS = [
-  'lcb-ft', 'aml', 'kyc', 'psan', 'sgp', 'sanction',
-  'conformit', 'compliance', 'blanchiment', 'terrorisme',
-  'mica', 'aifmd', 'edd', 'lutte contre', 'anti-money',
-];
-
-const matchesKeywords = (text: string): boolean => {
-  const lower = text.toLowerCase();
-  return KEYWORDS.some(kw => lower.includes(kw));
-};
-
-const getText = (el: Element, tag: string): string =>
-  el.getElementsByTagName(tag)[0]?.textContent?.trim() ?? '';
-
-const getLink = (el: Element): string => {
-  const linkEl = el.getElementsByTagName('link')[0];
-  return linkEl?.getAttribute('href') ?? linkEl?.textContent?.trim() ?? getText(el, 'guid');
-};
-
-const getDate = (el: Element): Date | null => {
-  for (const tag of ['pubDate', 'updated']) {
-    const str = getText(el, tag);
-    if (!str) continue;
-    const d = new Date(str);
-    if (!isNaN(d.getTime())) return d;
-  }
-  return null;
-};
-
-const PROXIES = [
-  (url: string) => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
-  (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  (url: string) => `https://cors-anywhere.herokuapp.com/${url}`,
-];
-
-const parseXml = (source: string, text: string): RssItem[] => {
-  const xml = new DOMParser().parseFromString(text, 'text/xml');
-  const elements = [
-    ...Array.from(xml.getElementsByTagName('item')),
-    ...Array.from(xml.getElementsByTagName('entry')),
-  ];
-  return elements
-    .filter(el => matchesKeywords(
-      getText(el, 'title') + ' ' + getText(el, 'description') + ' ' + getText(el, 'summary')
-    ))
-    .map(el => ({
-      title: getText(el, 'title'),
-      link: getLink(el),
-      pubDate: getDate(el),
-      source,
-    }))
-    .filter(item => item.title && item.link);
-};
-
-const fetchFeed = async (source: string, url: string): Promise<RssItem[]> => {
-  for (const proxy of PROXIES) {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
-    try {
-      const res = await fetch(proxy(url), { signal: controller.signal });
-      clearTimeout(timer);
-      if (!res.ok) continue;
-      const text = await res.text();
-      if (!text || text.trim().length < 50) continue;
-      const items = parseXml(source, text);
-      if (items.length > 0 || text.includes('<item>') || text.includes('<entry>')) return items;
-    } catch {
-      clearTimeout(timer);
-    }
-  }
-  return [];
-};
 
 const PUBLICATIONS = [
   {
     year: '2025',
-    titleFr: "Dirigeant, commercial et responsable conformité : une même personne peut-elle rester crédible ?",
+    titleFr: "Dirigeant, commercial et responsable conformité : une même personne peut-elle rester crédible ?",
     titleEn: "Director, business developer and compliance officer: can the same person remain credible?",
     source: 'Village de la Justice',
     url: 'https://www.village-justice.com/articles/dirigeant-commercial-responsable-conformite-une-meme-personne-peut-elle-rester,57998.html',
   },
   {
     year: '2025',
-    titleFr: "Le triangle de la conformité : friction silencieuse entre conformité, dirigeant et client",
+    titleFr: "Le triangle de la conformité : friction silencieuse entre conformité, dirigeant et client",
     titleEn: "The compliance triangle: silent friction between compliance, management and client",
     source: 'Village de la Justice',
     url: 'https://www.village-justice.com/articles/triangle-conformite-friction-silencieuse-entre-conformite-dirigeant-client,57699.html',
@@ -109,30 +30,24 @@ const PUBLICATIONS = [
 const Actualites = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
-  const [items, setItems] = useState<RssItem[]>([]);
+  const [items, setItems] = useState<VeilleItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.allSettled(FEEDS.map(f => fetchFeed(f.name, f.url))).then(results => {
-      const all: RssItem[] = [];
-      for (const r of results) {
-        if (r.status === 'fulfilled') all.push(...r.value);
-      }
-      all.sort((a, b) => {
-        if (!a.pubDate && !b.pubDate) return 0;
-        if (!a.pubDate) return 1;
-        if (!b.pubDate) return -1;
-        return b.pubDate.getTime() - a.pubDate.getTime();
-      });
-      setItems(all.slice(0, 20));
-      setLoading(false);
-    });
+    fetch('/data/veille.json')
+      .then(res => res.json())
+      .then((data: VeilleItem[]) => setItems(Array.isArray(data) ? data : []))
+      .catch(() => setItems([]))
+      .finally(() => setLoading(false));
   }, []);
 
-  const formatDate = (d: Date) =>
-    d.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-GB', {
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-GB', {
       day: 'numeric', month: 'short', year: 'numeric',
     });
+  };
 
   const linkStyle: React.CSSProperties = {
     fontFamily: "'Inter', sans-serif",

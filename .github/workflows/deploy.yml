@@ -19,6 +19,9 @@ jobs:
       - name: Installer les dépendances
         run: bun install
 
+      - name: Générer la veille réglementaire (RSS → JSON)
+        run: node fetch-rss.mjs
+
       - name: Compiler le site
         run: bun run build
 
