@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import veilleData from '../../public/data/veille.json';
 
 interface VeilleItem {
   title: string;
@@ -9,6 +9,8 @@ interface VeilleItem {
   pubDate: string | null;
   source: string;
 }
+
+const items = veilleData as VeilleItem[];
 
 const PUBLICATIONS = [
   {
@@ -30,16 +32,6 @@ const PUBLICATIONS = [
 const Actualites = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
-  const [items, setItems] = useState<VeilleItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/data/veille.json')
-      .then(res => res.json())
-      .then((data: VeilleItem[]) => setItems(Array.isArray(data) ? data : []))
-      .catch(() => setItems([]))
-      .finally(() => setLoading(false));
-  }, []);
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -125,11 +117,7 @@ const Actualites = () => {
             {t('Regulatory Watch', 'Veille réglementaire')}
           </h2>
 
-          {loading ? (
-            <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
-              {t('Loading…', 'Chargement…')}
-            </p>
-          ) : items.length === 0 ? (
+          {items.length === 0 ? (
             <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.8125rem', fontStyle: 'italic', color: 'rgba(15,27,45,0.3)' }}>
               {t('No updates available at this time.', 'Aucune actualité disponible pour le moment.')}
             </p>
