@@ -103,7 +103,7 @@ const Confidentialite = () => {
             <p className="institutional-body">
               {t(
                 'In accordance with the GDPR, any individual has the right to access, rectify, delete, port and object to the processing of their personal data. These rights may be exercised by email at contact@stonebridgeconsult.com.',
-                'Conformément au RGPD, toute personne dispose d'un droit d'accès, de rectification, de suppression, de portabilité et d'opposition concernant ses données personnelles. Ces droits peuvent être exercés par e-mail à contact@stonebridgeconsult.com.'
+                "Conformément au RGPD, toute personne dispose d'un droit d'accès, de rectification, de suppression, de portabilité et d'opposition concernant ses données personnelles. Ces droits peuvent être exercés par e-mail à contact@stonebridgeconsult.com."
               )}
             </p>
           </div>
