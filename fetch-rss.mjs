@@ -138,11 +138,10 @@ async function main() {
 
   const output = all.slice(0, 20);
 
-  const outDir = join(__dirname, 'public', 'data');
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(join(outDir, 'veille.json'), JSON.stringify(output, null, 2), 'utf-8');
+  const outPath = join(__dirname, 'veille-output.json');
+  writeFileSync(outPath, JSON.stringify(output, null, 2), 'utf-8');
 
-  console.log(`\nveille.json — ${output.length} entrée(s) :`);
+  console.log(`\nveille-output.json — ${output.length} entrée(s) :`);
   for (const item of output) {
     console.log(`  [${item.source}] ${item.pubDate?.slice(0, 10) ?? 'sans date'} — ${item.title.slice(0, 80)}`);
   }
@@ -150,8 +149,6 @@ async function main() {
 
 main().catch(err => {
   console.error('Erreur fatale :', err.message);
-  const outDir = join(dirname(fileURLToPath(import.meta.url)), 'public', 'data');
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(join(outDir, 'veille.json'), '[]', 'utf-8');
+  writeFileSync(join(dirname(fileURLToPath(import.meta.url)), 'veille-output.json'), '[]', 'utf-8');
   process.exit(0);
 });

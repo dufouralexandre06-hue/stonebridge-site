@@ -25,10 +25,12 @@ jobs:
       - name: Compiler le site
         run: bun run build
 
-      - name: Vérifier dist/data/veille.json
+      - name: Injecter veille.json dans dist
         run: |
-          ls -la dist/data/veille.json || echo "Fichier manquant !"
-          cat dist/data/veille.json | head -n 20
+          mkdir -p dist/data
+          cp veille-output.json dist/data/veille.json
+          echo "Contenu veille.json :"
+          cat dist/data/veille.json | head -n 30
 
       - name: Déployer vers OVH par FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
