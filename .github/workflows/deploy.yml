@@ -28,8 +28,10 @@ jobs:
       - name: Injecter veille.json dans dist
         run: |
           mkdir -p dist/data
+          echo "=== AVANT COPIE ==="
+          cat veille-output.json | head -n 30
           cp veille-output.json dist/data/veille.json
-          echo "Contenu veille.json :"
+          echo "=== APRÈS COPIE ==="
           cat dist/data/veille.json | head -n 30
 
       - name: Déployer vers OVH par FTP

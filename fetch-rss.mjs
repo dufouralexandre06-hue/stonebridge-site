@@ -1,154 +1,69 @@
-import { writeFileSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { writeFileSync } from 'fs';
 
 const FEEDS = [
-  { name: 'AMF',  urls: ['https://www.amf-france.org/fr/rss/actualites.xml'] },
-  { name: 'ACPR', urls: ['https://acpr.banque-france.fr/rss.xml'] },
-  { name: 'EBA',  urls: ['https://www.eba.europa.eu/feed/press-releases', 'https://www.eba.europa.eu/feed/news'] },
+  { name: 'AMF', url: 'https://www.amf-france.org/fr/rss/actualites.xml' },
+  { name: 'ACPR', url: 'https://acpr.banque-france.fr/rss.xml' },
+  { name: 'EBA', url: 'https://www.eba.europa.eu/feed/press-releases' },
 ];
 
 const KEYWORDS = [
-  // Communs FR/EN
-  'lcb-ft', 'aml', 'kyc', 'psan', 'sgp', 'sanction',
-  'conformit', 'compliance', 'blanchiment', 'terrorisme',
-  'mica', 'aifmd', 'edd', 'anti-money',
-  // Vocabulaire ACPR spécifique
-  'lutte contre', 'financement', 'gel des avoirs', 'vigilance',
-  'soupçon', 'tracfin', 'établissement de crédit',
-  'prestataire de services',
+  'lcb-ft','aml','kyc','psan','sgp','sanction','conformité','compliance',
+  'blanchiment','financement du terrorisme','mica','aifmd','edd',
+  'lutte contre','gel des avoirs','vigilance','déclaration de soupçon',
+  'tracfin','établissement de crédit','prestataire de services'
 ];
 
-function matches(text) {
-  const lower = text.toLowerCase();
-  return KEYWORDS.some(kw => lower.includes(kw));
-}
+async function main() {
+  const allItems = [];
 
-function extractText(block, tag) {
-  const re = new RegExp(
-    `<${tag}[^>]*>(?:<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|([\\s\\S]*?))<\\/${tag}>`,
-    'i'
-  );
-  const m = block.match(re);
-  if (!m) return '';
-  return (m[1] ?? m[2] ?? '').trim();
-}
+  for (const feed of FEEDS) {
+    try {
+      console.log(`[${feed.name}] Fetching ${feed.url}`);
+      const res = await fetch(feed.url);
+      console.log(`[${feed.name}] HTTP ${res.status}`);
+      if (!res.ok) continue;
 
-function extractLink(block) {
-  const atom = block.match(/<link[^>]+href="([^"]+)"/i);
-  if (atom) return atom[1].trim();
-  const rss = block.match(/<link>(?:<!\[CDATA\[)?(https?:\/\/[^\]<]+?)(?:\]\]>)?<\/link>/i);
-  if (rss) return rss[1].trim();
-  const guid = block.match(/<guid[^>]*>([^<]+)<\/guid>/i);
-  if (guid) return guid[1].trim();
-  return '';
-}
+      const xml = await res.text();
 
-function extractDate(block) {
-  for (const tag of ['pubDate', 'updated', 'published']) {
-    const val = extractText(block, tag) || block.match(new RegExp(`<${tag}>([^<]+)<\\/${tag}>`, 'i'))?.[1];
-    if (val) {
-      const d = new Date(val.trim());
-      if (!isNaN(d.getTime())) return d.toISOString();
+      // Extract items from RSS <item> or Atom <entry>
+      const rssItems = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
+      const atomItems = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)];
+      const rawItems = [...rssItems, ...atomItems];
+      console.log(`[${feed.name}] ${rawItems.length} items bruts`);
+
+      for (const match of rawItems) {
+        const block = match[1];
+        const title = (block.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '';
+        const link = (block.match(/<link[^>]*href="([^"]*)"/) || block.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]?.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')?.trim() || '';
+        const pubDate = (block.match(/<pubDate>([\s\S]*?)<\/pubDate>/i) || block.match(/<published>([\s\S]*?)<\/published>/i) || block.match(/<updated>([\s\S]*?)<\/updated>/i) || [])[1]?.trim() || '';
+
+        // Skip generic EBA email alerts
+        if (/^EBA E-mail alert/i.test(title)) continue;
+
+        // Keyword filter
+        const lowerTitle = title.toLowerCase();
+        const lowerBlock = block.toLowerCase();
+        const matches = KEYWORDS.some(k => lowerTitle.includes(k) || lowerBlock.includes(k));
+        if (!matches) continue;
+
+        allItems.push({ title, link, pubDate, source: feed.name });
+      }
+    } catch (err) {
+      console.error(`[${feed.name}] Erreur: ${err.message}`);
     }
   }
-  return null;
+
+  // Sort reverse chronological, max 20
+  allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+  const final = allItems.slice(0, 20);
+
+  console.log(`\nTotal: ${final.length} entrées retenues`);
+  final.forEach(item => console.log(`  [${item.source}] ${item.pubDate} — ${item.title.slice(0, 80)}`));
+
+  // WRITE — this is the critical part
+  const json = JSON.stringify(final, null, 2);
+  writeFileSync('veille-output.json', json, 'utf-8');
+  console.log(`\nFichier écrit: veille-output.json (${json.length} bytes)`);
 }
 
-// Exclut "EBA E-mail alert" générique et variantes
-function isGenericAlert(title) {
-  return /^(eba\s+)?e-?mail\s+alert(\s+\S+)?\.?$/i.test(title.trim());
-}
-
-async function tryFetch(name, url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 12000);
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Stonebridge-RSS/1.0)' },
-    });
-    clearTimeout(timer);
-    console.log(`[${name}] ${url} → HTTP ${res.status}`);
-    if (!res.ok) return null;
-    return await res.text();
-  } catch (err) {
-    clearTimeout(timer);
-    console.warn(`[${name}] ${url} → Échec : ${err.message}`);
-    return null;
-  }
-}
-
-async function fetchFeed(name, urls) {
-  let xml = null;
-  for (const url of urls) {
-    xml = await tryFetch(name, url);
-    if (xml) break;
-  }
-  if (!xml) { console.warn(`[${name}] Tous les endpoints ont échoué`); return []; }
-
-  const rawRss  = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)];
-  const rawAtom = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/gi)];
-  console.log(`[${name}] ${rawRss.length + rawAtom.length} items bruts (${rawRss.length} RSS + ${rawAtom.length} Atom)`);
-
-  const items = [];
-
-  for (const m of rawRss) {
-    const block = m[1];
-    const title = extractText(block, 'title');
-    const desc  = extractText(block, 'description');
-    if (isGenericAlert(title)) continue;
-    if (!matches(title + ' ' + desc)) continue;
-    const link = extractLink(block);
-    if (!title || !link) continue;
-    items.push({ title, link, pubDate: extractDate(block), source: name });
-  }
-
-  for (const m of rawAtom) {
-    const block = m[1];
-    const title   = extractText(block, 'title');
-    const summary = extractText(block, 'summary') || extractText(block, 'content');
-    if (isGenericAlert(title)) continue;
-    if (!matches(title + ' ' + summary)) continue;
-    const link = extractLink(block);
-    if (!title || !link) continue;
-    items.push({ title, link, pubDate: extractDate(block), source: name });
-  }
-
-  console.log(`[${name}] ${items.length} entrées retenues après filtrage`);
-  return items;
-}
-
-async function main() {
-  const results = await Promise.allSettled(FEEDS.map(f => fetchFeed(f.name, f.urls)));
-
-  const all = [];
-  for (const r of results) {
-    if (r.status === 'fulfilled') all.push(...r.value);
-  }
-
-  all.sort((a, b) => {
-    if (!a.pubDate && !b.pubDate) return 0;
-    if (!a.pubDate) return 1;
-    if (!b.pubDate) return -1;
-    return new Date(b.pubDate) - new Date(a.pubDate);
-  });
-
-  const output = all.slice(0, 20);
-
-  const outPath = join(__dirname, 'veille-output.json');
-  writeFileSync(outPath, JSON.stringify(output, null, 2), 'utf-8');
-
-  console.log(`\nveille-output.json — ${output.length} entrée(s) :`);
-  for (const item of output) {
-    console.log(`  [${item.source}] ${item.pubDate?.slice(0, 10) ?? 'sans date'} — ${item.title.slice(0, 80)}`);
-  }
-}
-
-main().catch(err => {
-  console.error('Erreur fatale :', err.message);
-  writeFileSync(join(dirname(fileURLToPath(import.meta.url)), 'veille-output.json'), '[]', 'utf-8');
-  process.exit(0);
-});
+main();
