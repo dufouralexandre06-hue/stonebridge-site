@@ -50,13 +50,13 @@ const fetchFeed = async (source: string, url: string): Promise<RssItem[]> => {
   const timer = setTimeout(() => controller.abort(), 9000);
   try {
     const res = await fetch(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
       { signal: controller.signal }
     );
     clearTimeout(timer);
-    const data = await res.json();
-    if (!data.contents) return [];
-    const xml = new DOMParser().parseFromString(data.contents, 'text/xml');
+    const text = await res.text();
+    if (!text) return [];
+    const xml = new DOMParser().parseFromString(text, 'text/xml');
     const elements = [
       ...Array.from(xml.getElementsByTagName('item')),
       ...Array.from(xml.getElementsByTagName('entry')),
