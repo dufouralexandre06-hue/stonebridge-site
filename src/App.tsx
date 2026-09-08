@@ -13,6 +13,7 @@ import Doctrine from "./pages/Doctrine";
 import Contact from "./pages/Contact";
 import Urgence from "./pages/Urgence";
 import Actualites from "./pages/Actualites";
+import VeilleComplete from "./pages/VeilleComplete";
 import MentionsLegales from "./pages/MentionsLegales";
 import Cookies from "./pages/Cookies";
 import Confidentialite from "./pages/Confidentialite";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/urgence" element={<Urgence />} />
             <Route path="/actualites" element={<Actualites />} />
+            <Route path="/veille-complete" element={<VeilleComplete />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/confidentialite" element={<Confidentialite />} />

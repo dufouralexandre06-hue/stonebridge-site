@@ -67,13 +67,17 @@ const Index = () => {
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
-            fontSize: 'clamp(0.75rem, 1.4vw, 0.875rem)',
-            letterSpacing: '0.28em',
-            textTransform: 'uppercase',
-            opacity: 0.85,
+            fontSize: 'clamp(0.75rem, 1.2vw, 0.875rem)',
+            letterSpacing: '0.06em',
+            opacity: 0.75,
+            maxWidth: '38rem',
+            lineHeight: 1.8,
           }}
         >
-          {t('Governance & Regulatory Advisory', 'Conseil en gouvernance et conformité réglementaire')}
+          {t(
+            "Independent counsel for sensitive regulatory situations, complex governance structures and exacting banking relationships.",
+            "Conseil indépendant pour les situations réglementaires sensibles, les gouvernances complexes et les relations bancaires exigeantes."
+          )}
         </p>
 
         {/* Cities */}

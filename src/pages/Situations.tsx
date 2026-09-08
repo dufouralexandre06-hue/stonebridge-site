@@ -74,6 +74,38 @@ const Situations = () => {
           </div>
         </section>
       ))}
+
+      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+        <div className="max-w-3xl">
+          <div className="reveal reveal-delay-1">
+            <h2 className="institutional-label mb-8" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+              {t("What Stonebridge does in these situations", "Ce que Stonebridge fait dans ces situations")}
+            </h2>
+            <p className="institutional-body">
+              {t(
+                "We qualify risks, identify documentary or governance shortcomings, organise relevant information, coordinate concerned advisers and build a position capable of being understood and supported by institutional counterparties.",
+                "Nous qualifions les risques, identifions les insuffisances documentaires ou de gouvernance, organisons les informations utiles, coordonnons les conseils concernés et construisons une position susceptible d'être comprise et soutenue par les interlocuteurs institutionnels."
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#FAF8F5' }}>
+        <div className="max-w-3xl">
+          <div className="reveal reveal-delay-2">
+            <h2 className="institutional-label mb-8" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+              {t("Forms of engagement", "Formats d'intervention")}
+            </h2>
+            <p className="institutional-body">
+              {t(
+                "Confidential diagnostic, position note, documentary review, preparation of exchanges with a financial institution or regulatory authority, coordination of external advisers, remediation support.",
+                "Diagnostic confidentiel, note de position, revue documentaire, préparation d'échanges avec un établissement financier ou une autorité, coordination de conseils externes, accompagnement de remédiation."
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

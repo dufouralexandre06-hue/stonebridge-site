@@ -4,42 +4,42 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
-const casI_body =
-`Une structure de gestion accompagne depuis plusieurs années un client non-résident. Le dossier d'entrée en relation est complet, le profil de risque classé standard, la relation ancienne et sans incident.
+const pointLabelStyle: React.CSSProperties = {
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 400,
+  fontSize: '0.5875rem',
+  letterSpacing: '0.16em',
+  textTransform: 'uppercase',
+  color: '#0F1B2D',
+  opacity: 0.38,
+  marginBottom: '6px',
+};
 
-Le client cesse de répondre. Les relances demeurent sans suite. La structure conclut à une absence temporaire ; ce type de client voyage. La revue périodique, échue, est différée.
+const pointTextStyle: React.CSSProperties = {
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 300,
+  fontSize: '0.9375rem',
+  color: '#2F2F2F',
+  lineHeight: 1.85,
+};
 
-Une veille réglementaire suivie signale, dans la presse économique d'un pays tiers, la mise en cause d'un dirigeant pour détournement de fonds publics. Le nom diffère. Le secteur, la juridiction, la période et la structure de détention concordent. Le rapprochement est établi : le client est en détention provisoire ; ses avoirs font l'objet d'une enquête.
+interface CasePoint {
+  label: string;
+  text: string;
+}
 
-La déclaration de soupçon est déposée dans les délais. Les opérations sont gelées.
-
-Le dossier n'avait pas évolué. Le profil de risque n'avait pas changé. Aucun signal interne n'avait été émis. La réaction n'a tenu qu'à une veille externe tenue avec constance et croisée avec la connaissance du portefeuille. L'obligation de vigilance constante ne se satisfait pas d'un dossier ouvert une fois ; elle suppose que l'information circule de l'extérieur vers le dossier, et du dossier vers la décision.`;
-
-const casII_body =
-`Une société de gestion examine l'entrée d'un souscripteur dans l'un de ses fonds : une holding chypriote. Le dossier déclaratif est complet — registre des bénéficiaires effectifs à jour, organigramme, attestations signées.
-
-Le capital se répartit entre six détenteurs : une personne physique à 18 %, et cinq sociétés à 22, 17, 16, 15 et 12 %. Aucune ligne n'atteint le seuil de 25 %. La holding déclare en conséquence n'avoir aucun bénéficiaire effectif au capital et désigne son dirigeant par défaut. Le dossier est, à la lettre, conforme.
-
-La répartition n'a rien de grossier : des pourcentages irréguliers, dispersés, l'image d'un actionnariat sans tête. C'est cette apparence qu'il convient d'instruire.
-
-Chaque société actionnaire est reprise, niveau par niveau. La ligne luxembourgeoise est détenue depuis Malte et les Îles Vierges britanniques. La ligne néerlandaise a pour actionnaire unique ce même véhicule des Îles Vierges. La ligne émiratie partage administrateur et adresse avec la société maltaise. Une ligne procède d'un trust dont le constituant n'est pas nommé. Une seule des cinq est réellement indépendante.
-
-Les chaînes convergent. Le véhicule des Îles Vierges, présent en plusieurs points, remonte à la personne physique déjà inscrite en direct. Détentions directes et indirectes consolidées, celle-ci contrôle l'essentiel du capital. Aucune ligne, isolée, ne le laissait paraître.
-
-Le capital n'épuise du reste pas la question. Le contrôle effectif peut s'exercer par tout autre moyen — pacte d'actionnaires, convention de vote, droit de veto sur les distributions, financement qui place le détenteur apparent en situation de dépendance. Une chaîne de détention parfaitement éclatée peut coexister avec un contrôle parfaitement concentré, logé hors du capital. L'analyse ne s'arrête donc pas à la reconstitution des pourcentages ; elle interroge aussi les pouvoirs.
-
-Le dossier satisfaisait à la lettre du registre ; le bénéficiaire effectif demeurait dissimulé. Les deux constats sont exacts simultanément. Le seuil de 25 % n'est pas une garantie, mais une ligne que les structures conçues pour dissimuler fractionnent à dessein. L'identification du contrôle réel suppose de remonter chaque chaîne, d'examiner les pouvoirs au-delà de la détention, et de raisonner sur le contrôle consolidé, jamais sur la déclaration — un travail qui ne se confie pas à celui qui a intérêt à ce qu'il ne soit pas conduit.`;
-
-const casIII_body =
-`Une structure reçoit la demande d'un résident français, de nationalité française, exerçant une profession libérale. Le dossier mentionne une fonction : consul honoraire d'un État d'Afrique subsaharienne.
-
-La qualification de personne politiquement exposée se pose. La réglementation énumère les fonctions concernées — exécutif, Parlement, hautes juridictions, banque centrale, entreprises publiques. Le consul honoraire n'y figure pas. Nommé par un État étranger, non rémunéré, sans fonction exécutive, il assure une représentation protocolaire. Aucun texte ne l'inscrit parmi les personnes exposées ; aucun ne l'en retranche.
-
-Deux lectures se soutiennent. L'absence de rémunération et de pouvoir décisionnel écarte la qualification. La nomination par un gouvernement étranger et l'accès possible à des réseaux d'influence la commandent. La décision retenue fut la seconde : qualification retenue, vigilance renforcée, motivation versée au dossier. Non que le texte l'imposât — il se taisait. Parce que c'était la position tenable devant un contrôle.
-
-Le consul honoraire n'est qu'un cas d'une question plus vaste. L'exposition ne suit pas une liste de fonctions ; elle suit des liens. L'associé d'un ministre. Le gérant du patrimoine d'un proche de dirigeant. Celui qui administre pour le compte d'un tiers jamais nommé. La famille élargie d'un chef d'État, au-delà du cercle expressément visé. Nul n'est listé ; tous portent une exposition. La liste désigne des fonctions ; le risque, lui, circule par des relations.
-
-Sur ces zones que le texte ne tranche pas, la qualité du raisonnement et l'aptitude à motiver une décision importent autant que la décision. Un dispositif défendable n'est pas un dispositif sans risque : c'est un dispositif dont chaque choix peut être justifié devant l'autorité de contrôle.`;
+function CaseBody({ points }: { points: CasePoint[] }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingBottom: '36px' }}>
+      {points.map((p, i) => (
+        <div key={i}>
+          <p style={pointLabelStyle}>{p.label}</p>
+          <p style={pointTextStyle}>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const Doctrine = () => {
   const { t } = useLanguage();
@@ -51,32 +51,32 @@ const Doctrine = () => {
       bg: '#EDE9E3',
       label: t('COMPREHENSIVE READING', 'Lecture globale'),
       body: t(
-        'Each situation is analysed in its full legal, institutional and operational context. This approach identifies genuine points of tension — not merely surface-level exposures.',
-        'Chaque situation est analysée dans son environnement juridique, institutionnel et opérationnel complet. Cette approche permet d\'identifier les points de tension réels — et non les seules expositions apparentes.'
+        "Each situation is analysed in its full legal, institutional and operational context. This approach identifies genuine points of tension — not merely surface-level exposures.",
+        "Chaque situation est analysée dans son environnement juridique, institutionnel et opérationnel complet. Cette approche permet d'identifier les points de tension réels — et non les seules expositions apparentes."
       ),
     },
     {
       bg: '#FAF8F5',
       label: t('ARBITRATION', 'Arbitrage'),
       body: t(
-        'Risk management involves navigating between regulatory constraints, operational realities and institutional responsibilities. The objective is not formal compliance — it is the construction of a coherent and defensible position.',
-        'La gestion du risque implique des arbitrages entre contraintes réglementaires, réalités opérationnelles et responsabilités institutionnelles. L\'objectif n\'est pas la conformité formelle — c\'est la construction d\'une position cohérente et défendable.'
+        "Risk management involves navigating between regulatory constraints, operational realities and institutional responsibilities. The objective is not formal compliance — it is the construction of a coherent and defensible position.",
+        "La gestion du risque implique des arbitrages entre contraintes réglementaires, réalités opérationnelles et responsabilités institutionnelles. L'objectif n'est pas la conformité formelle — c'est la construction d'une position cohérente et défendable."
       ),
     },
     {
       bg: '#EDE9E3',
       label: t('SUSTAINABILITY', 'Soutenabilité'),
       body: t(
-        'A decision is only relevant if it can be sustained over time in the face of the institutions concerned. This requirement for sustainability is the central principle of the Stonebridge approach.',
-        'Une décision n\'est pertinente que si elle peut être soutenue dans le temps face aux institutions concernées. Cette exigence de soutenabilité constitue le principe central de l\'approche Stonebridge.'
+        "A decision is only relevant if it can be sustained over time in the face of the institutions concerned. This requirement for sustainability is the central principle of the Stonebridge approach.",
+        "Une décision n'est pertinente que si elle peut être soutenue dans le temps face aux institutions concernées. Cette exigence de soutenabilité constitue le principe central de l'approche Stonebridge."
       ),
     },
     {
       bg: '#FAF8F5',
       label: t('LEGITIMACY', 'Ligne de légitimité'),
       body: t(
-          'Stonebridge engagements draw on direct experience in international fiduciary and regulatory environments, particularly in Luxembourg, France and Switzerland.',
-          'Les interventions de Stonebridge s\'appuient sur une expérience directe en environnements fiduciaires et réglementaires internationaux, notamment au Luxembourg et en France.'
+        "Stonebridge engagements draw on direct experience in international fiduciary and regulatory environments, particularly in Luxembourg, France and Switzerland.",
+        "Les interventions de Stonebridge s'appuient sur une expérience directe en environnements fiduciaires et réglementaires internationaux, notamment au Luxembourg et en France."
       ),
     },
   ];
@@ -85,26 +85,134 @@ const Doctrine = () => {
     {
       title: t('I — The silence as a signal', 'I — Le silence comme signal'),
       accroche: t(
-        'À partir de quel moment l\'absence d\'information devient-elle elle-même une information pertinente au regard des obligations de vigilance ?',
-        'À partir de quel moment l\'absence d\'information devient-elle elle-même une information pertinente au regard des obligations de vigilance ?'
+        "From what point does the absence of information itself become relevant information for the purposes of ongoing due diligence obligations?",
+        "À partir de quel moment l'absence d'information devient-elle elle-même une information pertinente au regard des obligations de vigilance ?"
       ),
-      body: casI_body,
+      points: [
+        {
+          label: t('Situation', 'Situation'),
+          text: t(
+            "A long-standing banking relationship with a non-resident client, standard risk profile, no incidents on file. The client stops responding. The periodic review, now overdue, is deferred.",
+            "Relation bancaire ancienne avec un client non-résident, profil de risque classé standard, aucun incident au dossier. Le client cesse de répondre. La revue périodique, échue, est différée."
+          ),
+        },
+        {
+          label: t('Question', 'Question'),
+          text: t(
+            "Does the absence of an internal signal justify suspending heightened vigilance?",
+            "L'absence de signal interne suffit-elle à justifier la suspension d'une vigilance renforcée ?"
+          ),
+        },
+        {
+          label: t('Analysis', 'Analyse'),
+          text: t(
+            "Ongoing due diligence requires information to flow from outside the file into the file. The absence of an internal signal does not constitute clearance. External monitoring — press, third-party sources — can retrospectively alter a client's risk profile.",
+            "La vigilance constante impose que l'information circule depuis l'extérieur vers le dossier. L'absence de signal interne ne vaut pas quitus. Une veille externe — presse, sources tiers — peut modifier rétrospectivement la qualification du profil de risque."
+          ),
+        },
+        {
+          label: t('Engagement', 'Intervention'),
+          text: t(
+            "Cross-referencing of external monitoring with portfolio knowledge. Immediate reactivation of the deferred review. Risk profile reassessment. Suspicious activity report filed within the statutory deadlines.",
+            "Rapprochement de la veille externe avec la connaissance du portefeuille. Réactivation immédiate de la revue différée. Réévaluation du profil de risque. Instruction de la déclaration de soupçon dans les délais légaux."
+          ),
+        },
+        {
+          label: t('Objective', 'Résultat recherché'),
+          text: t(
+            "Suspicious activity report filed and transactions frozen. Documented and defensible framework in the event of regulatory scrutiny. No exposure to failure-to-monitor liability.",
+            "Déclaration déposée et opérations gelées. Dispositif documenté et défendable devant l'autorité de contrôle. Absence de mise en cause pour défaut de vigilance."
+          ),
+        },
+      ],
     },
     {
       title: t('II — Le bénéficiaire que nul ne déclare', 'II — Le bénéficiaire que nul ne déclare'),
       accroche: t(
-        'Que reste-t-il du bénéficiaire effectif lorsque chaque participation a précisément été calibrée pour le faire disparaître ?',
-        'Que reste-t-il du bénéficiaire effectif lorsque chaque participation a précisément été calibrée pour le faire disparaître ?'
+        "What remains of the beneficial owner when each shareholding has been precisely calibrated to make them disappear?",
+        "Que reste-t-il du bénéficiaire effectif lorsque chaque participation a précisément été calibrée pour le faire disparaître ?"
       ),
-      body: casII_body,
+      points: [
+        {
+          label: t('Situation', 'Situation'),
+          text: t(
+            "A Cypriot holding company subscribing to a fund. Six shareholders, none above the 25% threshold. Complete declaratory file, no beneficial owner declared at the capital level.",
+            "Une holding chypriote souscrivant un fonds. Six actionnaires, aucun au-dessus du seuil de 25 %. Dossier déclaratif complet, aucun bénéficiaire effectif déclaré au capital."
+          ),
+        },
+        {
+          label: t('Question', 'Question'),
+          text: t(
+            "Does deliberate fragmentation below the regulatory threshold suffice to erase actual control?",
+            "Le fractionnement délibéré sous le seuil réglementaire suffit-il à faire disparaître le contrôle réel ?"
+          ),
+        },
+        {
+          label: t('Analysis', 'Analyse'),
+          text: t(
+            "The shareholding lines converge on a single British Virgin Islands vehicle common to several lines. Control can be exercised outside the capital structure — through shareholder agreements, voting arrangements, or financing. Identification does not stop at percentages.",
+            "Les lignes de participation convergent vers un même véhicule des Îles Vierges, commun à plusieurs lignes. Le contrôle peut s'exercer hors du capital — pactes, conventions de vote, financement. L'identification ne s'arrête pas aux pourcentages."
+          ),
+        },
+        {
+          label: t('Engagement', 'Intervention'),
+          text: t(
+            "Reconstruction of each ownership chain level by level. Identification of the common vehicle. Consolidation of direct and indirect holdings. Analysis of effective powers beyond the capital structure.",
+            "Reconstitution de chaque chaîne de détention niveau par niveau. Identification du véhicule commun. Consolidation des détentions directes et indirectes. Analyse des pouvoirs effectifs au-delà du capital."
+          ),
+        },
+        {
+          label: t('Objective', 'Résultat recherché'),
+          text: t(
+            "Identification of the actual beneficial owner. Documentary compliance of the onboarding file. Defensible position in the event of scrutiny on the robustness of the onboarding process.",
+            "Identification du bénéficiaire effectif réel. Mise en conformité documentaire du dossier d'entrée en relation. Position défendable en cas de contrôle sur la robustesse du processus d'entrée en relation."
+          ),
+        },
+      ],
     },
     {
       title: t('III — Le lien qui ne figure dans aucune liste', 'III — Le lien qui ne figure dans aucune liste'),
       accroche: t(
-        'Entre la fonction officielle et la proximité avec le pouvoir existe une zone où les listes cessent d\'apporter une réponse suffisante.',
-        'Entre la fonction officielle et la proximité avec le pouvoir existe une zone où les listes cessent d\'apporter une réponse suffisante.'
+        "Between official function and proximity to power lies a zone where lists cease to provide a sufficient answer.",
+        "Entre la fonction officielle et la proximité avec le pouvoir existe une zone où les listes cessent d'apporter une réponse suffisante."
       ),
-      body: casIII_body,
+      points: [
+        {
+          label: t('Situation', 'Situation'),
+          text: t(
+            "A French resident, liberal profession, honorary consul of a sub-Saharan African state. No remuneration. No executive function. No text resolves the PEP classification.",
+            "Résident français, profession libérale, consul honoraire d'un État d'Afrique subsaharienne. Aucune rémunération. Aucune fonction exécutive. Aucun texte ne tranche la qualification PPE."
+          ),
+        },
+        {
+          label: t('Question', 'Question'),
+          text: t(
+            "Does the absence of a listing or statutory enumeration suffice to exclude the classification of politically exposed person?",
+            "L'absence d'inscription sur une liste ou dans une énumération légale suffit-elle à écarter la qualification de personne politiquement exposée ?"
+          ),
+        },
+        {
+          label: t('Analysis', 'Analyse'),
+          text: t(
+            "Two competing and equally legitimate readings. Exposure does not follow a list — it follows relationships. Appointment by a foreign government and access to networks of influence call for a prudent classification.",
+            "Deux lectures concurrentes et également légitimes. L'exposition ne suit pas une liste — elle suit des liens. La nomination par un gouvernement étranger et l'accès à des réseaux d'influence commandent une qualification prudente."
+          ),
+        },
+        {
+          label: t('Engagement', 'Intervention'),
+          text: t(
+            "PEP classification retained. Enhanced due diligence applied. Reasoning filed on record. Position constructed to be defensible before a supervisory authority, not to satisfy the letter of a silent text.",
+            "Qualification PPE retenue. Vigilance renforcée appliquée. Motivation versée au dossier. Position construite pour être défendable devant l'autorité de contrôle, non pour satisfaire à la lettre d'un texte silencieux."
+          ),
+        },
+        {
+          label: t('Objective', 'Résultat recherché'),
+          text: t(
+            "Position defensible before the supervisory authority. Enhanced and documented due diligence framework. Internal precedent applicable to future cases of uncertain classification.",
+            "Position tenable devant l'autorité de contrôle. Dispositif renforcé documenté et motivé. Précédent interne applicable aux situations futures de qualification incertaine."
+          ),
+        },
+      ],
     },
   ];
 
@@ -165,7 +273,6 @@ const Doctrine = () => {
       <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl">
 
-          {/* Titre de section */}
           <h2
             className="reveal font-serif uppercase mb-6"
             style={{ color: '#0F1B2D', fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', letterSpacing: '0.08em', fontWeight: 400 }}
@@ -173,7 +280,6 @@ const Doctrine = () => {
             {t('Illustrative Cases', 'Cas illustratifs')}
           </h2>
 
-          {/* Avertissement */}
           <p
             className="reveal reveal-delay-1 mb-14"
             style={{
@@ -191,7 +297,6 @@ const Doctrine = () => {
             )}
           </p>
 
-          {/* Accordéon */}
           <div style={{ borderBottom: '1px solid rgba(15, 27, 45, 0.12)' }}>
             {illustrativeCases.map((cas, i) => (
               <div key={i} style={{ borderTop: '1px solid rgba(15, 27, 45, 0.12)' }}>
@@ -249,25 +354,12 @@ const Doctrine = () => {
                 </button>
 
                 {openCase === i && (
-                  <div
-                    style={{
-                      paddingBottom: '36px',
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 300,
-                      fontSize: '0.9375rem',
-                      color: '#2F2F2F',
-                      lineHeight: 1.85,
-                      whiteSpace: 'pre-line',
-                    }}
-                  >
-                    {cas.body}
-                  </div>
+                  <CaseBody points={cas.points} />
                 )}
               </div>
             ))}
           </div>
 
-          {/* Renvoi vers l'article */}
           <div style={{ marginTop: '48px' }}>
             <p
               style={{
@@ -280,8 +372,8 @@ const Doctrine = () => {
               }}
             >
               {t(
-                'Ces situations s\'inscrivent dans une réflexion plus large sur la vigilance constante et la défendabilité des dispositifs.',
-                'Ces situations s\'inscrivent dans une réflexion plus large sur la vigilance constante et la défendabilité des dispositifs.'
+                "Ces situations s'inscrivent dans une réflexion plus large sur la vigilance constante et la défendabilité des dispositifs.",
+                "Ces situations s'inscrivent dans une réflexion plus large sur la vigilance constante et la défendabilité des dispositifs."
               )}
             </p>
             <a
@@ -308,7 +400,7 @@ const Doctrine = () => {
                 e.currentTarget.style.opacity = '1';
               }}
             >
-              {t('Lire l\'article publié', 'Lire l\'article publié')}
+              {t("Lire l'article publié", "Lire l'article publié")}
             </a>
           </div>
 

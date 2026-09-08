@@ -98,8 +98,8 @@ const Contact = () => {
             className="reveal reveal-delay-1 institutional-body mt-10"
           >
             {t(
-              'Stonebridge engagements are conducted exclusively under formal mandate, following an initial qualification of the situation.',
-              'Les interventions de Stonebridge sont réalisées exclusivement sous mandat, après une première qualification de la situation.'
+              "Initial exchange, strictly confidential. No sensitive information is required in the form. A response is provided within 48 hours.",
+              "Premier échange confidentiel. Aucun élément sensible n'est requis dans le formulaire. Une réponse vous est apportée sous 48 heures."
             )}
           </p>
         </div>
