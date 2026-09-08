@@ -133,9 +133,21 @@ const Actualites = () => {
       </div>
 
       {/* Publications Stonebridge */}
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl">
-          <h2 className="reveal institutional-label mb-14" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+          <h2
+            className="reveal"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.6875rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#0F1B2D',
+              opacity: 0.38,
+              marginBottom: '36px',
+            }}
+          >
             {t('Stonebridge Publications', 'Publications Stonebridge')}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
@@ -163,9 +175,21 @@ const Actualites = () => {
       </section>
 
       {/* Veille réglementaire */}
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-3xl">
-          <h2 className="reveal institutional-label mb-14" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+          <h2
+            className="reveal"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.6875rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#0F1B2D',
+              opacity: 0.38,
+              marginBottom: '36px',
+            }}
+          >
             {t('Regulatory Watch', 'Veille réglementaire')}
           </h2>
 

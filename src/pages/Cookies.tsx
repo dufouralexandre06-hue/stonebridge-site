@@ -19,7 +19,7 @@ const Cookies = () => {
         </div>
       </section>
 
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl reveal">
           <p className="institutional-body">
             {t(

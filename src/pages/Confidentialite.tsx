@@ -19,11 +19,11 @@ const Confidentialite = () => {
         </div>
       </section>
 
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl" style={{ display: 'flex', flexDirection: 'column', gap: '56px' }}>
 
           <div className="reveal">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Data controller", "Responsable du traitement")}
             </h2>
             <div className="institutional-body" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -35,7 +35,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Data collected", "Données collectées")}
             </h2>
             <div className="institutional-body" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -61,7 +61,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-2">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Purpose of processing", "Finalité du traitement")}
             </h2>
             <p className="institutional-body">
@@ -73,7 +73,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Legal basis", "Base légale")}
             </h2>
             <p className="institutional-body">
@@ -85,7 +85,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-2">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Retention period", "Durée de conservation")}
             </h2>
             <p className="institutional-body">
@@ -97,7 +97,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Individual rights", "Droits des personnes")}
             </h2>
             <p className="institutional-body">
@@ -109,7 +109,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-2">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Processors", "Sous-traitants")}
             </h2>
             <p className="institutional-body">
@@ -121,7 +121,7 @@ const Confidentialite = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t("Transfers outside the EU", "Transferts hors UE")}
             </h2>
             <p className="institutional-body">

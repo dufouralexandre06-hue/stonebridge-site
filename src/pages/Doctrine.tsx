@@ -226,11 +226,23 @@ const Doctrine = () => {
           >
             {t('Doctrine', 'Doctrine')}
           </h1>
-          <br/>
-          <div className="whitespace-pre">
-          <p className="text-black">{t('Stonebridge considers that regulatory risk cannot be reduced to documentary compliance.', 'Stonebridge considère que le risque réglementaire ne peut être réduit à une conformité documentaire.')}</p>
-          <p className="text-black">{t('It must be approached from a comprehensive perspective, integrating governance, responsibilities and the long-term sustainability of positions.', 'Il doit être appréhendé dans une perspective globale, intégrant la gouvernance, les responsabilités et la soutenabilité des positions dans le temps.')}</p>
-          </div>
+          <p
+            className="reveal reveal-delay-1"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)',
+              color: 'rgba(15,27,45,0.7)',
+              lineHeight: 1.75,
+              marginTop: '28px',
+              maxWidth: '40rem',
+            }}
+          >
+            {t(
+              "Stonebridge considers that regulatory risk cannot be reduced to documentary compliance. It must be approached from a comprehensive perspective, integrating governance, responsibilities and the long-term sustainability of positions.",
+              "Stonebridge considère que le risque réglementaire ne peut être réduit à une conformité documentaire. Il doit être appréhendé dans une perspective globale, intégrant la gouvernance, les responsabilités et la soutenabilité des positions dans le temps."
+            )}
+          </p>
         </div>
       </section>
 
@@ -252,18 +264,37 @@ const Doctrine = () => {
       {sections.map((s, i) => (
         <section
           key={i}
-          className="px-8 md:px-16 lg:px-24 py-24 md:py-32"
+          className="px-8 md:px-16 lg:px-24 py-14 md:py-20"
           style={{ backgroundColor: s.bg }}
         >
           <div className="max-w-3xl">
             <div className={`reveal reveal-delay-${(i % 3) + 1}`}>
               <h2
-                className="institutional-label mb-8"
-                style={{ color: '#0F1B2D', opacity: 0.55 }}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.6875rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase' as const,
+                  color: '#0F1B2D',
+                  opacity: 0.38,
+                  marginBottom: '18px',
+                }}
               >
                 {s.label}
               </h2>
-              <p className="institutional-body">{s.body}</p>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.9375rem',
+                  color: '#2F2F2F',
+                  lineHeight: 1.8,
+                  maxWidth: '40rem',
+                }}
+              >
+                {s.body}
+              </p>
             </div>
           </div>
         </section>

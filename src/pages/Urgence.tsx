@@ -120,28 +120,57 @@ const Urgence = () => {
       {sections.map((s, i) => (
         <section
           key={i}
-          className="px-8 md:px-16 lg:px-24 py-24 md:py-32"
+          className="px-8 md:px-16 lg:px-24 py-14 md:py-20"
           style={{ backgroundColor: s.bg }}
         >
           <div className="max-w-3xl">
             <div className={`reveal reveal-delay-${(i % 3) + 1}`}>
               <h2
-                className="institutional-label mb-8"
-                style={{ color: '#0F1B2D', opacity: 0.55 }}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.6875rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase' as const,
+                  color: '#0F1B2D',
+                  opacity: 0.38,
+                  marginBottom: '18px',
+                }}
               >
                 {s.label}
               </h2>
-              <p className="institutional-body">{s.body}</p>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.9375rem',
+                  color: '#2F2F2F',
+                  lineHeight: 1.8,
+                }}
+              >
+                {s.body}
+              </p>
             </div>
           </div>
         </section>
       ))}
 
       {/* ── Contact et mention légale ── */}
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl reveal reveal-delay-1">
 
-          <p className="institutional-label mb-4" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.6875rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#0F1B2D',
+              opacity: 0.38,
+              marginBottom: '14px',
+            }}
+          >
             {t('Direct contact', 'Contact direct')}
           </p>
           <a

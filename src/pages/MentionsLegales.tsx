@@ -19,11 +19,11 @@ const MentionsLegales = () => {
         </div>
       </section>
 
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl" style={{ display: 'flex', flexDirection: 'column', gap: '56px' }}>
 
           <div className="reveal">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t('Publisher', 'Éditeur du site')}
             </h2>
             <div className="institutional-body" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -36,14 +36,14 @@ const MentionsLegales = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t('Publication director', 'Directeur de la publication')}
             </h2>
             <p className="institutional-body">Vega Studio</p>
           </div>
 
           <div className="reveal reveal-delay-2">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t('Hosting', 'Hébergement')}
             </h2>
             <div className="institutional-body" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -54,7 +54,7 @@ const MentionsLegales = () => {
           </div>
 
           <div className="reveal reveal-delay-1">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t('Professional liability insurance', 'Assurance professionnelle')}
             </h2>
             <p className="institutional-body">
@@ -66,7 +66,7 @@ const MentionsLegales = () => {
           </div>
 
           <div className="reveal reveal-delay-2">
-            <h2 className="institutional-label mb-6" style={{ color: '#0F1B2D', opacity: 0.55 }}>
+            <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>
               {t('Intellectual property', 'Propriété intellectuelle')}
             </h2>
             <p className="institutional-body">
