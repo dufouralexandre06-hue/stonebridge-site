@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({ transparent = false }) => {
         borderBottom: isSolid && scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
       }}
     >
-      <div className="px-8 md:px-16 py-6">
+      <div className={`px-8 md:px-16 transition-all duration-300 ${scrolled ? 'py-3' : 'py-6'}`}>
         <div className="grid grid-cols-3 items-center">
           {/* Logo */}
           <Link
