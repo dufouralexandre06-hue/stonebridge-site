@@ -62,23 +62,33 @@ const Index = () => {
         />
 
         {/* Subtitle */}
-        <p
+        <div
           className="hero-fade-in hero-fade-delay-2 text-white"
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
-            fontSize: 'clamp(0.75rem, 1.2vw, 0.875rem)',
-            letterSpacing: '0.06em',
-            opacity: 0.75,
-            maxWidth: '38rem',
-            lineHeight: 1.8,
+            fontSize: 'clamp(0.75rem, 1.1vw, 0.875rem)',
+            letterSpacing: '0.04em',
+            maxWidth: '36rem',
+            lineHeight: 1.85,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
           }}
         >
-          {t(
-            "Independent counsel for sensitive regulatory situations, complex governance structures and exacting banking relationships.",
-            "Conseil indépendant pour les situations réglementaires sensibles, les gouvernances complexes et les relations bancaires exigeantes."
-          )}
-        </p>
+          <p style={{ opacity: 0.78, margin: 0 }}>
+            {t(
+              "Stonebridge advises family offices, wealth structures, asset managers and legal professionals facing sensitive regulatory situations, complex governance arrangements or exacting banking relationships.",
+              "Stonebridge conseille les family offices, structures patrimoniales, asset managers et professionnels du droit confrontés à des situations réglementaires sensibles, des gouvernances complexes ou des relations bancaires exigeantes."
+            )}
+          </p>
+          <p style={{ opacity: 0.52, margin: 0 }}>
+            {t(
+              "The firm qualifies the risk, structures the information and builds the most defensible position for institutional counterparties.",
+              "Le cabinet qualifie le risque, structure l'information et construit la position la plus défendable face aux interlocuteurs institutionnels."
+            )}
+          </p>
+        </div>
 
         {/* Cities */}
         <p
