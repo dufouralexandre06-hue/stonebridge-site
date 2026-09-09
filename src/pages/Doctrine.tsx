@@ -241,15 +241,6 @@ const Doctrine = () => {
               {t('Doctrine', 'Doctrine')}
             </h1>
 
-            <div
-              style={{
-                width: '36px',
-                height: '1px',
-                backgroundColor: '#BFA46F',
-                margin: '28px 0',
-              }}
-            />
-
             <p
               className="reveal reveal-delay-1"
               style={{
@@ -259,6 +250,7 @@ const Doctrine = () => {
                 color: 'rgba(15,27,45,0.68)',
                 lineHeight: 1.8,
                 maxWidth: '30rem',
+                marginTop: '24px',
               }}
             >
               {t(
@@ -312,20 +304,26 @@ const Doctrine = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10" style={{ maxWidth: '56rem' }}>
           {PRINCIPES.map((p, i) => (
-            <div key={p.num} className={`reveal reveal-delay-${i + 1}`}>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 300,
-                  fontSize: '0.6875rem',
-                  letterSpacing: '0.1em',
-                  color: '#BFA46F',
-                  marginBottom: '14px',
-                }}
-              >
-                {p.num}
-              </p>
-              <div style={{ borderTop: '1px solid rgba(15,27,45,0.12)', paddingTop: '18px' }}>
+            <div
+              key={p.num}
+              className={`reveal reveal-delay-${i + 1}`}
+              style={{ borderTop: '1px solid rgba(15,27,45,0.12)', paddingTop: '18px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '14px' }}>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '0.6875rem',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(15,27,45,0.28)',
+                    lineHeight: 1,
+                    flexShrink: 0,
+                    paddingTop: '3px',
+                  }}
+                >
+                  {p.num}
+                </span>
                 <h3
                   className="font-serif"
                   style={{
@@ -333,24 +331,23 @@ const Doctrine = () => {
                     fontSize: 'clamp(1rem, 1.3vw, 1.125rem)',
                     fontWeight: 400,
                     letterSpacing: '0.02em',
-                    marginBottom: '14px',
                     lineHeight: 1.25,
                   }}
                 >
                   {t(p.titleEn, p.titleFr)}
                 </h3>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 300,
-                    fontSize: '0.9rem',
-                    color: 'rgba(15,27,45,0.7)',
-                    lineHeight: 1.8,
-                  }}
-                >
-                  {t(p.bodyEn, p.bodyFr)}
-                </p>
               </div>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.9rem',
+                  color: 'rgba(15,27,45,0.7)',
+                  lineHeight: 1.8,
+                }}
+              >
+                {t(p.bodyEn, p.bodyFr)}
+              </p>
             </div>
           ))}
         </div>
@@ -481,7 +478,7 @@ const Doctrine = () => {
                   <ChevronDown
                     size={14}
                     style={{
-                      color: '#BFA46F',
+                      color: 'rgba(15,27,45,0.28)',
                       flexShrink: 0,
                       marginTop: '4px',
                       transform: openCase === i ? 'rotate(180deg)' : 'rotate(0deg)',

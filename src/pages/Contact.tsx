@@ -87,7 +87,16 @@ const Contact = () => {
           </h1>
 
           <p
-            className="reveal reveal-delay-1 institutional-body mt-10"
+            className="reveal reveal-delay-1"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)',
+              color: 'rgba(15,27,45,0.7)',
+              lineHeight: 1.75,
+              marginTop: '28px',
+              maxWidth: '40rem',
+            }}
           >
             {t(
               "Initial exchange, strictly confidential. No sensitive information is required in the form. A response is provided within 48 hours.",
@@ -103,28 +112,44 @@ const Contact = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/images/contact.jpg)',
-            filter: 'grayscale(100%) brightness(0.55)',
+            filter: 'grayscale(100%) brightness(0.51)',
           }}
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(27, 42, 65, 0.45)' }}
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }}
         />
       </div>
 
       {/* Form section */}
-      <section className="px-8 md:px-16 lg:px-24 py-24 md:py-32" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-2xl reveal reveal-delay-1">
 
           {submitted ? (
             <div style={{ paddingTop: '16px' }}>
               <p
-                className="institutional-label mb-6"
-                style={{ color: '#0F1B2D', opacity: 0.55 }}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.6875rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#0F1B2D',
+                  opacity: 0.38,
+                  marginBottom: '14px',
+                }}
               >
                 {t('Confirmation', 'Confirmation')}
               </p>
-              <p className="institutional-body">
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 300,
+                  fontSize: '0.9375rem',
+                  color: '#2F2F2F',
+                  lineHeight: 1.8,
+                }}
+              >
                 {t(
                   'Your message has been received. We will review your submission and revert if appropriate.',
                   'Votre message a bien été reçu. Nous examinerons votre demande et reviendrons vers vous le cas échéant.'

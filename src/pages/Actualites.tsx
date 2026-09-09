@@ -151,10 +151,10 @@ const Actualites = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/images/actualites.jpg)',
-            filter: 'grayscale(100%) brightness(0.50)',
+            filter: 'grayscale(100%) brightness(0.51)',
           }}
         />
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(27, 42, 65, 0.57)' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }} />
       </div>
 
       {/* Publications Stonebridge */}

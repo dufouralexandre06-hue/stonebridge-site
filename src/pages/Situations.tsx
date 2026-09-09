@@ -115,17 +115,17 @@ const Situations = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/images/situations.jpg)',
-            filter: 'grayscale(100%) brightness(0.55)',
+            filter: 'grayscale(100%) brightness(0.51)',
           }}
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(27, 42, 65, 0.45)' }}
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }}
         />
       </div>
 
       {/* 6 mini-scénarios */}
-      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl">
           {SCENARIOS.map((s, i) => (
             <div
@@ -145,12 +145,20 @@ const Situations = () => {
       </section>
 
       {/* Ce que Stonebridge fait */}
-      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-3xl">
           <div className="reveal reveal-delay-1">
             <h2
-              className="institutional-label mb-6"
-              style={{ color: '#0F1B2D', opacity: 0.45 }}
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                fontSize: '0.6875rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#0F1B2D',
+                opacity: 0.38,
+                marginBottom: '24px',
+              }}
             >
               {t("What Stonebridge does", "Ce que Stonebridge fait")}
             </h2>

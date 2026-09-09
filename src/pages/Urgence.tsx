@@ -105,12 +105,12 @@ const Urgence = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/images/urgence.jpg)',
-            filter: 'grayscale(100%) brightness(0.48)',
+            filter: 'grayscale(100%) brightness(0.51)',
           }}
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(27, 42, 65, 0.58)' }}
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }}
         />
       </div>
 

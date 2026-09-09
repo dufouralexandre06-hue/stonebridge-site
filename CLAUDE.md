@@ -55,8 +55,8 @@ src/
 | Class | Description |
 |-------|-------------|
 | `.institutional-heading` | Playfair Display, uppercase, clamp(2rem,4vw,3rem) |
-| `.institutional-body` | Inter 300, clamp(1rem,1.1vw,1.0625rem), lh 1.75, max-w 44rem |
-| `.institutional-label` | Inter 400, 0.6875rem, tracking 0.18em, uppercase |
+| `.institutional-body` | Inter 300, clamp(1rem,1.1vw,1.0625rem), lh 1.75, max-w 44rem. Legal pages only — editorial pages use inline body styles (see Page structure pattern) |
+| `.institutional-label` | Inter 400, 0.6875rem, tracking 0.18em, uppercase. Legacy — not used in page body content, kept for reference only |
 | `.reveal` | Scroll animation target — starts opacity:0 translateY(20px) |
 | `.reveal.is-visible` | Triggered by IntersectionObserver → opacity:1 translateY(0) |
 | `.reveal-delay-N` | Stagger delays: 1→120ms, 2→240ms, 3→360ms, 4→480ms |
@@ -83,28 +83,38 @@ src/
 
 ## Page structure pattern
 
-All secondary pages follow this pattern:
+All secondary pages follow this pattern. Section labels and body text use **inline styles**, not the legacy `institutional-label`/`institutional-body` classes (those remain defined in index.css but are no longer used in page body content as of Sept 2026 — see Key constraints):
+
 ```tsx
 const Page = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal(); // always called at top
+  usePageMeta(language, titleEn, titleFr, descEn, descFr);
 
   return (
     <Layout variant="light">
       {/* Title section — always white bg */}
       <section style={{ backgroundColor: '#ffffff' }} className="px-8 md:px-16 lg:px-24 pt-40 md:pt-48 pb-24">
-        <h1 className="reveal font-serif uppercase" style={{ color: '#0F1B2D', ... }}>
+        <h1 className="reveal font-serif uppercase" style={{ color: '#0F1B2D', fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '0.08em', fontWeight: 400 }}>
           {t('EN title', 'FR title')}
         </h1>
+        {/* Optional intro paragraph under H1 */}
+        <p className="reveal reveal-delay-1" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)', color: 'rgba(15,27,45,0.7)', lineHeight: 1.75, marginTop: '28px', maxWidth: '40rem' }}>
+          {t('EN intro', 'FR intro')}
+        </p>
       </section>
 
-      {/* Content sections — alternating #EDE9E3 / #FAF8F5 */}
+      {/* Optional image banner — see Image banner pattern below */}
+
+      {/* Content sections — alternating #EDE9E3 / #FAF8F5, starting with #EDE9E3 right after the title/banner */}
       {sections.map((s, i) => (
-        <section key={i} style={{ backgroundColor: s.bg }} className="px-8 md:px-16 lg:px-24 py-24 md:py-32">
+        <section key={i} style={{ backgroundColor: s.bg }} className="px-8 md:px-16 lg:px-24 py-14 md:py-20">
           <div className="max-w-3xl">
             <div className={`reveal reveal-delay-${(i % 3) + 1}`}>
-              <h2 className="institutional-label mb-8" style={{ color: '#0F1B2D', opacity: 0.55 }}>{s.label}</h2>
-              <p className="institutional-body">{s.body}</p>
+              {/* Eyebrow label */}
+              <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0F1B2D', opacity: 0.38, marginBottom: '20px' }}>{s.label}</h2>
+              {/* Body paragraph */}
+              <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.9375rem', color: '#2F2F2F', lineHeight: 1.8 }}>{s.body}</p>
             </div>
           </div>
         </section>
@@ -114,7 +124,42 @@ const Page = () => {
 };
 ```
 
-Section bg array order: `['#EDE9E3', '#FAF8F5', '#EDE9E3', '#FAF8F5', ...]`
+Section bg array order: `['#EDE9E3', '#FAF8F5', '#EDE9E3', '#FAF8F5', ...]` — the first content section right after the title (or image banner) is `#EDE9E3`.
+
+`py-14 md:py-20` is the standard content-section padding. Denser numbered-list sections (Mandats, Situations, Doctrine principles/cases) use `py-20 md:py-28`; the Doctrine Publications section uses `py-16 md:py-24`. Legal pages (MentionsLegales, Cookies, Confidentialité) still use the `institutional-body` class for their body text (document-style content, deliberately distinct from editorial pages) — this is the one place those legacy classes remain in active use.
+
+---
+
+## Numbered list pattern (Mandats, Doctrine principles)
+
+Used wherever content is presented as a numbered sequence ("01", "02"...). One shared treatment across pages:
+
+```tsx
+<div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.6875rem', letterSpacing: '0.12em', color: 'rgba(15,27,45,0.28)', lineHeight: 1, flexShrink: 0, paddingTop: '3px' }}>
+    {num}
+  </span>
+  <div>{/* title + body */}</div>
+</div>
+```
+
+- Number always sits **inline, to the left of the title** — never stacked above it.
+- Color is always the neutral `rgba(15,27,45,0.28)` — **never gold**. Gold is reserved for the two uses in Key constraints below.
+
+---
+
+## Image banner pattern (Mandats, Situations, Contact, Actualités, Urgence)
+
+Full-width band between the title section and the first content section:
+
+```tsx
+<div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
+  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/images/PAGE.jpg)', filter: 'grayscale(100%) brightness(0.51)' }} />
+  <div className="absolute inset-0" style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }} />
+</div>
+```
+
+Height `50vh`, `brightness(0.51)`, overlay `rgba(27, 42, 65, 0.53)` — same values on every page that uses this pattern. Doctrine does not use it (image is integrated into its split hero instead).
 
 ---
 
@@ -156,7 +201,7 @@ Language stored in `localStorage` under key `stonebridge-lang`.
 
 ## Key constraints
 
-1. Gold used in **two places only**: hero gold line + contact form submit button border
+1. Gold used in **two places only**: hero gold line (Index.tsx, homepage) + contact form submit button border. Not on Doctrine's hero, principle numbers, chevron icons, or any numbered-list treatment (those use the neutral numbering color, see Numbered list pattern). Note: `CookieBanner.tsx`'s "Accept" button also uses gold as a solid fill — this predates this rule and hasn't been reconciled either way (fix to neutral, or document as a third accepted use) — flag before touching it.
 2. No gold on hover states — always white/navy inversion
 3. No rounded corners beyond 2px
 4. `@import` Google Fonts must stay **before** `@tailwind` in index.css

@@ -180,17 +180,17 @@ const Mandats = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(/images/mandats.jpg)',
-            filter: 'grayscale(100%) brightness(0.55)',
+            filter: 'grayscale(100%) brightness(0.51)',
           }}
         />
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(27, 42, 65, 0.45)' }}
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }}
         />
       </div>
 
       {/* Blocs numérotés */}
-      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#EDE9E3' }}>
         <div className="max-w-3xl">
           {MANDATS.map((m, i) => (
             <div
@@ -220,7 +220,7 @@ const Mandats = () => {
       </section>
 
       {/* Section de contact bas de page */}
-      <section className="px-8 md:px-16 lg:px-24 py-16 md:py-20" style={{ backgroundColor: '#EDE9E3' }}>
+      <section className="px-8 md:px-16 lg:px-24 py-16 md:py-20" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-3xl reveal">
           <p
             style={{
