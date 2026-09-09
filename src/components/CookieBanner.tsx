@@ -7,6 +7,7 @@ const COOKIE_KEY = 'stonebridge-cookies-accepted';
 const CookieBanner = () => {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
+  const [btnHovered, setBtnHovered] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem(COOKIE_KEY)) {
@@ -74,18 +75,22 @@ const CookieBanner = () => {
         </Link>
         <button
           onClick={accept}
+          onMouseEnter={() => setBtnHovered(true)}
+          onMouseLeave={() => setBtnHovered(false)}
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,
             fontSize: '0.6875rem',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: '#0F1B2D',
-            backgroundColor: '#BFA46F',
-            border: 'none',
+            color: btnHovered ? '#0F1B2D' : '#ffffff',
+            backgroundColor: btnHovered ? '#ffffff' : 'transparent',
+            border: '1px solid rgba(255,255,255,0.45)',
+            borderColor: btnHovered ? '#ffffff' : 'rgba(255,255,255,0.45)',
             padding: '10px 24px',
             borderRadius: '2px',
             cursor: 'pointer',
+            transition: 'background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease',
           }}
         >
           {t('Accept', 'Accepter')}

@@ -201,7 +201,7 @@ Language stored in `localStorage` under key `stonebridge-lang`.
 
 ## Key constraints
 
-1. Gold used in **two places only**: hero gold line (Index.tsx, homepage) + contact form submit button border. Not on Doctrine's hero, principle numbers, chevron icons, or any numbered-list treatment (those use the neutral numbering color, see Numbered list pattern). Note: `CookieBanner.tsx`'s "Accept" button also uses gold as a solid fill — this predates this rule and hasn't been reconciled either way (fix to neutral, or document as a third accepted use) — flag before touching it.
+1. Gold used in **two places only**: hero gold line (Index.tsx, homepage) + contact form submit button border. Not on Doctrine's hero, principle numbers, chevron icons, or any numbered-list treatment (those use the neutral numbering color, see Numbered list pattern), and not on `CookieBanner.tsx`'s "Accept" button (transparent bg / white border, matches the Index.tsx hero CTA treatment on a dark background).
 2. No gold on hover states — always white/navy inversion
 3. No rounded corners beyond 2px
 4. `@import` Google Fonts must stay **before** `@tailwind` in index.css
