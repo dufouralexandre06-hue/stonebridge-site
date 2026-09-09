@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -227,8 +228,8 @@ const Mandats = () => {
               "Chaque intervention est précédée d'un premier échange confidentiel destiné à qualifier la situation et à confirmer le périmètre d'intervention."
             )}
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             style={{
               display: 'inline-block',
               marginTop: '20px',
@@ -241,7 +242,7 @@ const Mandats = () => {
               textDecoration: 'none',
               borderBottom: '1px solid rgba(15,27,45,0.25)',
               paddingBottom: '2px',
-              transition: 'border-color 0.2s ease, opacity 0.2s ease',
+              transition: 'border-color 0.2s ease',
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(15,27,45,0.7)';
@@ -251,7 +252,7 @@ const Mandats = () => {
             }}
           >
             {t('Request a first exchange →', 'Demander un premier échange →')}
-          </a>
+          </Link>
         </div>
       </section>
     </Layout>
