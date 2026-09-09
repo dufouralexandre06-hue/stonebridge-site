@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface VeilleItem {
@@ -46,6 +47,13 @@ const SOURCE_NOTES: Record<string, { fr: string; en: string }> = {
 const Actualites = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Actualités — Stonebridge | Publications et veille réglementaire",
+    "News — Stonebridge | Publications and regulatory watch",
+    "Publications Stonebridge et veille réglementaire sélectionnée : notes de conformité, articles publiés, textes AMF, ACPR et EBA. LCB-FT, KYC, gouvernance, family office.",
+    "Stonebridge publications and curated regulatory watch: compliance notes, published articles, AMF, ACPR and EBA regulatory texts. AML/CFT, KYC, governance, family office."
+  );
   const [actualites, setActualites] = useState<VeilleItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -117,6 +125,23 @@ const Actualites = () => {
           >
             {t('News', 'Actualités')}
           </h1>
+          <p
+            className="reveal reveal-delay-1"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)',
+              color: 'rgba(15,27,45,0.7)',
+              lineHeight: 1.75,
+              marginTop: '28px',
+              maxWidth: '40rem',
+            }}
+          >
+            {t(
+              "Notes and articles published by Stonebridge on AML/CFT compliance and governance, alongside a curated selection of regulatory texts from AMF, ACPR and EBA relevant to the firm's clients.",
+              "Notes et articles publiés par Stonebridge sur les questions de conformité LCB-FT et de gouvernance, accompagnés d'une sélection de textes réglementaires AMF, ACPR et EBA pertinents pour les clients du cabinet."
+            )}
+          </p>
         </div>
       </section>
 

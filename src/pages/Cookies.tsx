@@ -1,10 +1,18 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Cookies = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Cookie Policy — Stonebridge",
+    "Politique de cookies — Stonebridge",
+    "Politique de cookies du site Stonebridge : uniquement des cookies techniques strictement nécessaires, aucun tracking publicitaire.",
+    "Cookie policy for the Stonebridge website: only strictly necessary technical cookies, no advertising tracking."
+  );
 
   return (
     <Layout variant="light">

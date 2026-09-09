@@ -1,30 +1,18 @@
-import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Urgence = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
-
-  useEffect(() => {
-    document.title = language === 'fr'
-      ? 'Intervention urgente conformité LCB-FT — contrôle AMF, refus bancaire, mise en demeure | Stonebridge'
-      : 'Urgent AML/CFT compliance support — AMF audit, banking refusal, formal notice | Stonebridge';
-
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute('content', language === 'fr'
-        ? 'Stonebridge intervient en urgence sur les situations critiques de conformité LCB-FT : contrôle AMF ou ACPR, refus bancaire, mise en demeure, échéance d\'agrément. Réponse rapide et confidentielle.'
-        : 'Stonebridge provides urgent support in critical AML/CFT compliance situations: AMF or ACPR audit, banking refusal, formal notice, licensing deadline. Fast, confidential response.'
-      );
-    }
-
-    return () => {
-      document.title = 'Stonebridge | Conformité LCB-FT, KYC et Gouvernance | Paris';
-      if (meta) meta.setAttribute('content', 'Expert en conformité LCB-FT, KYC et gouvernance pour family offices, sociétés de gestion et avocats fiscalistes. Paris.');
-    };
-  }, [language]);
+  usePageMeta(
+    language,
+    "Intervention d'urgence LCB-FT — Stonebridge | Contrôle AMF, refus bancaire, mise en demeure",
+    "Urgent AML/CFT support — Stonebridge | AMF audit, banking refusal, formal notice",
+    "Stonebridge intervient en urgence sur les situations critiques de conformité LCB-FT : contrôle AMF ou ACPR, refus bancaire, mise en demeure, échéance d'agrément. Réponse rapide et confidentielle.",
+    "Stonebridge provides urgent support in critical AML/CFT compliance situations: AMF or ACPR audit, banking refusal, formal notice, licensing deadline. Fast, confidential response."
+  );
 
   const sections = [
     {
@@ -71,7 +59,7 @@ const Urgence = () => {
             className="reveal font-serif uppercase"
             style={{ color: '#0F1B2D', fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '0.08em', fontWeight: 400 }}
           >
-            {t('Urgent support — AML/CFT compliance', 'Intervention d\'urgence — conformité LCB-FT')}
+            {t("Urgent support", "Intervention d'urgence")}
           </h1>
 
           <p
@@ -92,7 +80,17 @@ const Urgence = () => {
             )}
           </p>
 
-          <p className="reveal reveal-delay-2 institutional-body mt-8">
+          <p
+            className="reveal reveal-delay-2 mt-8"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: 'clamp(0.9375rem, 1.1vw, 1.0625rem)',
+              color: 'rgba(15,27,45,0.72)',
+              lineHeight: 1.75,
+              maxWidth: '40rem',
+            }}
+          >
             {t(
               'Some situations leave no room for prolonged deliberation. An announced audit, a suspended bank account, an imminent regulatory deadline: the quality of the response in the first days strongly influences how the matter unfolds. Stonebridge intervenes urgently in these situations, with rapid mobilisation and an approach centred on defensibility.',
               'Certaines situations ne laissent pas le délai d\'une réflexion prolongée. Un contrôle annoncé, un compte bancaire suspendu, une échéance réglementaire imminente : la qualité de la réponse dans les premiers jours influence fortement la suite donnée au dossier. Stonebridge intervient en urgence sur ces situations, avec une capacité de mobilisation rapide et une approche centrée sur la défendabilité.'

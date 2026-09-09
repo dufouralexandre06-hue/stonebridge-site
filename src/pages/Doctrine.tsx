@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 // ── Principes ──────────────────────────────────────────────────────────────────
@@ -204,6 +205,13 @@ const caseTextStyle: React.CSSProperties = {
 const Doctrine = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Doctrine — Stonebridge | Comprehensive reading, arbitration, sustainability",
+    "Doctrine — Stonebridge | Lecture globale, arbitrage, soutenabilité",
+    "La doctrine Stonebridge : lecture globale des situations, arbitrages explicites entre obligation réglementaire et réalité opérationnelle, recherche de dispositifs soutenables dans la durée.",
+    "Stonebridge's doctrine: comprehensive reading of situations, explicit arbitration between regulatory obligation and operational reality, pursuit of frameworks that remain sustainable over time."
+  );
   const [openCase, setOpenCase] = useState<number | null>(null);
 
   return (

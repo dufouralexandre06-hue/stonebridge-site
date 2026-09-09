@@ -1,10 +1,18 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const MentionsLegales = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Legal Notice — Stonebridge",
+    "Mentions légales — Stonebridge",
+    "Mentions légales du site Stonebridge : éditeur, hébergeur, propriété intellectuelle.",
+    "Legal notice for the Stonebridge website: publisher, host, intellectual property."
+  );
 
   return (
     <Layout variant="light">

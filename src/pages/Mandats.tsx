@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface Mandat {
@@ -133,8 +134,15 @@ const resultatStyle: React.CSSProperties = {
 };
 
 const Mandats = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Mandates — Stonebridge | Compliance and governance advisory",
+    "Mandats — Stonebridge | Conseil conformité et gouvernance",
+    "Six types of engagement: risk diagnostics, banking relationship structuring, AML/CFT frameworks, governance advisory, urgent support, and strategic positioning. Stonebridge, Paris.",
+    "Six formats d'intervention : diagnostic de risque, structuration de la relation bancaire, dispositifs LCB-FT, conseil en gouvernance, intervention d'urgence et positionnement stratégique. Stonebridge, Paris."
+  );
 
   return (
     <Layout variant="light">

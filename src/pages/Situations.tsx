@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface Scenario {
@@ -67,7 +68,14 @@ const scenarioBodyStyle: React.CSSProperties = {
 };
 
 const Situations = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  usePageMeta(
+    language,
+    "Situations — Stonebridge | Banking refusals, PEPs, complex structures",
+    "Situations — Stonebridge | Refus bancaires, PPE, structures complexes",
+    "Situations traitées par Stonebridge : refus bancaire, structures internationales opaques, profils PPE, gouvernance familiale sous tension, exigences réglementaires imminentes. Paris.",
+    "Situations handled by Stonebridge: banking refusals, opaque international structures, PEP profiles, family governance under strain, imminent regulatory requirements. Paris."
+  );
   useScrollReveal();
 
   return (

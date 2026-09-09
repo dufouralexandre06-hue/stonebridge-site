@@ -1,10 +1,18 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Confidentialite = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Privacy Policy — Stonebridge",
+    "Politique de confidentialité — Stonebridge",
+    "Politique de confidentialité du site Stonebridge : traitement des données personnelles, droits RGPD, responsable du traitement.",
+    "Privacy policy for the Stonebridge website: personal data processing, GDPR rights, data controller."
+  );
 
   return (
     <Layout variant="light">

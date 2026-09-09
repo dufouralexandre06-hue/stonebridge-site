@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { usePageMeta } from '@/hooks/usePageMeta';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const inputStyle: React.CSSProperties = {
@@ -33,8 +34,15 @@ const labelStyle: React.CSSProperties = {
 };
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Contact — Stonebridge | Premier échange confidentiel",
+    "Contact — Stonebridge | First confidential exchange",
+    "Contacter Stonebridge pour un premier échange confidentiel sur une situation réglementaire, bancaire ou de gouvernance. Réponse sous 48 heures. Paris.",
+    "Contact Stonebridge for a first confidential exchange on a regulatory, banking or governance situation. Response within 48 hours. Paris."
+  );
 
   const [form, setForm] = useState({
     email: '',
@@ -65,22 +73,6 @@ const Contact = () => {
     borderBottomColor: focusedField === name ? 'rgba(15, 27, 45, 0.7)' : 'rgba(15, 27, 45, 0.2)',
   });
 
-  const infoSections = [
-    {
-      bg: '#FAF8F5',
-      label: t('FORM DISCLAIMER', 'Correspondance'),
-      body: t(
-        'Each request is subject to prior review.\n' +
-          'Submission of a request does not constitute a commitment to engage.',
-        "Toute prise de contact fait l'objet d'une appréciation préalable, au regard de la nature de la situation exposée et du niveau de risque identifié."
-      ),
-    },
-    {
-      bg: '#EDE9E3',
-      label: t('Location', 'Localisation'),
-      body: t('Paris, France', 'Paris, France'),
-    },
-  ];
 
   return (
     <Layout variant="light">
@@ -253,7 +245,7 @@ const Contact = () => {
                 >
                   {t(
                     'I acknowledge that the information submitted will be processed by Stonebridge solely for the purpose of responding to this enquiry, in accordance with applicable data protection regulations.',
-                    'J\'accepte que les informations transmises soient traitées par Stonebridge dans le seul but de répondre à cette prise de contact, conformément à la réglementation applicable en matière de protection des données personnelles.'
+                    "J'accepte que les informations transmises soient traitées par Stonebridge dans le seul but de répondre à cette prise de contact, conformément à la réglementation applicable en matière de protection des données personnelles."
                   )}
                 </label>
               </div>
@@ -296,7 +288,7 @@ const Contact = () => {
             color: 'rgba(15, 27, 45, 0.45)',
             lineHeight: 1.6,
           }}>
-            {t('For any direct enquiry : ', 'Pour toute prise de contact directe : ')}
+            {t('For any direct enquiry: ', 'Pour toute prise de contact directe : ')}
             <a
               href="mailto:contact@stonebridgeconsult.com"
               style={{
@@ -318,48 +310,19 @@ const Contact = () => {
               contact@stonebridgeconsult.com
             </a>
           </p>
+          <p style={{
+            marginTop: '12px',
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            fontSize: '0.75rem',
+            color: 'rgba(15,27,45,0.3)',
+            letterSpacing: '0.02em',
+          }}>
+            60 rue François Ier, 75008 Paris
+          </p>
 
         </div>
       </section>
-
-      {/* Info sections */}
-      {infoSections.map((s, i) => (
-        <section
-          key={i}
-          className="px-8 md:px-16 lg:px-24 py-12 md:py-16"
-          style={{ backgroundColor: s.bg }}
-        >
-          <div className="max-w-3xl">
-            <div className={`reveal reveal-delay-${(i % 3) + 1}`}>
-              <h2
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 300,
-                  fontSize: '0.6875rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase' as const,
-                  color: '#0F1B2D',
-                  opacity: 0.38,
-                  marginBottom: '16px',
-                }}
-              >
-                {s.label}
-              </h2>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 300,
-                  fontSize: '0.9375rem',
-                  color: 'rgba(15,27,45,0.68)',
-                  lineHeight: 1.8,
-                }}
-              >
-                {s.body}
-              </p>
-            </div>
-          </div>
-        </section>
-      ))}
     </Layout>
   );
 };
