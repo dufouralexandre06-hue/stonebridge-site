@@ -102,9 +102,16 @@ const Urgence = () => {
       {/* Image banner */}
       <div className="relative w-full overflow-hidden" style={{ height: '50vh' }}>
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center hidden md:block"
           style={{
-            backgroundImage: 'url(/images/urgence.jpg)',
+            backgroundImage: 'url(/images/urgence-desktop.webp)',
+            filter: 'grayscale(100%) brightness(0.51)',
+          }}
+        />
+        <div
+          className="absolute inset-0 bg-cover bg-center block md:hidden"
+          style={{
+            backgroundImage: 'url(/images/urgence-mobile.webp)',
             filter: 'grayscale(100%) brightness(0.51)',
           }}
         />

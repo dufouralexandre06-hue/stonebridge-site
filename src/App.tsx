@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
 import Mandats from "./pages/Mandats";
 import Situations from "./pages/Situations";
+import Methode from "./pages/Methode";
 import Doctrine from "./pages/Doctrine";
 import Contact from "./pages/Contact";
 import Urgence from "./pages/Urgence";
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/mandats" element={<Mandats />} />
             <Route path="/situations" element={<Situations />} />
+            <Route path="/methode" element={<Methode />} />
             <Route path="/doctrine" element={<Doctrine />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/urgence" element={<Urgence />} />

@@ -23,6 +23,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
     { path: '/', labelEn: 'Overview', labelFr: 'Présentation' },
     { path: '/mandats', labelEn: 'Mandates', labelFr: 'Mandats' },
     { path: '/situations', labelEn: 'Situations', labelFr: 'Situations' },
+    { path: '/methode', labelEn: 'Method', labelFr: 'Méthode' },
     { path: '/doctrine', labelEn: 'Doctrine', labelFr: 'Doctrine' },
     { path: '/actualites', labelEn: 'News', labelFr: 'Actualités' },
     { path: '/urgence', labelEn: 'Emergency', labelFr: 'Urgence' },
