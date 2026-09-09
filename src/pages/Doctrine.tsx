@@ -624,6 +624,46 @@ const Doctrine = () => {
         </div>
       </section>
 
+      {/* ── 5bis. ORIGINE ET EXPERTISE ────────────────────────────────────── */}
+      <section
+        className="px-8 md:px-16 lg:px-24 py-14 md:py-20"
+        style={{ backgroundColor: '#EDE9E3' }}
+      >
+        <div className="reveal" style={{ maxWidth: '42rem', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <p style={caseTextStyle}>
+            {t(
+              "Stonebridge's approach is grounded in operational risk practice, developed within a multi-jurisdictional Luxembourg trust and corporate services group specialising in the cross-border structuring of companies and investment funds for an international clientele. Within that group, Stonebridge held operational responsibility for the compliance function, working directly with its various jurisdictions and the regulatory requirements specific to each. This hands-on, multi-jurisdictional practice forms the firm's methodological foundation: a reading of risk built on concrete case experience rather than a theoretical approach.",
+              "Stonebridge fonde son approche sur une pratique opérationnelle du risque, acquise au sein d'un groupe fiduciaire luxembourgeois multi-juridictions, spécialisé dans la structuration transfrontalière de sociétés et de fonds d'investissement pour une clientèle internationale. Stonebridge y a assumé la responsabilité opérationnelle de la fonction compliance, en lien direct avec les différentes implantations du groupe, au contact des exigences réglementaires propres à chaque juridiction. Cette pratique de terrain, multi-juridictionnelle, constitue le socle méthodologique du cabinet : une lecture du risque construite sur l'expérience concrète des dossiers, plutôt que sur une approche théorique."
+            )}
+          </p>
+          <p style={caseTextStyle}>
+            {t(
+              "The firm works alongside legal, accounting and regulatory professionals, engaged according to the specific needs of each matter — on a coordination basis rather than blanket outsourcing.",
+              "Le cabinet travaille en lien avec des professionnels du droit, du chiffre et de la réglementation, mobilisés selon les besoins spécifiques de chaque dossier — dans une logique de coordination plutôt que de sous-traitance généralisée."
+            )}
+          </p>
+          <p style={caseTextStyle}>
+            {t(
+              "Stonebridge supports family offices, asset managers and legal professionals — whether they lack a dedicated in-house compliance function, or are seeking an external perspective or targeted support on a specific matter.",
+              "Stonebridge accompagne les family offices, gestionnaires d'actifs et professionnels du droit — qu'ils ne disposent pas de fonction compliance dédiée en interne, ou qu'ils recherchent un regard extérieur ou un renfort ponctuel sur un dossier spécifique."
+            )}
+          </p>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.8125rem',
+              fontStyle: 'italic',
+              color: 'rgba(15,27,45,0.45)',
+              letterSpacing: '0.01em',
+              marginTop: '8px',
+            }}
+          >
+            Alexandre Dufour, Managing Partner
+          </p>
+        </div>
+      </section>
+
       {/* ── 6. CTA ───────────────────────────────────────────────────────── */}
       <section
         className="px-8 md:px-16 lg:px-24 py-14 md:py-20"
