@@ -16,6 +16,11 @@ jobs:
       - name: Installer Bun
         uses: oven-sh/setup-bun@v2
 
+      - name: Installer Node (pour le script de prerendering)
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
       - name: Installer les dépendances
         run: bun install
 
@@ -33,6 +38,12 @@ jobs:
           cp veille-output.json dist/data/veille.json
           echo "=== APRÈS COPIE ==="
           cat dist/data/veille.json | head -n 30
+
+      - name: Installer Chrome pour Puppeteer
+        run: npx puppeteer browsers install chrome
+
+      - name: Prérendre les pages en HTML statique (SEO)
+        run: node scripts/prerender.mjs
 
       - name: Déployer vers OVH par FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
