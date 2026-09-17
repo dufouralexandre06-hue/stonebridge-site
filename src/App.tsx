@@ -15,6 +15,8 @@ import Doctrine from "./pages/Doctrine";
 import Contact from "./pages/Contact";
 import Urgence from "./pages/Urgence";
 import Actualites from "./pages/Actualites";
+import AnalysesVeilleHub from "./pages/AnalysesVeilleHub";
+import AnalyseVeillePage from "./pages/AnalyseVeillePage";
 import VeilleComplete from "./pages/VeilleComplete";
 import MentionsLegales from "./pages/MentionsLegales";
 import Cookies from "./pages/Cookies";
@@ -52,6 +54,8 @@ const App = () => (
             <Route path="/urgence" element={<Urgence />} />
             <Route path="/actualites" element={<Actualites />} />
             <Route path="/veille-complete" element={<VeilleComplete />} />
+            <Route path="/analyses-veille" element={<AnalysesVeilleHub />} />
+            <Route path="/analyses-veille/:slug" element={<AnalyseVeillePage />} />
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/confidentialite" element={<Confidentialite />} />

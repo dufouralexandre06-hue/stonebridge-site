@@ -25,7 +25,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
     { path: '/situations', labelEn: 'Situations', labelFr: 'Situations' },
     { path: '/methode', labelEn: 'Method', labelFr: 'Méthode' },
     { path: '/doctrine', labelEn: 'Doctrine', labelFr: 'Doctrine' },
-    { path: '/actualites', labelEn: 'News', labelFr: 'Actualités' },
+    { path: '/analyses-veille', labelEn: 'Analysis & Watch', labelFr: 'Analyses & Veille' },
     { path: '/urgence', labelEn: 'Emergency', labelFr: 'Urgence' },
     { path: '/contact', labelEn: 'Contact', labelFr: 'Contact' },
   ];
@@ -85,7 +85,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
             onClick={() => setIsOpen(false)}
             className="font-serif text-2xl tracking-[0.12em] uppercase transition-all duration-300"
             style={{
-              color: location.pathname === item.path ? '#ffffff' : 'rgba(255,255,255,0.45)',
+              color: (location.pathname === item.path || location.pathname.startsWith(item.path + '/')) ? '#ffffff' : 'rgba(255,255,255,0.45)',
               transitionDelay: isOpen ? `${index * 80}ms` : '0ms',
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? 'translateY(0)' : 'translateY(12px)',
