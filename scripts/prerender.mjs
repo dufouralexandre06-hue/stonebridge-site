@@ -94,7 +94,13 @@ async function main() {
   try {
     await waitForServer(BASE_URL);
 
-    const browser = await puppeteer.launch({ headless: true });
+    // --no-sandbox / --disable-setuid-sandbox: required for Chrome to launch in
+    // containerized CI runners (GitHub Actions) that lack the privileges Chrome's
+    // default sandbox needs. Harmless locally.
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     let ok = 0;
 
     for (const route of ROUTES) {
