@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { usePageMeta } from '@/hooks/usePageMeta';
 
 interface VeilleItem {
   title: string;
@@ -14,6 +15,14 @@ interface VeilleItem {
 const VeilleComplete = () => {
   const { t, language } = useLanguage();
   useScrollReveal();
+  usePageMeta(
+    language,
+    "Veille réglementaire complète — Stonebridge",
+    "Full Regulatory Watch — Stonebridge",
+    "L'ensemble de la veille réglementaire suivie par Stonebridge : textes AMF, ACPR et EBA, LCB-FT, KYC, gouvernance, family office.",
+    "The full regulatory watch tracked by Stonebridge: AMF, ACPR and EBA texts, AML/CFT, KYC, governance, family office.",
+    "/veille-complete/"
+  );
   const [items, setItems] = useState<VeilleItem[]>([]);
   const [loading, setLoading] = useState(true);
 

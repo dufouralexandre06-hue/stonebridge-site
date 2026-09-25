@@ -8,10 +8,11 @@ const Cookies = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Cookie Policy — Stonebridge",
     "Politique de cookies — Stonebridge",
+    "Cookie Policy — Stonebridge",
     "Politique de cookies du site Stonebridge : uniquement des cookies techniques strictement nécessaires, aucun tracking publicitaire.",
-    "Cookie policy for the Stonebridge website: only strictly necessary technical cookies, no advertising tracking."
+    "Cookie policy for the Stonebridge website: only strictly necessary technical cookies, no advertising tracking.",
+    "/cookies/"
   );
 
   return (

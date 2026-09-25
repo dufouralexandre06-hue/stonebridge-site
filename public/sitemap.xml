@@ -1,58 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stonebridgeconsult.com/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/mandats</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com/mandats/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/situations</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com/situations/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/doctrine</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com/methode/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/urgence</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com/doctrine/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/contact</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://stonebridgeconsult.com/contact/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/actualites</loc>
-    <lastmod>2026-07-02</lastmod>
+    <loc>https://stonebridgeconsult.com/urgence/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/actualites/</loc>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://stonebridgeconsult.com/mentions-legales</loc>
-    <lastmod>2026-07-02</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://stonebridgeconsult.com/cookies</loc>
-    <lastmod>2026-07-02</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://stonebridgeconsult.com/confidentialite</loc>
-    <lastmod>2026-07-03</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://stonebridgeconsult.com/veille-complete</loc>
-    <lastmod>2026-07-03</lastmod>
+    <loc>https://stonebridgeconsult.com/veille-complete/</loc>
+    <lastmod>2026-09-08</lastmod>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/mentions-legales/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/cookies/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/confidentialite/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/expert-comptable-obligation-tracfin/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/psan-radie-que-faire/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/family-office-lcb-ft/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/controle-acpr-lcb-ft/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/societe-gestion-controles-amf-lcb-ft/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/avocat-fiscaliste-lcb-ft/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stonebridgeconsult.com/analyses-veille/compliance-externalisee-lcb-ft/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

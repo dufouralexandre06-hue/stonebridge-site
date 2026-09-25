@@ -8,10 +8,11 @@ const MentionsLegales = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Legal Notice — Stonebridge",
     "Mentions légales — Stonebridge",
+    "Legal Notice — Stonebridge",
     "Mentions légales du site Stonebridge : éditeur, hébergeur, propriété intellectuelle.",
-    "Legal notice for the Stonebridge website: publisher, host, intellectual property."
+    "Legal notice for the Stonebridge website: publisher, host, intellectual property.",
+    "/mentions-legales/"
   );
 
   return (

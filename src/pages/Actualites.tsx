@@ -52,7 +52,8 @@ const Actualites = () => {
     "Actualités — Stonebridge | Publications et veille réglementaire",
     "News — Stonebridge | Publications and regulatory watch",
     "Publications Stonebridge et veille réglementaire sélectionnée : notes de conformité, articles publiés, textes AMF, ACPR et EBA. LCB-FT, KYC, gouvernance, family office.",
-    "Stonebridge publications and curated regulatory watch: compliance notes, published articles, AMF, ACPR and EBA regulatory texts. AML/CFT, KYC, governance, family office."
+    "Stonebridge publications and curated regulatory watch: compliance notes, published articles, AMF, ACPR and EBA regulatory texts. AML/CFT, KYC, governance, family office.",
+    "/actualites/"
   );
   const [actualites, setActualites] = useState<VeilleItem[]>([]);
   const [loading, setLoading] = useState(true);

@@ -207,10 +207,11 @@ const Doctrine = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Doctrine — Stonebridge | Comprehensive reading, arbitration, sustainability",
     "Doctrine — Stonebridge | Lecture globale, arbitrage, soutenabilité",
+    "Doctrine — Stonebridge | Comprehensive reading, arbitration, sustainability",
     "La doctrine Stonebridge : lecture globale des situations, arbitrages explicites entre obligation réglementaire et réalité opérationnelle, recherche de dispositifs soutenables dans la durée.",
-    "Stonebridge's doctrine: comprehensive reading of situations, explicit arbitration between regulatory obligation and operational reality, pursuit of frameworks that remain sustainable over time."
+    "Stonebridge's doctrine: comprehensive reading of situations, explicit arbitration between regulatory obligation and operational reality, pursuit of frameworks that remain sustainable over time.",
+    "/doctrine/"
   );
   const [openCase, setOpenCase] = useState<number | null>(null);
 

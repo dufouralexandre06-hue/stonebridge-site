@@ -40,11 +40,11 @@ const AnalysesVeilleHub = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    'Analysis & Regulatory Watch — Stonebridge | LCB-FT compliance analyses',
     'Analyses & Veille réglementaire — Stonebridge | Analyses conformité LCB-FT',
+    'Analysis & Regulatory Watch — Stonebridge | LCB-FT compliance analyses',
     'Analyses approfondies Stonebridge sur les obligations LCB-FT : TRACFIN, PSAN, family office, contrôles ACPR et AMF, secret professionnel, compliance externalisée.',
     'In-depth Stonebridge analyses on AML/CFT obligations: TRACFIN, digital asset providers, family offices, AMF and ACPR audits, professional secrecy, outsourced compliance.',
-    '/analyses-veille'
+    '/analyses-veille/'
   );
 
   return (

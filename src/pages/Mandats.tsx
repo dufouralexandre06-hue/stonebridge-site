@@ -138,10 +138,11 @@ const Mandats = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Mandates — Stonebridge | Compliance and governance advisory",
     "Mandats — Stonebridge | Conseil conformité et gouvernance",
+    "Mandates — Stonebridge | Compliance and governance advisory",
+    "Six formats d'intervention : diagnostic de risque, structuration de la relation bancaire, dispositifs LCB-FT, conseil en gouvernance, intervention d'urgence et positionnement stratégique. Stonebridge, Paris.",
     "Six types of engagement: risk diagnostics, banking relationship structuring, AML/CFT frameworks, governance advisory, urgent support, and strategic positioning. Stonebridge, Paris.",
-    "Six formats d'intervention : diagnostic de risque, structuration de la relation bancaire, dispositifs LCB-FT, conseil en gouvernance, intervention d'urgence et positionnement stratégique. Stonebridge, Paris."
+    "/mandats/"
   );
 
   return (

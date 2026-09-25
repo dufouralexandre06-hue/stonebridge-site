@@ -8,10 +8,11 @@ const Confidentialite = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Privacy Policy — Stonebridge",
     "Politique de confidentialité — Stonebridge",
+    "Privacy Policy — Stonebridge",
     "Politique de confidentialité du site Stonebridge : traitement des données personnelles, droits RGPD, responsable du traitement.",
-    "Privacy policy for the Stonebridge website: personal data processing, GDPR rights, data controller."
+    "Privacy policy for the Stonebridge website: personal data processing, GDPR rights, data controller.",
+    "/confidentialite/"
   );
 
   return (

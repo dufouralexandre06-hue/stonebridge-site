@@ -71,10 +71,11 @@ const Situations = () => {
   const { t, language } = useLanguage();
   usePageMeta(
     language,
-    "Situations — Stonebridge | Banking refusals, PEPs, complex structures",
     "Situations — Stonebridge | Refus bancaires, PPE, structures complexes",
+    "Situations — Stonebridge | Banking refusals, PEPs, complex structures",
     "Situations traitées par Stonebridge : refus bancaire, structures internationales opaques, profils PPE, gouvernance familiale sous tension, exigences réglementaires imminentes. Paris.",
-    "Situations handled by Stonebridge: banking refusals, opaque international structures, PEP profiles, family governance under strain, imminent regulatory requirements. Paris."
+    "Situations handled by Stonebridge: banking refusals, opaque international structures, PEP profiles, family governance under strain, imminent regulatory requirements. Paris.",
+    "/situations/"
   );
   useScrollReveal();
 

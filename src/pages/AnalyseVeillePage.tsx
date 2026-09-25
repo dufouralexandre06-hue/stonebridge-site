@@ -23,12 +23,12 @@ const AnalyseVeillePage = () => {
     entry ? `${entry.title} — Stonebridge` : 'Stonebridge',
     entry ? entry.metaDescription : '',
     entry ? entry.metaDescription : '',
-    entry ? `/analyses-veille/${entry.slug}` : undefined
+    entry ? `/analyses-veille/${entry.slug}/` : '/analyses-veille/'
   );
 
   const schemas = useMemo(() => {
     if (!entry) return [];
-    const pageUrl = `${SITE_URL}/analyses-veille/${entry.slug}`;
+    const pageUrl = `${SITE_URL}/analyses-veille/${entry.slug}/`;
     const article = {
       '@context': 'https://schema.org',
       '@type': 'Article',
@@ -36,7 +36,7 @@ const AnalyseVeillePage = () => {
       description: entry.metaDescription,
       datePublished: entry.datePublished,
       dateModified: entry.dateModified,
-      author: { '@type': 'Person', name: 'Alexandre Dufour', jobTitle: 'Managing Partner' },
+      author: { '@type': 'Organization', name: 'Stonebridge', url: SITE_URL },
       publisher: { '@type': 'Organization', name: 'Stonebridge', url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
       inLanguage: 'fr-FR',
@@ -55,7 +55,7 @@ const AnalyseVeillePage = () => {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Analyses & Veille', item: `${SITE_URL}/analyses-veille` },
+        { '@type': 'ListItem', position: 2, name: 'Analyses & Veille', item: `${SITE_URL}/analyses-veille/` },
         { '@type': 'ListItem', position: 3, name: entry.title, item: pageUrl },
       ],
     };

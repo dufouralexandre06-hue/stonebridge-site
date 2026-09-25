@@ -11,7 +11,8 @@ const Urgence = () => {
     "Intervention d'urgence LCB-FT — Stonebridge | Contrôle AMF, refus bancaire, mise en demeure",
     "Urgent AML/CFT support — Stonebridge | AMF audit, banking refusal, formal notice",
     "Stonebridge intervient en urgence sur les situations critiques de conformité LCB-FT : contrôle AMF ou ACPR, refus bancaire, mise en demeure, échéance d'agrément. Réponse rapide et confidentielle.",
-    "Stonebridge provides urgent support in critical AML/CFT compliance situations: AMF or ACPR audit, banking refusal, formal notice, licensing deadline. Fast, confidential response."
+    "Stonebridge provides urgent support in critical AML/CFT compliance situations: AMF or ACPR audit, banking refusal, formal notice, licensing deadline. Fast, confidential response.",
+    "/urgence/"
   );
 
   const sections = [

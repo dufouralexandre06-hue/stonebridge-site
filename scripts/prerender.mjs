@@ -2,43 +2,21 @@
 // (dist/) into its own static index.html, so crawlers get real HTML/JSON-LD
 // without executing JS. Runs after `vite build`, before the FTP deploy step.
 //
-// Route list is intentionally hardcoded (small, slow-changing set) — keep in
-// sync with src/App.tsx and the slugs in src/data/analysesVeilleContent.tsx.
+// Route list comes from routes.mjs — the same source generate-sitemap.mjs reads —
+// so this list and the sitemap can never drift apart.
 import { spawn } from 'child_process';
 import { mkdirSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import puppeteer from 'puppeteer';
+import { ALL_ROUTES } from './routes.mjs';
 
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 const DIST_DIR = join(process.cwd(), 'dist');
 
-const ANALYSES_VEILLE_SLUGS = [
-  'expert-comptable-obligation-tracfin',
-  'psan-radie-que-faire',
-  'family-office-lcb-ft',
-  'controle-acpr-lcb-ft',
-  'societe-gestion-controles-amf-lcb-ft',
-  'avocat-fiscaliste-lcb-ft',
-  'compliance-externalisee-lcb-ft',
-];
-
-const ROUTES = [
-  '/',
-  '/mandats',
-  '/situations',
-  '/methode',
-  '/doctrine',
-  '/contact',
-  '/urgence',
-  '/actualites',
-  '/veille-complete',
-  '/analyses-veille',
-  ...ANALYSES_VEILLE_SLUGS.map((slug) => `/analyses-veille/${slug}`),
-  '/mentions-legales',
-  '/cookies',
-  '/confidentialite',
-];
+// routes.mjs paths have a trailing slash (the form actually served); the dev/preview
+// server that prerendering crawls resolves either form the same way, so route it as-is.
+const ROUTES = ALL_ROUTES;
 
 function waitForServer(url, timeoutMs = 30000) {
   const start = Date.now();

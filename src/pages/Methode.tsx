@@ -95,10 +95,11 @@ const Methode = () => {
   useScrollReveal();
   usePageMeta(
     language,
-    "Method — Stonebridge | A structured, six-step working method",
     "Méthode — Stonebridge | Une méthode de travail en six étapes",
+    "Method — Stonebridge | A structured, six-step working method",
     "La méthode Stonebridge en six étapes : qualifier, cartographier, structurer, coordonner, soutenir, suivre. Une approche rigoureuse, proportionnée au niveau de risque.",
-    "Stonebridge's six-step method: qualify, map, structure, coordinate, support, follow through. A rigorous approach, proportionate to the level of risk."
+    "Stonebridge's six-step method: qualify, map, structure, coordinate, support, follow through. A rigorous approach, proportionate to the level of risk.",
+    "/methode/"
   );
 
   return (

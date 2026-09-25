@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
+        with:
+          # Historique complet requis : scripts/generate-sitemap.mjs lit `git log`
+          # par fichier pour dater <lastmod> ; un clone superficiel (profondeur 1,
+          # le défaut) donnerait la même date à toutes les pages.
+          fetch-depth: 0
 
       - name: Installer Bun
         uses: oven-sh/setup-bun@v2

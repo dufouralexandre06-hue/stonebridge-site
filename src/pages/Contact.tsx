@@ -41,7 +41,8 @@ const Contact = () => {
     "Contact — Stonebridge | Premier échange confidentiel",
     "Contact — Stonebridge | First confidential exchange",
     "Contacter Stonebridge pour un premier échange confidentiel sur une situation réglementaire, bancaire ou de gouvernance. Réponse sous 48 heures. Paris.",
-    "Contact Stonebridge for a first confidential exchange on a regulatory, banking or governance situation. Response within 48 hours. Paris."
+    "Contact Stonebridge for a first confidential exchange on a regulatory, banking or governance situation. Response within 48 hours. Paris.",
+    "/contact/"
   );
 
   const [form, setForm] = useState({

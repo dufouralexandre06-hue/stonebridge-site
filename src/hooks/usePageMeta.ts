@@ -10,9 +10,10 @@ const setMeta = (selector: string, value: string) => {
 };
 
 /**
- * @param canonicalPath Optional path (e.g. "/analyses-veille/slug") to set as the canonical URL
- *   for this page. Omit to leave the canonical tag untouched (existing pages keep their current
- *   behaviour — the tag stays on its index.html default).
+ * @param canonicalPath Path for this page's canonical URL, matching the exact form served as a
+ *   200 (with OVH/Apache, every route except "/" serves only with a trailing slash — see
+ *   .htaccess). Use "/" for the homepage. Required on every call so a page can no longer be left
+ *   with the previous page's (or the default) canonical tag by omission.
  */
 export const usePageMeta = (
   lang: string,
@@ -20,26 +21,23 @@ export const usePageMeta = (
   titleEn: string,
   descFr: string,
   descEn: string,
-  canonicalPath?: string
+  canonicalPath: string
 ) => {
   useEffect(() => {
     const title = lang === 'fr' ? titleFr : titleEn;
     const desc  = lang === 'fr' ? descFr  : descEn;
+    const canonical = canonicalPath === '/' ? SITE_URL : `${SITE_URL}${canonicalPath}`;
     document.title = title;
     setMeta('meta[name="description"]',     desc);
     setMeta('meta[property="og:title"]',    title);
     setMeta('meta[property="og:description"]', desc);
-    if (canonicalPath) {
-      document.querySelector('link[rel="canonical"]')?.setAttribute('href', `${SITE_URL}${canonicalPath}`);
-    }
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonical);
     return () => {
       document.title = DEFAULT_TITLE;
       setMeta('meta[name="description"]',     DEFAULT_DESC);
       setMeta('meta[property="og:title"]',    DEFAULT_TITLE);
       setMeta('meta[property="og:description"]', DEFAULT_DESC);
-      if (canonicalPath) {
-        document.querySelector('link[rel="canonical"]')?.setAttribute('href', DEFAULT_CANONICAL);
-      }
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', DEFAULT_CANONICAL);
     };
   }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
 };
