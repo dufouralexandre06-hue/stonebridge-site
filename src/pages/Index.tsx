@@ -9,9 +9,9 @@ const Index = () => {
   const { t, language } = useLanguage();
   usePageMeta(
     language,
+    "Stonebridge | Conformité LCB-FT, KYC et Gouvernance | Paris",
     "Stonebridge | Independent Regulatory Counsel | Paris",
-    "Stonebridge | Conseil réglementaire indépendant | Paris",
-    "Stonebridge conseille les family offices, structures patrimoniales et asset managers confrontés à des situations réglementaires sensibles, des gouvernances complexes ou des relations bancaires exigeantes.",
+    "Stonebridge accompagne family offices, sociétés de gestion, experts-comptables et avocats sur leurs obligations LCB-FT, KYC et de gouvernance réglementaire.",
     "Stonebridge advises family offices, wealth structures and asset managers facing sensitive regulatory situations, complex governance arrangements or exacting banking relationships.",
     "/"
   );
