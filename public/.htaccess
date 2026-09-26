@@ -7,7 +7,7 @@
   # infrastructure, contrairement à %{HTTPS}) :
   # https://docs.ovhcloud.com/fr/guides/web-cloud/web-hosting/htaccess-url-rewriting-using-mod-rewrite
   RewriteCond %{SERVER_PORT} 80
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=302,L]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # Servir directement les fichiers et dossiers existants (JS, CSS, images, favicon…)
   RewriteCond %{REQUEST_FILENAME} !-f
