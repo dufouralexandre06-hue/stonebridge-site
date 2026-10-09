@@ -18,6 +18,29 @@ const DIST_DIR = join(process.cwd(), 'dist');
 // server that prerendering crawls resolves either form the same way, so route it as-is.
 const ROUTES = ALL_ROUTES;
 
+// Path that matches no real route, so the SPA renders its NotFound ("*") page. It is
+// snapshotted into dist/404.html (served by Apache's ErrorDocument 404, see
+// public/.htaccess) and is deliberately NOT part of routes.mjs / the sitemap.
+const NOT_FOUND_ROUTE = '/page-introuvable-404/';
+
+// The snapshot starts from index.html's head (default canonical, robots "index, follow").
+// A 404 page must be noindex and carry no canonical. Assets are already absolute (/assets/…,
+// Vite base "/"), so the page renders correctly at any URL depth. Throws if an expected
+// tag is missing, so a head change can't silently ship an indexable 404.
+function to404Html(html) {
+  const canonicalRe = /<link[^>]*rel="canonical"[^>]*>\s*/;
+  const robotsRe = /<meta[^>]*name="robots"[^>]*>/;
+  if (!canonicalRe.test(html) || !robotsRe.test(html)) {
+    throw new Error('canonical or robots tag not found in 404 snapshot');
+  }
+  if (!html.includes('404')) {
+    throw new Error('NotFound page content not found in 404 snapshot');
+  }
+  return html
+    .replace(canonicalRe, '')
+    .replace(robotsRe, '<meta name="robots" content="noindex">');
+}
+
 function waitForServer(url, timeoutMs = 30000) {
   const start = Date.now();
   return new Promise((resolve, reject) => {
@@ -101,6 +124,21 @@ async function main() {
       } finally {
         await page.close();
       }
+    }
+
+    const notFoundPage = await browser.newPage();
+    try {
+      await notFoundPage.goto(`${BASE_URL}${NOT_FOUND_ROUTE}`, { waitUntil: 'networkidle0', timeout: 30000 });
+      await autoScroll(notFoundPage);
+      await new Promise((r) => setTimeout(r, 150));
+      const filePath = join(DIST_DIR, '404.html');
+      writeFileSync(filePath, to404Html(await notFoundPage.content()));
+      console.log(`[prerender] ✓ ${NOT_FOUND_ROUTE} -> dist\\404.html`);
+    } catch (err) {
+      console.error(`[prerender] ✗ 404.html:`, err.message);
+      process.exitCode = 1;
+    } finally {
+      await notFoundPage.close();
     }
 
     await browser.close();

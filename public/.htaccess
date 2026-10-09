@@ -25,10 +25,10 @@
   RewriteCond %{THE_REQUEST} \s/(.*/)?index\.html[\s?] [NC]
   RewriteRule ^(.*/)?index\.html$ https://stonebridgeconsult.com/$1 [R=301,L]
 
-  # Servir directement les fichiers et dossiers existants (JS, CSS, images, favicon…)
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-
-  # Toutes les autres routes → index.html (React Router prend la main)
-  RewriteRule ^ /index.html [L]
+  # Plus de repli SPA vers /index.html : toutes les routes publiques sont prérendues
+  # (dossier/index.html, voir scripts/prerender.mjs). Une URL qui ne correspond ni à un
+  # fichier ni à un dossier existant tombe dans le 404 d'Apache (ErrorDocument ci-dessous).
 </IfModule>
+
+# Vrai code 404 (noindex, sans canonique) pour les URL inconnues, y compris /assets/…
+ErrorDocument 404 /404.html

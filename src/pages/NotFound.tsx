@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
 
 const NotFound = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Not usePageMeta: it would write a canonical tag, and a 404 must have none.
+  useEffect(() => {
+    const previous = document.title;
+    document.title = language === 'fr' ? 'Page introuvable — Stonebridge' : 'Page not found — Stonebridge';
+    return () => { document.title = previous; };
+  }, [language]);
 
   return (
     <Layout variant="light">
