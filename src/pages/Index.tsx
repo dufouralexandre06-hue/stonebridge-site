@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import MobileNavigation from '@/components/MobileNavigation';
 import Footer from '@/components/Footer';
@@ -116,8 +117,8 @@ const Index = () => {
 
         {/* CTA */}
         <div className="hero-fade-in hero-fade-delay-4 mt-14">
-          <a
-            href="/contact"
+          <Link
+            to="/contact/"
             onMouseEnter={() => setBtnHovered(true)}
             onMouseLeave={() => setBtnHovered(false)}
             style={{
@@ -139,7 +140,7 @@ const Index = () => {
             }}
           >
             {t('Request a confidential assessment', 'Demander une évaluation confidentielle')}
-          </a>
+          </Link>
         </div>
 
         </div>{/* end z-10 wrapper */}

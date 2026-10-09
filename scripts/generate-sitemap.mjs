@@ -24,7 +24,7 @@ function gitLastModified(file) {
 
 const urls = [
   ...STATIC_ROUTES.map((route) => ({
-    loc: route.path === '/' ? SITE_URL : `${SITE_URL}${route.path}`,
+    loc: `${SITE_URL}${route.path}`,
     lastmod: gitLastModified(route.file),
     priority: route.priority,
   })),

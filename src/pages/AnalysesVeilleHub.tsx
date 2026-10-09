@@ -93,12 +93,12 @@ const AnalysesVeilleHub = () => {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
                 <span style={numStyle}>{String(i + 1).padStart(2, '0')}</span>
                 <div style={{ flex: 1 }}>
-                  <Link to={`/analyses-veille/${entry.slug}`} style={{ textDecoration: 'none' }}>
+                  <Link to={`/analyses-veille/${entry.slug}/`} style={{ textDecoration: 'none' }}>
                     <p style={titleStyle}>{entry.title}</p>
                   </Link>
                   <p style={summaryStyle}>{entry.hubSummary}</p>
                   <Link
-                    to={`/analyses-veille/${entry.slug}`}
+                    to={`/analyses-veille/${entry.slug}/`}
                     style={{
                       display: 'inline-block',
                       marginTop: '10px',
@@ -140,7 +140,7 @@ const AnalysesVeilleHub = () => {
             )}
           </p>
           <Link
-            to="/actualites"
+            to="/actualites/"
             style={{
               display: 'inline-block',
               marginTop: '20px',

@@ -245,7 +245,7 @@ const Mandats = () => {
             )}
           </p>
           <Link
-            to="/contact"
+            to="/contact/"
             style={{
               display: 'inline-block',
               marginTop: '20px',

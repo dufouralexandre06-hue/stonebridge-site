@@ -2,12 +2,28 @@
   RewriteEngine On
   RewriteBase /
 
-  # Forcer HTTPS — méthode officielle recommandée par OVHcloud pour
-  # l'hébergement mutualisé (%{SERVER_PORT} est fiable sur cette
-  # infrastructure, contrairement à %{HTTPS}) :
-  # https://docs.ovhcloud.com/fr/guides/web-cloud/web-hosting/htaccess-url-rewriting-using-mod-rewrite
-  RewriteCond %{SERVER_PORT} 80
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+  # Forme d'URL unique : https, sans www, avec slash final.
+
+  # 1. Dossier demandé sans slash final (ex. /confidentialite) : redirection directe
+  #    vers l'URL finale en une seule 301. Placée AVANT la règle http/www pour que
+  #    http://www.stonebridgeconsult.com/confidentialite n'ait qu'un seul saut, et pour
+  #    éviter la redirection native d'Apache (mod_dir), qui produit « :443 » dans l'URL.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ https://stonebridgeconsult.com/$1/ [R=301,L]
+
+  # 2. Forcer HTTPS et retirer www — détection HTTPS conservée : méthode officielle
+  #    recommandée par OVHcloud pour l'hébergement mutualisé (%{SERVER_PORT} est fiable
+  #    sur cette infrastructure, contrairement à %{HTTPS}) :
+  #    https://docs.ovhcloud.com/fr/guides/web-cloud/web-hosting/htaccess-url-rewriting-using-mod-rewrite
+  RewriteCond %{SERVER_PORT} 80 [OR]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^(.*)$ https://stonebridgeconsult.com/$1 [R=301,L]
+
+  # 3. /index.html (racine ou sous-dossier) -> dossier. Test sur la requête brute pour ne pas
+  #    boucler avec le DirectoryIndex interne d'Apache.
+  RewriteCond %{THE_REQUEST} \s/(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ https://stonebridgeconsult.com/$1 [R=301,L]
 
   # Servir directement les fichiers et dossiers existants (JS, CSS, images, favicon…)
   RewriteCond %{REQUEST_FILENAME} !-f

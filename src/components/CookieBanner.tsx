@@ -59,7 +59,7 @@ const CookieBanner = () => {
       </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexShrink: 0 }}>
         <Link
-          to="/cookies"
+          to="/cookies/"
           style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 300,

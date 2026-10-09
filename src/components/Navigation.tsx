@@ -20,13 +20,13 @@ const Navigation: React.FC<NavigationProps> = ({ transparent = false }) => {
 
   const navItems = [
     // { path: '/', labelEn: 'Overview', labelFr: 'Présentation' },
-    { path: '/mandats', labelEn: 'Mandates', labelFr: 'Mandats' },
-    { path: '/situations', labelEn: 'Situations', labelFr: 'Situations' },
-    { path: '/methode', labelEn: 'Method', labelFr: 'Méthode' },
-    { path: '/doctrine', labelEn: 'Doctrine', labelFr: 'Doctrine' },
-    { path: '/analyses-veille', labelEn: 'Analysis & Watch', labelFr: 'Analyses & Veille' },
-    { path: '/urgence', labelEn: 'Emergency', labelFr: 'Urgence' },
-    { path: '/contact', labelEn: 'Contact', labelFr: 'Contact' },
+    { path: '/mandats/', labelEn: 'Mandates', labelFr: 'Mandats' },
+    { path: '/situations/', labelEn: 'Situations', labelFr: 'Situations' },
+    { path: '/methode/', labelEn: 'Method', labelFr: 'Méthode' },
+    { path: '/doctrine/', labelEn: 'Doctrine', labelFr: 'Doctrine' },
+    { path: '/analyses-veille/', labelEn: 'Analysis & Watch', labelFr: 'Analyses & Veille' },
+    { path: '/urgence/', labelEn: 'Emergency', labelFr: 'Urgence' },
+    { path: '/contact/', labelEn: 'Contact', labelFr: 'Contact' },
   ];
 
   const isSolid = !transparent || scrolled;
@@ -56,7 +56,7 @@ const Navigation: React.FC<NavigationProps> = ({ transparent = false }) => {
                 key={item.path}
                 to={item.path}
                 className={`institutional-label transition-opacity duration-200 ${
-                  location.pathname === item.path || location.pathname.startsWith(item.path + '/')
+                  item.path === '/' ? location.pathname === '/' : location.pathname.startsWith(item.path)
                     ? 'text-white opacity-100'
                     : 'text-white opacity-40 hover:opacity-80'
                 }`}

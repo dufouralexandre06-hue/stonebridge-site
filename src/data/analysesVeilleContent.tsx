@@ -68,7 +68,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h3 style={h3Style}>Le cadre légal</h3>
         <p style={bodyStyle}>
           L'article <ExtLink href={LEGI.L561_2}>L.561-2</ExtLink> du Code monétaire et financier fixe la liste des professions assujetties aux obligations de vigilance et de déclaration. Les experts-comptables y figurent explicitement (12° de l'article), aux côtés des commissaires aux comptes, des{' '}
-          <Link to="/analyses-veille/avocat-fiscaliste-lcb-ft" style={linkStyle}>avocats</Link>, des notaires et des autres professions du chiffre et du droit.
+          <Link to="/analyses-veille/avocat-fiscaliste-lcb-ft/" style={linkStyle}>avocats</Link>, des notaires et des autres professions du chiffre et du droit.
         </p>
         <h3 style={h3Style}>Ce qui déclenche concrètement l'obligation</h3>
         <p style={bodyStyle}>
@@ -121,7 +121,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Ce que montrent les chiffres</h2>
         <p style={bodyStyle}>
           Le dernier rapport d'activité de TRACFIN fait état d'un volume de déclarations de soupçon en provenance de la profession comptable qui reste, en proportion du nombre de professionnels en exercice, relativement modeste au regard d'autres secteurs plus fréquemment sollicités. Ce constat ne traduit pas une absence de vigilance de la profession, mais illustre la difficulté à identifier, dans le flux courant de l'activité, les situations qui appellent réellement une déclaration — une difficulté renforcée par l'absence, dans beaucoup de cabinets, d'un temps dédié à cette analyse. C'est ce type de constat qui pousse certains cabinets à recourir à une{' '}
-          <Link to="/analyses-veille/compliance-externalisee-lcb-ft" style={linkStyle}>compliance externalisée</Link> pour cette fonction précise.
+          <Link to="/analyses-veille/compliance-externalisee-lcb-ft/" style={linkStyle}>compliance externalisée</Link> pour cette fonction précise.
         </p>
 
         <div style={vigilanceBoxStyle}>
@@ -204,7 +204,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h3 style={h3Style}>Documenter la cessation</h3>
         <p style={bodyStyle}>
           Un plan de cessation ordonnée, documenté et daté, retrace la manière dont les clients ont été informés, dont leurs actifs ont été restitués, et dont les opérations en cours ont été traitées. C'est ce document, plus que la radiation elle-même, qui sera examiné si l'AMF revient sur le dossier — de la même manière qu'un{' '}
-          <Link to="/analyses-veille/controle-acpr-lcb-ft" style={linkStyle}>contrôle ACPR</Link> examine en priorité la cohérence entre la documentation existante et l'activité réelle.
+          <Link to="/analyses-veille/controle-acpr-lcb-ft/" style={linkStyle}>contrôle ACPR</Link> examine en priorité la cohérence entre la documentation existante et l'activité réelle.
         </p>
         <h3 style={h3Style}>Gérer la communication vis-à-vis des clients et partenaires</h3>
         <p style={bodyStyle}>
@@ -284,7 +284,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Les risques spécifiques aux structures patrimoniales complexes</h2>
         <p style={bodyStyle}>
           Les family offices sont, par la nature de leur activité, confrontés à des structures et des situations qui appellent une vigilance particulière : détentions via des holdings multi-juridictionnelles, actifs alternatifs (private equity, actifs numériques, art), changements de résidence fiscale accompagnés du maintien d'actifs en France. Ces situations ne sont pas problématiques en elles-mêmes — elles appellent une lecture attentive et documentée, distincte d'une approche purement déclarative, et gagnent souvent à être structurées avec le concours d'un{' '}
-          <Link to="/analyses-veille/avocat-fiscaliste-lcb-ft" style={linkStyle}>avocat fiscaliste</Link>.
+          <Link to="/analyses-veille/avocat-fiscaliste-lcb-ft/" style={linkStyle}>avocat fiscaliste</Link>.
         </p>
 
         <h2 style={h2Style}>Le cas particulier des structures basées à Monaco</h2>
@@ -298,7 +298,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Externaliser la fonction compliance : ce qu'il faut savoir</h2>
         <p style={bodyStyle}>
           Un family office peut choisir de confier à un{' '}
-          <Link to="/analyses-veille/compliance-externalisee-lcb-ft" style={linkStyle}>prestataire externe</Link>{' '}
+          <Link to="/analyses-veille/compliance-externalisee-lcb-ft/" style={linkStyle}>prestataire externe</Link>{' '}
           l'analyse des dossiers complexes, la cartographie des risques, ou la formation de ses équipes. La responsabilité vis-à-vis des autorités reste toutefois toujours portée par le dirigeant ou le responsable désigné en interne — l'externalisation ne déplace pas cette responsabilité, elle apporte un appui à son exercice.
         </p>
 
@@ -357,7 +357,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2FirstStyle}>Qui est concerné</h2>
         <p style={bodyStyle}>
           Les établissements de paiement, les prestataires de services sur actifs numériques, les conseillers en investissements financiers, et plus largement toute entité exerçant une activité assujettie relèvent potentiellement d'un contrôle ACPR sur leur dispositif LCB-FT — un périmètre qui recoupe en partie celui des{' '}
-          <Link to="/analyses-veille/societe-gestion-controles-amf-lcb-ft" style={linkStyle}>sociétés de gestion contrôlées par l'AMF</Link>, l'ACPR et l'AMF partageant la supervision du dispositif LCB-FT selon le statut de l'entité.
+          <Link to="/analyses-veille/societe-gestion-controles-amf-lcb-ft/" style={linkStyle}>sociétés de gestion contrôlées par l'AMF</Link>, l'ACPR et l'AMF partageant la supervision du dispositif LCB-FT selon le statut de l'entité.
         </p>
 
         <h2 style={h2Style}>Les formats de contrôle</h2>
@@ -380,7 +380,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Se préparer avant l'arrivée des inspecteurs</h2>
         <p style={bodyStyle}>
           Une préparation sérieuse commence par un audit interne honnête de l'écart entre la documentation existante et l'activité réelle. Elle se poursuit par la mise à jour de la cartographie des risques, la vérification concrète — sur des dossiers réels, pas de façon théorique — de l'application des procédures, et la consolidation des preuves de formation. C'est le type de diagnostic qu'une{' '}
-          <Link to="/analyses-veille/compliance-externalisee-lcb-ft" style={linkStyle}>compliance externalisée</Link>{' '}
+          <Link to="/analyses-veille/compliance-externalisee-lcb-ft/" style={linkStyle}>compliance externalisée</Link>{' '}
           permet de conduire avec un regard extérieur, moins exposé aux angles morts d'une équipe interne.
         </p>
         <p style={bodyStyle}>
@@ -451,7 +451,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Les axes de contrôle de l'AMF</h2>
         <p style={bodyStyle}>
           L'AMF examine typiquement la gouvernance et la désignation effective du responsable de la conformité (RCCI), les politiques de vigilance sur les investisseurs, le traitement des déclarations de soupçon, et les preuves de formation du personnel — pas seulement leur existence formelle, mais leur mise en œuvre traçable, un examen qui rejoint sur le fond celui conduit lors d'un{' '}
-          <Link to="/analyses-veille/controle-acpr-lcb-ft" style={linkStyle}>contrôle ACPR</Link>.
+          <Link to="/analyses-veille/controle-acpr-lcb-ft/" style={linkStyle}>contrôle ACPR</Link>.
         </p>
 
         <h2 style={h2Style}>Ce que les sanctions récentes montrent</h2>
@@ -463,7 +463,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2Style}>Se préparer à un contrôle</h2>
         <p style={bodyStyle}>
           La préparation passe par un audit honnête du rapport de conformité existant, la mise à jour de la cartographie des risques investisseurs, la vérification concrète des procédures de gel des avoirs sur un échantillon de dossiers, et la consolidation des preuves de formation — un travail qu'une{' '}
-          <Link to="/analyses-veille/compliance-externalisee-lcb-ft" style={linkStyle}>compliance externalisée</Link>{' '}
+          <Link to="/analyses-veille/compliance-externalisee-lcb-ft/" style={linkStyle}>compliance externalisée</Link>{' '}
           peut prendre en charge en tout ou partie.
         </p>
 
@@ -528,7 +528,7 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2FirstStyle}>Le fondement de l'assujettissement</h2>
         <p style={bodyStyle}>
           L'<ExtLink href={LEGI.L561_2}>article L.561-2</ExtLink> du Code monétaire et financier inclut les avocats parmi les professions assujetties, sous les conditions précisées à l'<ExtLink href={LEGI.L561_3}>article L.561-3</ExtLink> — principalement lorsque l'activité exercée relève du conseil fiscal, du montage de structures, ou de la gestion de patrimoine, par opposition aux activités de conseil juridique pur ou de représentation contentieuse. C'est le même socle qui assujettit l'{' '}
-          <Link to="/analyses-veille/expert-comptable-obligation-tracfin" style={linkStyle}>expert-comptable</Link>{' '}
+          <Link to="/analyses-veille/expert-comptable-obligation-tracfin/" style={linkStyle}>expert-comptable</Link>{' '}
           — mais l'articulation avec le secret professionnel donne à la procédure applicable aux avocats une physionomie distincte.
         </p>
 
@@ -610,9 +610,9 @@ export const ANALYSES_VEILLE: AnalyseVeillePage[] = [
         <h2 style={h2FirstStyle}>Pourquoi envisager l'externalisation</h2>
         <p style={bodyStyle}>
           Constituer une fonction compliance interne complète — recrutement, formation continue, veille réglementaire — représente un investissement significatif, rarement justifié pour une structure de taille modeste. C'est une question qui se pose avec une acuité particulière pour les{' '}
-          <Link to="/analyses-veille/expert-comptable-obligation-tracfin" style={linkStyle}>cabinets d'expertise comptable</Link>{' '}
+          <Link to="/analyses-veille/expert-comptable-obligation-tracfin/" style={linkStyle}>cabinets d'expertise comptable</Link>{' '}
           et les{' '}
-          <Link to="/analyses-veille/family-office-lcb-ft" style={linkStyle}>family offices</Link>, structures pour lesquelles la fonction conformité reste rarement un métier premier. L'externalisation permet d'accéder à une expertise spécialisée sans supporter ce coût fixe, tout en bénéficiant d'un regard extérieur, moins exposé aux angles morts d'une équipe interne trop proche du quotidien de l'activité.
+          <Link to="/analyses-veille/family-office-lcb-ft/" style={linkStyle}>family offices</Link>, structures pour lesquelles la fonction conformité reste rarement un métier premier. L'externalisation permet d'accéder à une expertise spécialisée sans supporter ce coût fixe, tout en bénéficiant d'un regard extérieur, moins exposé aux angles morts d'une équipe interne trop proche du quotidien de l'activité.
         </p>
 
         <h2 style={h2Style}>Les signaux qui doivent alerter</h2>

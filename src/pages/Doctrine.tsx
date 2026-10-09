@@ -601,7 +601,7 @@ const Doctrine = () => {
             style={{ marginTop: '40px', paddingTop: '28px', borderTop: '1px solid rgba(15,27,45,0.08)' }}
           >
             <Link
-              to="/actualites"
+              to="/actualites/"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 300,
@@ -669,7 +669,7 @@ const Doctrine = () => {
       >
         <div className="reveal" style={{ maxWidth: '44rem' }}>
           <Link
-            to="/contact"
+            to="/contact/"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 300,

@@ -76,7 +76,7 @@ const VeilleComplete = () => {
       <section className="px-8 md:px-16 lg:px-24 pt-40 md:pt-48 pb-24" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-3xl">
           <Link
-            to="/actualites"
+            to="/actualites/"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 300,

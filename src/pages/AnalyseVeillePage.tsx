@@ -9,6 +9,7 @@ import { getAnalyseBySlug } from '@/data/analysesVeilleContent';
 import { eyebrowStyle, faqQStyle, faqAStyle, methodologyStyle, linkStyle } from '@/lib/analysesVeilleStyles';
 
 const SITE_URL = 'https://stonebridgeconsult.com';
+const HOME_URL = `${SITE_URL}/`;
 
 const AnalyseVeillePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,8 +37,8 @@ const AnalyseVeillePage = () => {
       description: entry.metaDescription,
       datePublished: entry.datePublished,
       dateModified: entry.dateModified,
-      author: { '@type': 'Organization', name: 'Stonebridge', url: SITE_URL },
-      publisher: { '@type': 'Organization', name: 'Stonebridge', url: SITE_URL },
+      author: { '@type': 'Organization', name: 'Stonebridge', url: HOME_URL },
+      publisher: { '@type': 'Organization', name: 'Stonebridge', url: HOME_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
       inLanguage: 'fr-FR',
     };
@@ -54,7 +55,7 @@ const AnalyseVeillePage = () => {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE_URL },
+        { '@type': 'ListItem', position: 1, name: 'Accueil', item: HOME_URL },
         { '@type': 'ListItem', position: 2, name: 'Analyses & Veille', item: `${SITE_URL}/analyses-veille/` },
         { '@type': 'ListItem', position: 3, name: entry.title, item: pageUrl },
       ],
@@ -65,7 +66,7 @@ const AnalyseVeillePage = () => {
   useJsonLd(schemas, entry ? entry.slug : 'analyse-veille-empty');
 
   if (!entry) {
-    return <Navigate to="/analyses-veille" replace />;
+    return <Navigate to="/analyses-veille/" replace />;
   }
 
   return (
@@ -82,7 +83,7 @@ const AnalyseVeillePage = () => {
               </li>
               <li style={{ ...eyebrowStyle, opacity: 0.3 }}>/</li>
               <li>
-                <Link to="/analyses-veille" style={{ ...eyebrowStyle, opacity: 0.5, textDecoration: 'none' }}>
+                <Link to="/analyses-veille/" style={{ ...eyebrowStyle, opacity: 0.5, textDecoration: 'none' }}>
                   {t('Analysis & Watch', 'Analyses & Veille')}
                 </Link>
               </li>
@@ -149,13 +150,13 @@ const AnalyseVeillePage = () => {
 
           <p style={{ ...methodologyStyle, marginTop: '28px' }}>
             {t("This approach follows the methodology described by Stonebridge — see the ", "Cette démarche s'inscrit dans l'approche méthodologique décrite par Stonebridge — voir la page ")}
-            <Link to="/methode" style={linkStyle}>{t('Method page', 'Méthode')}</Link>.
+            <Link to="/methode/" style={linkStyle}>{t('Method page', 'Méthode')}</Link>.
           </p>
 
           <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: '0.9375rem', color: '#2F2F2F', lineHeight: 1.8, marginTop: '28px' }}>
             {t('If your situation requires personalised support on a specific matter, ', 'Si votre situation nécessite un accompagnement personnalisé sur un dossier précis, ')}
             <Link
-              to="/contact"
+              to="/contact/"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 300,

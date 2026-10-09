@@ -282,7 +282,7 @@ const Actualites = () => {
               {hasMore && (
                 <div style={{ marginTop: '40px' }}>
                   <Link
-                    to="/veille-complete"
+                    to="/veille-complete/"
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontWeight: 300,

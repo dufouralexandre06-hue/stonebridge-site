@@ -195,7 +195,7 @@ const Methode = () => {
       <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#ffffff' }}>
         <div className="reveal" style={{ maxWidth: '44rem' }}>
           <Link
-            to="/contact"
+            to="/contact/"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 300,

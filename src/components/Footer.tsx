@@ -176,9 +176,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
             {[
-              { to: '/mentions-legales', en: 'Legal Notice', fr: 'Mentions légales' },
-              { to: '/cookies', en: 'Cookie Policy', fr: 'Politique de cookies' },
-              { to: '/confidentialite', en: 'Privacy Policy', fr: 'Politique de confidentialité' },
+              { to: '/mentions-legales/', en: 'Legal Notice', fr: 'Mentions légales' },
+              { to: '/cookies/', en: 'Cookie Policy', fr: 'Politique de cookies' },
+              { to: '/confidentialite/', en: 'Privacy Policy', fr: 'Politique de confidentialité' },
             ].map(link => (
               <Link
                 key={link.to}
