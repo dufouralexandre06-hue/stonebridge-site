@@ -28,8 +28,8 @@ const Urgence = () => {
       bg: '#FAF8F5',
       label: t('Banking refusal or account closure', 'Refus ou clôture de compte bancaire'),
       body: t(
-        'When a bank suspends onboarding or threatens to close an account due to insufficient justification of the source of funds, the response time is short and the operational stakes immediate. Stonebridge reconstructs the traceability of flows and prepares the elements expected by the institution.',
-        'Lorsqu\'un établissement bancaire suspend une entrée en relation ou menace de clôturer un compte pour insuffisance de justification sur l\'origine des fonds, le délai de réponse est court et l\'enjeu opérationnel immédiat. Stonebridge reconstitue la traçabilité des flux et prépare les éléments attendus par l\'établissement.'
+        'When a bank suspends onboarding or threatens to close an account due to insufficient justification of the source of funds, the response time is short and the operational stakes immediate. Stonebridge reconstructs the traceability of flows from verifiable documents and presents to the institution only established facts.',
+        'Lorsqu\'un établissement bancaire suspend une entrée en relation ou menace de clôturer un compte pour insuffisance de justification sur l\'origine des fonds, le délai de réponse est court et l\'enjeu opérationnel immédiat. Stonebridge reconstitue la traçabilité des flux à partir de pièces vérifiables et ne présente à l\'établissement que les éléments établis.'
       ),
     },
     {

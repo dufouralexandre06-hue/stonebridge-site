@@ -71,10 +71,10 @@ const Situations = () => {
   const { t, language } = useLanguage();
   usePageMeta(
     language,
-    "Situations — Stonebridge | Refus bancaires, PPE, structures complexes",
-    "Situations — Stonebridge | Banking refusals, PEPs, complex structures",
-    "Situations traitées par Stonebridge : refus bancaire, structures internationales opaques, profils PPE, gouvernance familiale sous tension, exigences réglementaires imminentes. Paris.",
-    "Situations handled by Stonebridge: banking refusals, opaque international structures, PEP profiles, family governance under strain, imminent regulatory requirements. Paris.",
+    "Situations — Stonebridge | Structures complexes, refus bancaires, PPE",
+    "Situations — Stonebridge | Complex structures, banking refusals, PEPs",
+    "Situations traitées par Stonebridge : structures internationales complexes, refus bancaires, profils PPE, gouvernance familiale sous tension, exigences réglementaires imminentes. Paris.",
+    "Situations handled by Stonebridge: complex international structures, banking refusals, PEP profiles, family governance under strain, imminent regulatory requirements. Paris.",
     "/situations/"
   );
   useScrollReveal();
@@ -180,8 +180,8 @@ const Situations = () => {
               }}
             >
               {t(
-                "We qualify risks, identify documentary or governance shortcomings, organise relevant information, coordinate advisers and build a position capable of being understood and supported by institutional counterparties.",
-                "Nous qualifions les risques, identifions les insuffisances documentaires ou de gouvernance, organisons les informations utiles, coordonnons les conseils concernés et construisons une position susceptible d'être comprise et soutenue par les interlocuteurs institutionnels."
+                "Stonebridge qualifies risks, establishes the facts and identifies documentary or governance shortcomings. The firm organises verifiable information, coordinates the advisers involved and presents to institutions and authorities only what can be substantiated.",
+                "Stonebridge qualifie les risques, établit les faits et identifie les insuffisances documentaires ou de gouvernance. Le cabinet organise les informations vérifiables, coordonne les conseils concernés et ne présente aux établissements et aux autorités que ce qui peut être justifié."
               )}
             </p>
             <p

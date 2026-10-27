@@ -5,9 +5,11 @@ import MobileNavigation from '@/components/MobileNavigation';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const Index = () => {
   const { t, language } = useLanguage();
+  useScrollReveal();
   usePageMeta(
     language,
     "Stonebridge | Conformité LCB-FT, KYC et Gouvernance | Paris",
@@ -49,10 +51,8 @@ const Index = () => {
 
         {/* Title */}
         <h1
-          className="hero-fade-in font-serif uppercase text-white"
+          className="hero-fade-in font-serif uppercase text-white hero-title"
           style={{
-            fontSize: 'clamp(3rem, 7vw, 5rem)',
-            letterSpacing: '0.22em',
             fontWeight: 400,
             lineHeight: 1.1,
           }}
@@ -88,14 +88,14 @@ const Index = () => {
         >
           <p style={{ opacity: 0.78, margin: 0 }}>
             {t(
-              "Stonebridge advises family offices, wealth structures, asset managers and legal professionals facing sensitive regulatory situations, complex governance arrangements or exacting banking relationships.",
-              "Stonebridge conseille les family offices, structures patrimoniales, asset managers et professionnels du droit confrontés à des situations réglementaires sensibles, des gouvernances complexes ou des relations bancaires exigeantes."
+              "Stonebridge establishes who truly owns and controls a structure. The firm reconstructs multi-jurisdictional ownership chains (Luxembourg, Switzerland, offshore jurisdictions, trusts) up to the ultimate beneficial owners, including where ownership is fragmented below reporting thresholds.",
+              "Stonebridge établit qui détient et qui contrôle réellement une structure. Le cabinet reconstitue les chaînes de détention multi-juridictionnelles (Luxembourg, Suisse, juridictions offshore, trusts) jusqu'aux bénéficiaires effectifs, y compris lorsque la détention est fragmentée sous les seuils."
             )}
           </p>
           <p style={{ opacity: 0.52, margin: 0 }}>
             {t(
-              "The firm qualifies the risk, structures the information and builds the most defensible position for institutional counterparties.",
-              "Le cabinet qualifie le risque, structure l'information et construit la position la plus défendable face aux interlocuteurs institutionnels."
+              "It supports family offices, asset managers, lawyers and accountants whose files must be justifiable, document by document, on the day a third party examines them.",
+              "Il accompagne les family offices, sociétés de gestion, avocats et experts-comptables dont les dossiers doivent pouvoir être justifiés, pièce par pièce, le jour où un tiers les examine."
             )}
           </p>
         </div>
@@ -145,6 +145,76 @@ const Index = () => {
 
         </div>{/* end z-10 wrapper */}
       </main>
+
+      {/* ── Fondateur ── */}
+      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
+        <div className="max-w-3xl">
+          <h2
+            className="reveal font-serif"
+            style={{
+              color: '#0F1B2D',
+              fontSize: 'clamp(1.25rem, 2vw, 1.625rem)',
+              fontWeight: 400,
+              letterSpacing: '0.03em',
+            }}
+          >
+            {t('Experience at the heart of ownership structures', 'Une expérience au cœur des structures de détention')}
+          </h2>
+          <div
+            className="reveal reveal-delay-1"
+            style={{
+              width: '48px',
+              height: '1px',
+              backgroundColor: 'rgba(15,27,45,0.2)',
+              margin: '18px 0 28px',
+            }}
+          />
+          <div className="reveal reveal-delay-1" style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                fontSize: '0.9375rem',
+                color: '#2F2F2F',
+                lineHeight: 1.8,
+              }}
+            >
+              {t(
+                "The founder of Stonebridge was trained in a Luxembourg fiduciary, working with holding companies, funds and multi-jurisdictional structures. There, he reconstructed ownership chains up to the ultimate beneficial owners, and took part in client acceptance decisions, based on supporting evidence.",
+                "Le fondateur de Stonebridge s'est formé en fiduciaire luxembourgeoise, auprès de holdings, de fonds et de structures multi-juridictionnelles. Il y a reconstitué les chaînes de détention jusqu'aux bénéficiaires effectifs, et pris part aux décisions d'entrée en relation, pièces à l'appui."
+              )}
+            </p>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                fontSize: '0.9375rem',
+                color: '#2F2F2F',
+                lineHeight: 1.8,
+              }}
+            >
+              {t(
+                "From Luxembourg, covering the Benelux and working with Switzerland, he practised every stage of due diligence: identification, sanctions and politically exposed persons screening, risk rating, periodic file review. He also held the entire compliance function, reporting directly to senior management.",
+                "Depuis Luxembourg, pour le Benelux et en lien avec la Suisse, il a pratiqué chaque étape de la vigilance : identification, filtrage des sanctions et des personnes politiquement exposées, notation du risque, revue périodique des dossiers. Il a également assuré l'ensemble de la fonction conformité, en rendant compte directement à la direction."
+              )}
+            </p>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 300,
+                fontSize: '0.9375rem',
+                color: '#2F2F2F',
+                lineHeight: 1.8,
+              }}
+            >
+              {t(
+                "From this, he drew the conviction that underpins the firm's method: a compliance decision is only worth something if it can be defended on the day a third party examines it.",
+                "Il en a tiré la conviction qui fonde la méthode du cabinet : une décision de conformité ne vaut que si elle peut être défendue le jour où un tiers l'examine."
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

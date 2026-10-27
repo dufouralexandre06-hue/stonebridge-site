@@ -159,8 +159,8 @@ const Contact = () => {
                 }}
               >
                 {t(
-                  'Your message has been received. We will review your submission and revert if appropriate.',
-                  'Votre message a bien été reçu. Nous examinerons votre demande et reviendrons vers vous le cas échéant.'
+                  'Your message has been received. Stonebridge will review your request and respond as promptly as possible.',
+                  'Votre message a bien été reçu. Stonebridge examinera votre demande et reviendra vers vous dans les meilleurs délais.'
                 )}
               </p>
             </div>
