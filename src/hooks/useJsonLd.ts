@@ -6,6 +6,13 @@ import { useEffect } from 'react';
  */
 export const useJsonLd = (schemas: object[], key: string) => {
   useEffect(() => {
+    // Remove any script already present for this key — e.g. baked into the
+    // static HTML by scripts/prerender.mjs — before injecting our own, so a
+    // hydrated page never ends up with duplicate JSON-LD blocks.
+    document
+      .querySelectorAll(`script[data-jsonld-key^="${key}-"]`)
+      .forEach((node) => node.remove());
+
     const nodes: HTMLScriptElement[] = schemas.map((schema, i) => {
       const script = document.createElement('script');
       script.type = 'application/ld+json';

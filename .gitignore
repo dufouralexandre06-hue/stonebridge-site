@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Local-only comparison renders, never committed
+audit-ui
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

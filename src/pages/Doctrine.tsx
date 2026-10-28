@@ -160,7 +160,7 @@ const CAS: Cas[] = [
 
 const PUBLICATIONS = [
   {
-    year: '2025',
+    year: '2026',
     titleFr: "Dirigeant, commercial et responsable conformité : une même personne peut-elle rester crédible ?",
     titleEn: "Director, business developer and compliance officer: can the same person remain credible?",
     resumeFr: "Analyse des tensions structurelles lorsqu'une même personne occupe simultanément des fonctions incompatibles dans un dispositif de conformité.",
@@ -169,7 +169,7 @@ const PUBLICATIONS = [
     url: 'https://www.village-justice.com/articles/dirigeant-commercial-responsable-conformite-une-meme-personne-peut-elle-rester,57998.html',
   },
   {
-    year: '2025',
+    year: '2026',
     titleFr: "Le triangle de la conformité : friction silencieuse entre conformité, dirigeant et client",
     titleEn: "The compliance triangle: silent friction between compliance, management and client",
     resumeFr: "Sur les interactions entre l'obligation de conformité, les objectifs commerciaux et les intérêts du client dans la gestion du risque réglementaire.",
@@ -645,19 +645,6 @@ const Doctrine = () => {
               "Stonebridge supports family offices, asset managers and legal professionals — whether they lack a dedicated in-house compliance function, or are seeking an external perspective or targeted support on a specific matter.",
               "Stonebridge accompagne les family offices, gestionnaires d'actifs et professionnels du droit — qu'ils ne disposent pas de fonction compliance dédiée en interne, ou qu'ils recherchent un regard extérieur ou un renfort ponctuel sur un dossier spécifique."
             )}
-          </p>
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 300,
-              fontSize: '0.8125rem',
-              fontStyle: 'italic',
-              color: 'rgba(15,27,45,0.45)',
-              letterSpacing: '0.01em',
-              marginTop: '8px',
-            }}
-          >
-            Alexandre Dufour, Managing Partner
           </p>
         </div>
       </section>

@@ -20,7 +20,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
   }, []);
 
   const navItems = [
-    { path: '/', labelEn: 'Overview', labelFr: 'Présentation' },
     { path: '/mandats/', labelEn: 'Mandates', labelFr: 'Mandats' },
     { path: '/situations/', labelEn: 'Situations', labelFr: 'Situations' },
     { path: '/methode/', labelEn: 'Method', labelFr: 'Méthode' },
@@ -48,7 +47,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white p-2"
+            className="text-white px-3 py-3.5"
             aria-label="Toggle menu"
           >
             <div className="w-5 h-4 flex flex-col justify-between">
@@ -83,7 +82,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ transparent = false
             key={item.path}
             to={item.path}
             onClick={() => setIsOpen(false)}
-            className="font-serif text-2xl tracking-[0.12em] uppercase transition-all duration-300"
+            className="font-serif text-2xl tracking-[0.12em] uppercase transition-all duration-300 py-2"
             style={{
               color: (item.path === '/' ? location.pathname === '/' : location.pathname.startsWith(item.path)) ? '#ffffff' : 'rgba(255,255,255,0.45)',
               transitionDelay: isOpen ? `${index * 80}ms` : '0ms',

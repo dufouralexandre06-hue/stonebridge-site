@@ -30,21 +30,26 @@ const Index = () => {
         className="relative flex-1 flex flex-col items-center justify-center text-center px-6"
         style={{ minHeight: '100vh' }}
       >
-        {/* Background video */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/hero_poster.jpg"
-        >
-          <source src="/hero_720.mp4" type="video/mp4" />
-        </video>
+        {/* Background image */}
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/images/hero-pont-desktop.webp" type="image/webp" />
+          <source media="(min-width: 768px)" srcSet="/images/hero-pont-desktop.jpg" type="image/jpeg" />
+          <source srcSet="/images/hero-pont-mobile.webp" type="image/webp" />
+          <source srcSet="/images/hero-pont-mobile.jpg" type="image/jpeg" />
+          <img
+            src="/images/hero-pont-desktop.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              filter: 'grayscale(100%) brightness(0.51)',
+              objectPosition: '50% 100%',
+            }}
+          />
+        </picture>
         {/* Dark overlay */}
         <div
           className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(15, 27, 45, 0.72)' }}
+          style={{ backgroundColor: 'rgba(27, 42, 65, 0.53)' }}
         />
         {/* Content above overlay */}
         <div className="relative z-10 flex flex-col items-center">
@@ -59,6 +64,22 @@ const Index = () => {
         >
           STONEBRIDGE
         </h1>
+
+        {/* Eyebrow / specialty label */}
+        <p
+          className="hero-fade-in hero-fade-delay-1 text-white"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            fontSize: '0.75rem',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.65)',
+            marginTop: '18px',
+          }}
+        >
+          {t('AML/CFT compliance advisory · Paris', 'Conseil en conformité LCB-FT · Paris')}
+        </p>
 
         {/* Golden accent line */}
         <div
@@ -146,6 +167,103 @@ const Index = () => {
         </div>{/* end z-10 wrapper */}
       </main>
 
+      {/* ── Aperçu des mandats ── */}
+      <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#EDE9E3' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
+          {[
+            {
+              num: '01',
+              titleFr: 'Structures internationales et multi-juridictions',
+              titleEn: 'International and multi-jurisdictional structures',
+              enjeuFr: "Lire et structurer une situation impliquant plusieurs juridictions, des montages complexes ou des expositions réglementaires croisées.",
+              enjeuEn: "Reading and structuring a situation involving multiple jurisdictions, complex arrangements or overlapping regulatory exposures.",
+            },
+            {
+              num: '03',
+              titleFr: 'Situations bancaires et diligences renforcées',
+              titleEn: 'Banking situations and enhanced due diligence',
+              enjeuFr: "Établir des faits vérifiables lorsqu'un établissement financier demande des justifications, des diligences renforcées ou remet en cause une relation.",
+              enjeuEn: "Establishing verifiable facts when a financial institution requests justifications, enhanced due diligence, or calls a relationship into question.",
+            },
+            {
+              num: '05',
+              titleFr: 'Supervision externe et mandat continu',
+              titleEn: 'External supervision and ongoing mandate',
+              enjeuFr: "Disposer d'une fonction conformité opérationnelle sans recruter de profil dédié en interne.",
+              enjeuEn: "Maintaining an operational compliance function without recruiting a dedicated internal resource.",
+            },
+          ].map((m, i) => (
+            <div key={m.num} className={`reveal reveal-delay-${i + 1}`}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <span
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '0.6875rem',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(15,27,45,0.28)',
+                    lineHeight: 1,
+                    flexShrink: 0,
+                    paddingTop: '3px',
+                  }}
+                >
+                  {m.num}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                      fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
+                      color: '#0F1B2D',
+                      letterSpacing: '0.01em',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {t(m.titleEn, m.titleFr)}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 300,
+                      fontSize: '0.9375rem',
+                      fontStyle: 'italic',
+                      color: 'rgba(15,27,45,0.62)',
+                      lineHeight: 1.65,
+                      marginTop: '10px',
+                    }}
+                  >
+                    {t(m.enjeuEn, m.enjeuFr)}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="reveal reveal-delay-3" style={{ marginTop: '48px' }}>
+          <Link
+            to="/mandats/"
+            style={{
+              display: 'inline-block',
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.75rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#0F1B2D',
+              textDecoration: 'none',
+              borderBottom: '1px solid rgba(15,27,45,0.25)',
+              paddingBottom: '2px',
+              transition: 'border-color 0.2s ease',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(15,27,45,0.7)')}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(15,27,45,0.25)')}
+          >
+            {t('View all six forms of engagement →', "Voir les six formats d'intervention →")}
+          </Link>
+        </div>
+      </section>
+
       {/* ── Fondateur ── */}
       <section className="px-8 md:px-16 lg:px-24 py-20 md:py-28" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-3xl">
@@ -213,6 +331,47 @@ const Index = () => {
               )}
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* ── Appel final ── */}
+      <section className="px-8 md:px-16 lg:px-24 py-14 md:py-20" style={{ backgroundColor: '#ffffff' }}>
+        <div className="reveal" style={{ maxWidth: '44rem', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.9375rem',
+              color: '#2F2F2F',
+              lineHeight: 1.8,
+            }}
+          >
+            {t(
+              'Every engagement begins with an initial confidential exchange.',
+              'Chaque intervention commence par un premier échange confidentiel.'
+            )}
+          </p>
+          <Link
+            to="/contact/"
+            style={{
+              display: 'inline-block',
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: '0.75rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#0F1B2D',
+              textDecoration: 'none',
+              borderBottom: '1px solid rgba(15,27,45,0.25)',
+              paddingBottom: '2px',
+              transition: 'border-color 0.2s ease',
+              alignSelf: 'flex-start',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(15,27,45,0.7)')}
+            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(15,27,45,0.25)')}
+          >
+            {t('Request an initial exchange →', 'Demander un premier échange →')}
+          </Link>
         </div>
       </section>
 

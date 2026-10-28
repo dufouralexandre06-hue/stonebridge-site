@@ -185,10 +185,11 @@ const Contact = () => {
               <div className="space-y-10">
                 {/* Email */}
                 <div>
-                  <label style={labelStyle}>
+                  <label style={labelStyle} htmlFor="contact-email">
                     {t('Email address', 'Adresse e-mail')}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
                     value={form.email}
@@ -203,10 +204,11 @@ const Contact = () => {
 
                 {/* Organisation */}
                 <div>
-                  <label style={labelStyle}>
+                  <label style={labelStyle} htmlFor="contact-organisation">
                     {t('Organisation or structure', 'Organisation ou structure')}
                   </label>
                   <input
+                    id="contact-organisation"
                     type="text"
                     name="organisation"
                     value={form.organisation}
@@ -219,10 +221,11 @@ const Contact = () => {
 
                 {/* Description */}
                 <div>
-                  <label style={labelStyle}>
+                  <label style={labelStyle} htmlFor="contact-description">
                     {t('Brief description of the situation', 'Description synthétique de la situation')}
                   </label>
                   <textarea
+                    id="contact-description"
                     name="description"
                     value={form.description}
                     onChange={handleChange}
